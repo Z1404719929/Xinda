@@ -2,6 +2,8 @@ package com.datangedu.cn.model.sysUser;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class ProviderProduct {
     private String id;
 
@@ -122,4 +124,5 @@ public class ProviderProduct {
     public void setProviderName(String providerName) {
         this.providerName = providerName == null ? null : providerName.trim();
     }
+
 }

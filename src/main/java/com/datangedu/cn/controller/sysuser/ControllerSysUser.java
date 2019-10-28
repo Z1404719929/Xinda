@@ -1,5 +1,7 @@
 package com.datangedu.cn.controller.sysuser;
 
-public class ControllerSysUser {
+import javax.servlet.http.HttpServlet;
+
+public class ControllerSysUser extends HttpServlet {
 
 }

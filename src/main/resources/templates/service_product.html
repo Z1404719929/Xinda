@@ -92,6 +92,7 @@
             <table border="0" cellspacing="0" cellpadding="0">
                 <thead>
                     <tr>
+                    <td><input type="checkbox" class="all_check"></td>
                         <th>服务名称</th>
                         <th>服务内容</th>
                         <th>价格</th>
@@ -99,7 +100,7 @@
                         <th>操作</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="table">
                     <tr>
                         <td>电视剧作品登记</td>
                         <td>电视剧作品登记</td>
@@ -139,15 +140,19 @@
                 </li>
                 <li>
                     <span>服务名称</span>
-                    <input placeholder="请输入服务名称" />
+                    <input class="service_name"  type="text" placeholder="请输入服务名称" />
+                </li>
+                <li>
+                <span>序号id</span>
+                    <input class="product_id" type="text"  placeholder="请输入id" />
                 </li>
                 <li>
                     <span class="ver-top">服务说明</span>
-                    <textarea name="" id="" cols="45" rows="7"></textarea>
+                    <textarea name="" id="" cols="45" rows="7" class="service_content"></textarea>
                 </li>
                 <li>
                     <span>服务价格</span>
-                    <input type="number" placeholder="请输入服务价格">
+                    <input type="text" class="service_price" placeholder="请输入服务价格">
                 </li>
             </ul>
             <button class="save">提交</button>

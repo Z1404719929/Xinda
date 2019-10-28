@@ -84,23 +84,24 @@
             <ul class="store-info">
                 <li>
                     <span>公司介绍</span>
-                    <textarea></textarea>
+                    <textarea class="service_info"></textarea>
                 </li>
                 <li>
-                    <span>工作时间</span>
-                    <select>
-                        <option value="">周一到周五</option>
-                        <option value="">周一到周四</option>
-                    </select>
+                <span>工作时间</span>
+                    <input placeholder="请输入工作时间" class="service_time">
                 </li>
                 <li>
                     <span>QQ</span>
-                    <input placeholder="请输入QQ" />
+                    <input placeholder="请输入QQ" class="service_qq"/>
                 </li>
                 <li>
                     <span>联系电话</span>
-                    <input placeholder="请输入联系电话" /> <i> (固定电话的填写格式：01012345678)</i>
+                    <input placeholder="请输入联系电话" class="service_cellphone"/> <i> (固定电话的填写格式：01012345678)</i>
                 </li>
+                <li>
+          
+                    <button onclick="submit()">保存</button>
+                    </li>
             </ul>
             <ul class="main-tab">
                 <li class="border-red order1">必填文件</li>
