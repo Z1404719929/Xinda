@@ -1,3 +1,4 @@
+
 package com.datangedu.cn.controller.providerproduct;
 
 import java.util.HashMap;
@@ -46,3 +47,4 @@ public class ControllerProviderProduct {
 	}
 
 }
+

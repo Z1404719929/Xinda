@@ -21,3 +21,39 @@ $(".service-order").on("click", function(){
     $(".business-order").removeClass("border-red");
     $(".main-top li").eq(3).text("服务订单");
 })
+
+$(function(){
+	$.ajax({
+		type: "get",
+		url: "/oo1/getlist1",
+		dataType: "json",
+		success: function(data){
+			console.log("成功后返回的数据",data);
+			var soList = data.soList;
+			$("#sysuser").html("");
+			var txt="";
+			txt +=sessionStorage.getItem("name")
+			$("#sysuser").append(txt);
+			
+			$("#list").html("");
+			txt="";
+			for(var i = 0;i<soList.length;i++){
+				txt += `<tr>
+                <td>${soList[i].serviceNo}</td>
+                <td>${soList[i].memberId}</td>
+                <td>${soList[i].serviceId}</td>
+                <td>￥${soList[i].totalPrice}</td>
+                <td>${soList[i].createTime}</td>
+                <td>${soList[i].zt}</td>
+                <td>
+                    <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>详情</span>
+                </td>
+            </tr>`
+			}
+			$("#list").append(txt);
+		},
+		error: function(data){
+			console.log("失败后返回的数据",data);
+		}
+	})
+})

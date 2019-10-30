@@ -8,6 +8,10 @@ import org.apache.ibatis.annotations.Param;
 import com.datangedu.cn.model.sysUser.ProviderProduct;
 import com.datangedu.cn.model.sysUser.ProviderProductExample;
 
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 @Mapper
 public interface ProviderProductMapper {
 	long countByExample(ProviderProductExample example);

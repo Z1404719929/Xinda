@@ -8,6 +8,10 @@ import org.apache.ibatis.annotations.Param;
 import com.datangedu.cn.model.sysUser.ServiceOrder;
 import com.datangedu.cn.model.sysUser.ServiceOrderExample;
 
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 @Mapper
 public interface ServiceOrderMapper {
 	long countByExample(ServiceOrderExample example);

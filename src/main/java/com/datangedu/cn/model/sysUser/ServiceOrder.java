@@ -1,8 +1,9 @@
 package com.datangedu.cn.model.sysUser;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ServiceOrder {
+
 	private String serviceNo;
 
 	private String memberId;
@@ -17,7 +18,17 @@ public class ServiceOrder {
 
 	private Integer payType;
 
-	private String content;
+    private String content;
+    
+    private String zt;
+    
+    public String getZt() {
+		return zt;
+	}
+
+	public void setZt(String zt) {
+		this.zt = zt;
+	}
 
 	private String sName;
 

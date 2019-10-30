@@ -1,6 +1,7 @@
 package com.datangedu.cn.model.sysUser;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Member {
     private String id;

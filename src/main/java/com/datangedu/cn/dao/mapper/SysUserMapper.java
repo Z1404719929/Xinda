@@ -8,6 +8,9 @@ import org.apache.ibatis.annotations.Param;
 import com.datangedu.cn.model.sysUser.SysUser;
 import com.datangedu.cn.model.sysUser.SysUserExample;
 
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface SysUserMapper {
 	long countByExample(SysUserExample example);

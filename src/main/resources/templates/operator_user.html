@@ -26,7 +26,7 @@
             <li><i class="fa fa-cube fa-fw"></i>业务管理</li>
             <li>
                 <img src="./images/default_user.png">
-                <span>用户名字</span>
+                <span id="sysuser">用户名字</span>
                 <i class="fa fa-chevron-down fa-fw user-arrow-down"></i>
                 <ul class="dropdown">
                     <li>更改信息</li>
@@ -107,31 +107,21 @@
                         <th>操作</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>17</td>
-                        <td>张三</td>
-                        <td>13312345678</td>
-                        <td>北京市-海淀区</td>
-                        <td>2019-09-20</td>
-                        <td>2</td>
-                        <td>¥10300.00</td>
+                <tbody id="list">
+                
+                
+                  <!--  <tr th:each="member:${mList}">
+                        <td th:text="${member.id}">17</td>
+                        <td th:text="${member.name}">张三</td>
+                        <td th:text="${member.cellphone}">13312345678</td>
+                        <td th:text="${member.regionId}">北京市-海淀区</td>
+                        <td th:text="${member.registerTime}">2019-09-20</td>
+                        <td th:text="${member.buyNum}">2</td>
+                        <td th:text="${member.totalPrice}">¥10300.00</td>
                         <td>
                             <span class="handle-btn">查看</span>
                         </td>
-                    </tr>
-                    <tr>
-                        <td>17</td>
-                        <td>张三</td>
-                        <td>13312345678</td>
-                        <td>北京市-海淀区</td>
-                        <td>2019-09-20</td>
-                        <td>2</td>
-                        <td>¥10300.00</td>
-                        <td>
-                            <span class="handle-btn">查看</span>
-                        </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
             <div class="main-pagination">
