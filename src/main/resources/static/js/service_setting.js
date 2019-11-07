@@ -69,3 +69,10 @@ $(".cancel").on("click", function(event){
     $(".masking").hide();
     console.log("取消");
 })
+
+$(function(){
+			$("#sysuser").html("");
+			var txt="";
+			txt +=sessionStorage.getItem("name")
+			$("#sysuser").append(txt);
+})

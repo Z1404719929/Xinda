@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.datangedu.cn.model.sysUser.Member;
 import com.datangedu.cn.model.sysUser.ProviderProduct;
 import com.datangedu.cn.model.sysUser.ServiceOrder;
-import com.datangedu.cn.servicegps.MemberService;
-import com.datangedu.cn.servicegps.ProviderProductService;
-import com.datangedu.cn.servicegps.ServiceOrderService;
+import com.datangedu.cn.zservice.MemberService;
+import com.datangedu.cn.zservice.ProviderProductService;
+import com.datangedu.cn.zservice.ServiceOrderService;
 
 @Controller
 @RequestMapping("/oo")

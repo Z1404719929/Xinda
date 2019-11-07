@@ -40,3 +40,35 @@ function submit(){
  				}
  			}) 
  		}
+
+//控制登录名
+$(function(){
+	$("#sysuser").html("");
+	var txt="";
+	txt +=sessionStorage.getItem("name")
+	$("#sysuser").append(txt);
+	var id=sessionStorage.getItem("id");
+	var id1=$(".userid").val(id);
+	//$(".img").attr("src",id)
+	console.log(id1);
+	$("#ss").html("");
+	var txt="";
+	txt +=`
+	<img class="img" name="id" src="/provider2/provider_Img?id=${id}" onerror="defaultImg(this)"/>`
+		$("#ss").append(txt);
+})
+
+
+//图像展示
+	function defaultImg(img){
+	var id=sessionStorage.getItem("id")
+		img.src="/images/user-lg.png";
+	}
+
+$("#form1").ajaxForm(function(data) {
+	console.log(data);
+	location.href="redirect?page=service_store"
+	console.log("str:" + JSON.stringify(data));
+
+	}
+);

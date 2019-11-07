@@ -63,19 +63,33 @@ $(".cancel").on("click", function(event){
  					$("#table").html("");
  					var txt="";
  					for(var i=0;i<providerInfo.length;i++){
+ 						if(providerInfo[i].status==1){
  						    txt +=`
  						   <tr>
- 						   <td><input type="checkbox" class="checkbox"></td>						  
+ 						   <td><input type="checkbox" value="${providerInfo[i].id}" class="checkbox" name="product"></td>						  
  						  <td>${providerInfo[i].serviceName}</td>
  						 <td>${providerInfo[i].serviceContent}</td>
  						<td>${providerInfo[i].price}</td>
- 	                        <td><span class="down-line-mark down-line-mark-orange">下线</span></td>
+ 	                        <td><span class="up-line-mark up-line-mark-red">上线</span></td>
  	                        <td>
  	                            <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span>
- 	                            <span class="handle-btn"><i class="fa fa-close fa-fw"></i>删除</span>
- 	                            <span class="handle-btn"><i class="fa fa-arrow-up fa-fw"></i>上线</span>
+ 	                            <span class="handle-btn" onclick="dl('${providerInfo[i].id}')"><i class="fa fa-close fa-fw"></i>删除</span>
+ 	                            <span class="handle-btn" onclick="down('${providerInfo[i].id}')"><i class="fa fa-arrow-up fa-fw"></i>下线</span>
  	                        </td>
  	                    </tr>`
+ 						}else{
+ 							txt +=`
+ 	 						   <tr>
+ 	 						   <td><input type="checkbox" value="${providerInfo[i].id}" class="checkbox"></td>						  
+ 	 						  <td>${providerInfo[i].serviceName}</td>
+ 	 						 <td>${providerInfo[i].serviceContent}</td>
+ 	 						<td>${providerInfo[i].price}</td>
+ 	 	                        <td><span class="down-line-mark down-line-mark-orange">下线</span></td>
+ 	 	                        <td>
+ 	 	                            <span class="handle-btn" onclick="on('${providerInfo[i].id}')"><i class="fa fa-arrow-up fa-fw"></i>上线</span>
+ 	 	                        </td>
+ 	 	                    </tr>`
+ 						}
  					}
  					console.log(txt);
  					$("#table").append(txt);
@@ -86,6 +100,9 @@ $(".cancel").on("click", function(event){
  				}
  			})
  		})
+ 		
+ 		
+ 		
  		$(".all_check").click(function () {
         $(".checkbox").prop("checked", $(this).prop("checked"))
     });
@@ -93,6 +110,80 @@ $(".cancel").on("click", function(event){
         var flag = $(".checkbox:checked").length == $(".checkbox").length;
         $(".all_check").prop("checked",flag)
     })
+ 	
+    
+ function dl(id){
+    	$.ajax({
+				//请求类型
+				type:"post",
+				//请求路径
+				url:"/provider/providerdelete",
+				//返回数据类型
+				data:{
+					id:id,
+				},
+				dataType:"json",
+				//请求成功后调用函数
+				success:function(data){
+					console.log("成功后返回的数据",data);
+					location.href="redirect?page=service_product"
+				},
+				//请求失败后调用函数
+				error:function(data){
+					console.log("请求失败",data);
+				}
+})
+    }
+   
+    function on(id){
+    	$.ajax({
+				//请求类型
+				type:"post",
+				//请求路径
+				url:"/provider/provideroline",
+				//返回数据类型
+				data:{
+					id:id,
+				},
+				dataType:"json",
+				//请求成功后调用函数
+				success:function(data){
+					console.log("成功后返回的数据",data);
+					location.href="redirect?page=service_product"
+				},
+				//请求失败后调用函数
+				error:function(data){
+					console.log("请求失败",data);
+				}
+})
+    }
+    
+    function down(id){
+    	$.ajax({
+				//请求类型
+				type:"post",
+				//请求路径
+				url:"/provider/providerdownline",
+				//返回数据类型
+				data:{
+					id:id,
+				},
+				dataType:"json",
+				//请求成功后调用函数
+				success:function(data){
+					console.log("成功后返回的数据",data);
+					location.href="redirect?page=service_product"
+				},
+				//请求失败后调用函数
+				error:function(data){
+					console.log("请求失败",data);
+				}
+})
+    }
  		
- 		
- 		
+    $(function(){
+		$("#sysuser").html("");
+		var txt="";
+		txt +=sessionStorage.getItem("name")
+		$("#sysuser").append(txt);
+})

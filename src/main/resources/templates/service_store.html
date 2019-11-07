@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/public.css">
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/service_store.css">
-    <link rel="stylesheet" href="./css/font-awesome.min.css">
-    <link rel="stylesheet" href="./css/element-ui_2.12.0.css">
+    <link rel="stylesheet" href="/css/public.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/service_store.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
 
-    <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/jquery-form.js"></script>
 </head>
 
 <body>
     <div class="header">
         <div class="logo_info">
-            <img src="./images/logo.png" alt="logo">
+            <img src="/images/logo.png" alt="logo">
             <span class="platform_name">信达</span>
         </div>
         <ul class="user_info">
@@ -26,12 +26,12 @@
             <li><i class="fa fa-shopping-cart fa-fw"></i>新订单(0)</li>
             <li><i class="fa fa-bell-o fa-fw"></i>通知(0)</li>
             <li>
-                <img src="./images/default_user.png">
-                <span>云智汇咨询服务有限公司</span>
+                <img src="/images/default_user.png">
+                <span id="sysuser">用户名字</span>
                 <i class="fa fa-chevron-down fa-fw user-arrow-down"></i>
                 <ul class="dropdown">
                     <li>更改信息</li>
-                    <li>退出登录</li>
+                    <li><a href="redirect?page=service_login">退出登录</a></li>
                 </ul>
             </li>
         </ul>
@@ -106,18 +106,23 @@
             <ul class="main-tab">
                 <li class="border-red order1">必填文件</li>
             </ul>
-            <ul class="store-info">
+            <ul class="store-info">	
                 <li>
                     <span>营业执照</span>
-                    <button>上传</button>
+    <form id="form1" action="/provider2/saveUserImg" method="post" enctype ="multipart/form-data">
+	    <label for="file" class="btn btn-primary" style="float: left;height: 10px;width: 80px;margin-right: 10px">选择图片</label>
+	    <input id="file" name="file" type="file" style="float: left;display:none"/>
+	    <input name="id" class="userid" type="hidden"/>
+	    <input class="btn btn-primary" type="submit" value="提交" style="float: left">
+	</form>
                 </li>
-                <li>
-                    <img src="" alt="这里是营业执照上传后展示的呦">
+                <li id="ss">
+               <!-- <img class="img" name="id" src="/provider2/provider_Img?id=0001" onerror="defaultImg(this)"/> -->
                 </li>
             </ul>
         </div>
     </div>
-    <script src="./js/service_store.js"></script>
+    <script src="/js/service_store.js"></script>
 </body>
 
 </html>

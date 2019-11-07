@@ -35,4 +35,6 @@ public interface ProviderMapper {
 	int updateByPrimaryKeySelective(Provider record);
 
 	int updateByPrimaryKey(Provider record);
+	
+	int saveUserImg(Provider provider);
 }

@@ -254,6 +254,9 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  <update id="saveUserImg" parameterType="com.datangedu.cn.model.sysUser.Provider">
+    update provider set PROVIDER_IMG = #{providerImg} where ID = #{id}
+</update>
   <update id="updateByExampleSelective" parameterType="map">
     update provider
     <set>

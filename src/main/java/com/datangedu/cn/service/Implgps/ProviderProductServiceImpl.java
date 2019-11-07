@@ -3,6 +3,7 @@ package com.datangedu.cn.service.Implgps;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
@@ -34,5 +35,6 @@ public class ProviderProductServiceImpl implements ProviderProductService {
 		criteria.andIdEqualTo(id);
 		return providerProductMapper.selectByExample(providerProductExample);
 	}
+	
 
 }

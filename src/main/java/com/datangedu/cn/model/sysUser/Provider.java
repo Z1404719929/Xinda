@@ -15,7 +15,7 @@ public class Provider {
 
     private String password;
 
-    private String providerImg;
+    private byte[]  providerImg;
 
     private String regionId;
 
@@ -85,15 +85,15 @@ public class Provider {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getProviderImg() {
-        return providerImg;
-    }
+    public byte[] getProviderImg() {
+		return providerImg;
+	}
 
-    public void setProviderImg(String providerImg) {
-        this.providerImg = providerImg == null ? null : providerImg.trim();
-    }
+	public void setProviderImg(byte[] data) {
+		this.providerImg = data;
+	}
 
-    public String getRegionId() {
+	public String getRegionId() {
         return regionId;
     }
 
