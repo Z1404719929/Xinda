@@ -91,7 +91,7 @@
     <include refid="Base_Column_List" />
     from sys_user
     where ID = #{id,jdbcType=VARCHAR}
-  </select>
+  </select>  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from sys_user
     where ID = #{id,jdbcType=VARCHAR}

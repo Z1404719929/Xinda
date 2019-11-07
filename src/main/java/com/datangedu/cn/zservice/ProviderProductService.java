@@ -13,5 +13,5 @@ public interface ProviderProductService {
 	public int xx(ProviderProduct pp,String id);	//修改状态下线
 	public int sx(ProviderProduct pp,String id);//修改状态上线
 	public List<ProviderProduct> getProviderProductInfoById();
-
+	public List<ProviderProduct> select(HttpServletRequest request); 	//模糊查询
 }

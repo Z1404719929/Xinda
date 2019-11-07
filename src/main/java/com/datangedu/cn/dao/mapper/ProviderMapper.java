@@ -21,6 +21,10 @@ public interface ProviderMapper {
 	int insertSelective(Provider record);
 
 	List<Provider> selectByExample(ProviderExample example);
+	
+	List<Provider> selectByLike(ProviderExample example);	//模糊查询
+	
+	List<Provider> selectBypaging(ProviderExample example);	//分页模糊查询
 
 	Provider selectByPrimaryKey(String id);
 

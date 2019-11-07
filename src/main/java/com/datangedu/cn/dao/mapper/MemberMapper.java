@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.datangedu.cn.model.sysUser.Member;
 import com.datangedu.cn.model.sysUser.MemberExample;
+import com.datangedu.cn.model.sysUser.ServiceOrder;
 
 @Mapper
 public interface MemberMapper {
@@ -21,6 +22,10 @@ public interface MemberMapper {
 	int insertSelective(Member record);
 
 	List<Member> selectByExample(MemberExample example);
+	
+	List<Member> selectByLike(MemberExample example);	//模糊查询
+	
+	List<Member> selectBypaging(MemberExample example);	//分页模糊查询
 
 	Member selectByPrimaryKey(String id);
 

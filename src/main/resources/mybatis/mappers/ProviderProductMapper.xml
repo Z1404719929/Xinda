@@ -97,6 +97,15 @@
     from provider_product
     where ID = #{id,jdbcType=VARCHAR}
   </select>
+
+
+  <select id="selectByLike" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from provider_product where service_content like '%${name}%'
+  </select>
+  
+  
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from provider_product
     where ID = #{id,jdbcType=VARCHAR}

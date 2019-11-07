@@ -13,7 +13,7 @@ $(".login-btn").on("click", function(){
 	var cellphone=$(".cellphone").val();
 	var password=$(".password").val();
 	var code=$(".code").val();
-	console.log("手机号==",cellphone);
+	console.log("手机号==",cellphone,password,code);
 	$.ajax({
 		type: "post",
 		url: "/su/sysuserlogin",
@@ -29,9 +29,10 @@ $(".login-btn").on("click", function(){
 			if(data.code==1){
 			sessionStorage.setItem("id",data.userid),
 			sessionStorage.setItem("name",data.username),
+			sessionStorage.setItem("status",data.code),
 			 location.href="redirect?page=operator_product"
 			}
-			//alert(data.msg);
+//			alert(data.msg);
 		},
 		error: function(data){
 			console.log("失败后返回的数据",data);

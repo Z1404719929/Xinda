@@ -92,6 +92,14 @@
     from service_order
     where SERVICE_NO = #{serviceNo,jdbcType=VARCHAR}
   </select>
+  
+  
+    <select id="selectByLike" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from service_order where service_no like '%${name}%'
+  </select>
+  
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from service_order
     where SERVICE_NO = #{serviceNo,jdbcType=VARCHAR}

@@ -11,6 +11,11 @@ $(function(){
 		success: function(data){
 			var userid=sessionStorage.getItem("id")
 			var username=sessionStorage.getItem("name")
+			var status=sessionStorage.getItem("status")
+			if(status!=1){
+				alert("请先登录");
+				 location.href="redirect?page=operator_login"
+			}
 			$("#sysuser").html("");
 			var txt="";
 			txt +=username
@@ -58,7 +63,71 @@ $(function(){
 	})
 })
 
+//退出登录
+$(".exit").on("click",function(){
+	sessionStorage.setItem("id","")
+	sessionStorage.setItem("name","")
+	sessionStorage.setItem("status",2)
+	 location.href="redirect?page=operator_login"
+})
 
+//模糊查询
+$(".select-btn").on("click",function(){
+	console.log("查询内容",$(".select").val());
+	var name=$(".select").val();
+	$.ajax({
+		type: "post",
+		url: "/pp/select",
+		data:{
+			name:name,
+		},
+		dataType: "json",
+		success: function(data){
+			var ppList = data.ppList;
+			$("#list").html("");
+			txt="";
+			for(var i = 0;i<ppList.length;i++){
+				if(ppList[i].status==1){
+				txt +=`<tr>
+                        <td><input type="checkbox" class="checkbox" value="${ppList[i].id}" name="product"></td>
+                        <td>${ppList[i].serviceName}</td>
+                        <td>${ppList[i].serviceContent}</td>
+                        <td>${ppList[i].price}元</td>
+                        <td></td>
+                        <td><span class="up-line-mark up-line-mark-red ">上线</span></td>
+                        <td>
+                            <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span>
+                            <span class="handle-btn"><i class="fa fa-close fa-fw"></i>删除</span>
+                            <span class="handle-btn" onclick="zt('${ppList[i].id}')"><i class="fa fa-arrow-down fa-fw"></i>下线</span>
+                        </td>
+				</tr>`
+					}else{
+						txt +=`<tr>
+	                        <td><input type="checkbox" class="checkbox" value="${ppList[i].id}" name="product"></td>
+	                        <td>${ppList[i].serviceName}</td>
+	                        <td>${ppList[i].serviceContent}</td>
+	                        <td>${ppList[i].price}元</td>
+	                        <td></td>
+	                         <td><span class="down-line-mark down-line-mark-orange">下线</span></td>
+	                        <td>
+	                            <span class="handle-btn" onclick="zt('${ppList[i].id}')"><i class="fa fa-arrow-up fa-fw"></i>上线</span>
+	                        </td>
+					</tr>`
+				}
+				
+			}
+			$("#list").append(txt);
+			
+		},error: function(data){
+			console.log("失败后返回的数据",data);
+		}
+	})
+})
+
+
+
+
+//上下线
 function zt(id){
 	console.log("下线id",id);
 	$.ajax({
@@ -77,10 +146,12 @@ function zt(id){
 	})
 }
 
+//全选
 $(".checkall").on("change",function(){
 	check=this.checked;
 	$(":checkbox[name='product']").attr("checked",check);
 	//判断是否全选
+	str=""
 	var input=$(":checkbox[name='product']");
 	if(check){
 		for(var i=0;i<input.length;i++){
@@ -94,6 +165,7 @@ $(".checkall").on("change",function(){
 	}
 })
 
+//上线
 $(".up-line").on("click",function(){
 	console.log(str);
 	$.ajax({
@@ -112,6 +184,7 @@ $(".up-line").on("click",function(){
 	})
 })
 
+//下线
 $(".down-line").on("click",function(){
 	console.log(str);
 	$.ajax({

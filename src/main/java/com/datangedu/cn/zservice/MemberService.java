@@ -14,4 +14,6 @@ public interface MemberService {
 	List<Member> getcellphone(String id);
 	public int updatepassword(Member member,HttpServletRequest request);
 	public List<Member> getMemberInfoById(HttpServletRequest request);
+	List<Member> selectpaging(HttpServletRequest request);
+	List<Member> select(HttpServletRequest request);
 }

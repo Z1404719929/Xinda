@@ -6,11 +6,51 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ProviderExample {
-    protected String orderByClause;
+    public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public int getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
+	}
+
+	public String getLikeName() {
+		return likeName;
+	}
+
+	public void setLikeName(String likeName) {
+		this.likeName = likeName;
+	}
+
+	protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
+    
+    protected int pageSize;		//1
+    
+    protected int pageNum;		//2
+    
+    protected String likeName;
+    
+    protected int status;
 
     public ProviderExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -63,6 +103,10 @@ public class ProviderExample {
         oredCriteria.clear();
         orderByClause = null;
         distinct = false;
+        pageSize=1;
+        pageNum=2;
+        likeName=null;
+        status=1;
     }
 
     protected abstract static class GeneratedCriteria {

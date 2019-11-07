@@ -1,3 +1,20 @@
+
+
+
+
+
+
+
+
+//退出登录
+$(".exit").on("click",function(){
+	sessionStorage.setItem("id","")
+	sessionStorage.setItem("name","")
+	sessionStorage.setItem("status",2)
+	 location.href="redirect?page=operator_login"
+})
+
+
 $(".user-arrow-down").on("click", function () {
     if ($(".dropdown").is(":hidden")) {
         $(".dropdown").show();

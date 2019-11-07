@@ -97,6 +97,19 @@
     from member
     where ID = #{id,jdbcType=VARCHAR}
   </select>
+  
+ <select id="selectByLike" parameterType="com.datangedu.cn.model.sysUser.Member" resultMap="BaseResultMap">
+    select * from member where name like '%${likeName}%'
+  </select>
+  
+    <select id="selectBypaging" parameterType="com.datangedu.cn.model.sysUser.Member" resultMap="BaseResultMap">
+    select * from member where name like '%${likeName}%' 
+     <if test="pageSize >= 0">
+      limit ${pageSize},${pageNum}
+    </if>
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from member
     where ID = #{id,jdbcType=VARCHAR}

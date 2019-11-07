@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +33,7 @@ public class ControllerSysUser {
 		System.out.println("123"+request.getParameter("cellphone"));
 		System.out.println("123"+request.getParameter("password"));
 		String cellphone=request.getParameter("cellphone");
+		System.out.println(cellphone);
 		if(cellphone.isEmpty()) {
 			map.put("msg","输入手机号" );
 			return map;
@@ -45,27 +46,28 @@ public class ControllerSysUser {
 			map.put("msg","输入验证码" );
 			return map;
 		}
-		
+		HttpSession session = request.getSession();
+		System.out.println("验证码"+session.getAttribute("code"));
+		if(!session.getAttribute("code").equals(request.getParameter("code"))) {
+			map.put("msg","验证码错误" );
+			return map;
+		}
 		
 		List<SysUser> userInfo = sysUserService.setUserLogin(request);
 		if(userInfo.isEmpty()) {
 			map.put("msg","账号不存在" );
 			return map;
 		}
-		
+		if(!userInfo.get(0).getPassword().equals(MD5Util.getMD5(request.getParameter("password").getBytes()))) {
+			map.put("msg","密码错误" );
+			return map;
+		}
 		System.out.println(userInfo.get(0).getUserName());
 		map.put("userid",userInfo.get(0).getId());
 		map.put("username",userInfo.get(0).getUserName());
 		map.put("msg","登陆成功");
 		map.put("code", 1);
 		
-/*//		 System.out.println("用户id"+userInfo.get(0).getId());
-//		map.put("id",userInfo.get(0).getId());
-// 	map.put("userId",userInfo.get(0).getId());
-		
-//		map.put("sysuser",request.getParameter("cellphone"));
-//		map.put("msg","登陆成功");
-//		map.put("code", 1);*/
 		return map;
 }
 	
@@ -89,6 +91,12 @@ public class ControllerSysUser {
 		}
 		if(request.getParameter("password2").isEmpty()) {
 			map.put("msg","再输入密码" );
+			return map;
+		}
+		HttpSession session = request.getSession();
+		System.out.println("验证码"+session.getAttribute("code"));
+		if(!session.getAttribute("code").equals(request.getParameter("code"))) {
+			map.put("msg","验证码错误" );
 			return map;
 		}
 		if(!request.getParameter("password1").equals(request.getParameter("password2"))) {

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,14 +36,7 @@ public class ControllerMember {
 		List<Region> sheng = rService.getLevel((short) 1);
 		map.put("sheng", sheng);
 		System.out.println("省id=="+sheng.get(0).getId());
-		
-//		UUID uuid  =  UUID.randomUUID(); 
-//		String s = UUID.randomUUID().toString();
-		
-//		String uuid = UUID.randomUUID().toString().trim().replaceAll("-", "");
-//		System.out.println("id=="+uuid);
-		
-		
+
 		return map;
 	}
 	
@@ -85,6 +79,12 @@ public class ControllerMember {
 			map.put("msg","输入验证码" );
 			return map;
 		}
+		HttpSession session = request.getSession();
+		System.out.println("验证码"+session.getAttribute("code"));
+		if(!session.getAttribute("code").equals(request.getParameter("code"))) {
+			map.put("msg","验证码错误" );
+			return map;
+		}
 		
 		List<Member> member=mService.getcellphone(request.getParameter("cellphone"));
 		if(!member.isEmpty()) {
@@ -94,10 +94,11 @@ public class ControllerMember {
 		int a = mService.register(request);		
 		System.out.println("插入成功"+a);
 		map.put("msg", "注册成功");
+		map.put("status", 1);
 		return map;
 	}
 	
-	
+	//用户找回密码
 	@ResponseBody
 	@RequestMapping(value = "/findpassword",method = RequestMethod.POST)
 	public Map <String,Object> findPassword(HttpServletRequest request) {

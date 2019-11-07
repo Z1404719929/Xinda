@@ -34,6 +34,18 @@ public class ControllerProviderProduct2 {
 		return map;
 	}
 	
+	@ResponseBody			//模糊查询
+	@RequestMapping(value="/select",method = RequestMethod.POST)
+	public Map <String,Object> selecte(HttpServletRequest request) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		List<ProviderProduct> ppList= ppService.select(request);
+		System.out.println(ppList); 
+		map.put("ppList", ppList);
+		return map;
+	}
+	
+	
+	
 	@ResponseBody			//单个产品上下线
 	@RequestMapping(value="/us",method = RequestMethod.POST)
 	public Map <String,Object> xx(HttpServletRequest request) {

@@ -25,6 +25,8 @@ public interface ServiceOrderMapper {
 	int insertSelective(ServiceOrder record);
 
 	List<ServiceOrder> selectByExample(ServiceOrderExample example);
+	
+	List<ServiceOrder> selectByLike(String name);	//模糊查询
 
 	ServiceOrder selectByPrimaryKey(String serviceNo);
 

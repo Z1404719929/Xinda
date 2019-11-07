@@ -30,7 +30,7 @@
                 <i class="fa fa-chevron-down fa-fw user-arrow-down"></i>
                 <ul class="dropdown">
                     <li>更改信息</li>
-                    <li>退出登录</li>
+                    <li class="exit" >退出登录</li>
                 </ul>
             </li>
         </ul>
@@ -91,7 +91,7 @@
             </ul>
             <div class="main-content">
                 <div class="search">
-                    <input placeholder="请输入用户姓名查询" /><button><i class="fa fa-search fa-fw"></i></button>
+                    <input class="select" placeholder="请输入用户姓名查询" /><button onclick="page(1)" class="select-btn"><i class="fa fa-search fa-fw"></i></button>
                 </div>
             </div>
             <table border="0" cellspacing="0" cellpadding="0">
@@ -125,11 +125,13 @@
                 </tbody>
             </table>
             <div class="main-pagination">
-                <span>首页</span>
-                <span>上一页</span>
+                <span class="page1">首页</span>
+                <span class="last">上一页</span>
+                <span class="page">
                 <span class="main-pagination-page">1</span>
-                <span>下一页</span>
-                <span>尾页</span>
+                </span>
+                <span class="next">下一页</span>
+                <span class="pagelast">尾页</span>
             </div>
             <div class="main-sercive">付费用户...</div>
         </div>

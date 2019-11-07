@@ -41,6 +41,13 @@ public class ProviderProductServicelmpl implements ProviderProductService {
 		return providerProductMapper.selectByExample(providerProductExample);
 	}
 	
+	//模糊查询
+		@Override
+		public List<ProviderProduct> select(HttpServletRequest request) {
+			List<ProviderProduct> pp=providerProductMapper.selectByLike(request.getParameter("name"));
+			return pp;
+		}
+	
 	@Override		//修改状态为2下线
 	public int xx(ProviderProduct pp,String id) {
 		ProviderProductExample providerProductExample = new ProviderProductExample();

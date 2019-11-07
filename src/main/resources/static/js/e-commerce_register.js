@@ -125,6 +125,9 @@ $(".login-btn").on("click",function(){
 		success: function(data){
 			console.log("成功后返回的数据",data);
 			alert(data.msg);
+			if(data.status==1){
+				 location.href="redirect?page=e-commerce_login"
+				}
 		},
 		error: function(data){
 			console.log("失败后返回的数据",data);
@@ -134,4 +137,4 @@ $(".login-btn").on("click",function(){
 	
 	
 })
->>>>>>> Stashed changes
+

@@ -13,6 +13,7 @@ import com.datangedu.cn.dao.mapper.MemberMapper;
 import com.datangedu.cn.model.sysUser.Member;
 import com.datangedu.cn.model.sysUser.MemberExample;
 import com.datangedu.cn.model.sysUser.SysUserExample;
+import com.datangedu.cn.model.sysUser.ServiceOrder;
 import com.datangedu.cn.zservice.MemberService;
 
 @Service
@@ -39,6 +40,29 @@ public class MemberServicelmpl implements MemberService {
 		MemberExample.Criteria criteria = memberExample.createCriteria();
 		return memberMapper.selectByExample(memberExample);
 	}
+	
+	
+	//模糊查询
+			@Override
+			public List<Member> select(HttpServletRequest request) {
+				MemberExample memberExample = new MemberExample();
+				MemberExample.Criteria criteria = memberExample.createCriteria();
+				memberExample.setLikeName(request.getParameter("name"));
+				return memberMapper.selectByLike(memberExample);
+			}
+	
+	//模糊查询分页
+		@Override
+		public List<Member> selectpaging(HttpServletRequest request) {
+			MemberExample memberExample = new MemberExample();
+			MemberExample.Criteria criteria = memberExample.createCriteria();
+			memberExample.setLikeName(request.getParameter("name"));
+			memberExample.setPageSize((Integer.valueOf(request.getParameter("pageSize"))-1)*2);
+			System.out.println("getPageSize"+memberExample.getPageSize());
+			memberExample.setPageNum(Integer.valueOf(request.getParameter("pageNum")));
+			System.out.println("getPageNum"+memberExample.getPageNum());
+			return memberMapper.selectBypaging(memberExample);
+		}
 	
 	
 	//通过id查
@@ -89,4 +113,5 @@ public class MemberServicelmpl implements MemberService {
 			criteria.andCellphoneEqualTo(request.getParameter("cellphone"));
 			return memberMapper.updateByExampleSelective(member, memberExample);
 		}
+		
 }

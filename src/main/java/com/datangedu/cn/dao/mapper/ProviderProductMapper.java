@@ -25,6 +25,8 @@ public interface ProviderProductMapper {
 	int insertSelective(ProviderProduct record);
 
 	List<ProviderProduct> selectByExample(ProviderProductExample example);
+	
+	List<ProviderProduct> selectByLike(String name);	//模糊查询
 
 	ProviderProduct selectByPrimaryKey(String id);
 

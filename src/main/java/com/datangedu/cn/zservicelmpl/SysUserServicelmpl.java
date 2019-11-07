@@ -26,12 +26,9 @@ public class SysUserServicelmpl implements SysUserService {
 	@Override
 	public List<SysUser> setUserLogin(HttpServletRequest request) {
 		System.out.println("查询前");
-		System.out.println("输入的手机号=="+request.getParameter("cellphone"));
-		System.out.println("输入的密码=="+request.getParameter("password"));
 		SysUserExample sysUserExample = new SysUserExample();
 		SysUserExample.Criteria criteria = sysUserExample.createCriteria();
 		criteria.andCellphoneEqualTo(request.getParameter("cellphone"));
-		criteria.andPasswordEqualTo(request.getParameter("password"));
 		System.out.println("查询结束");
 		return sysUserMapper.selectByExample(sysUserExample);
 	}

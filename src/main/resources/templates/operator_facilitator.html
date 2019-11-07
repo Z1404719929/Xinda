@@ -26,11 +26,11 @@
             <li><i class="fa fa-cube fa-fw"></i>业务管理</li>
             <li>
                 <img src="./images/default_user.png">
-                <span>用户名字</span>
+                <span id="sysuser">用户名字</span>
                 <i class="fa fa-chevron-down fa-fw user-arrow-down"></i>
                 <ul class="dropdown">
                     <li>更改信息</li>
-                    <li>退出登录</li>
+                    <li class="exit" >退出登录</li>
                 </ul>
             </li>
         </ul>
@@ -91,7 +91,7 @@
             </ul>
             <div class="main-content">
                 <div class="search">
-                    <input placeholder="请输入服务商名称查询" /><button><i class="fa fa-search fa-fw"></i></button>
+                    <input  class="select" placeholder="请输入服务商名称查询" /><button class="select-btn"><i class="fa fa-search fa-fw"></i></button>
                 </div>
             </div>
             <table border="0" cellspacing="0" cellpadding="0">
@@ -104,7 +104,7 @@
                         <th>操作</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="list">
                     <tr>
                         <td>大唐注册代理事务所</td>
                         <td>海淀区</td>
@@ -128,14 +128,16 @@
                 </tbody>
             </table>
             <div class="main-pagination">
-                <span>首页</span>
-                <span>上一页</span>
+                <span class="pagefirst">首页</span>
+                <span class="last">上一页</span>
+                <span class="page">
                 <span class="main-pagination-page">1</span>
-                <span>下一页</span>
-                <span>尾页</span>
+                </span>
+                <span class="next">下一页</span>
+                <span class="pagelast">尾页</span>
             </div>
-            <div class="main-sercive">根据不同order点击的返回值进行渲染，不需要多个界面来回展示，停用、未通过无推荐选项，单数据库表中要有推荐字段</div>
-        </div>
+            <div class="main-sercive"> </div>
+    </div>
     </div>
     <script src="./js/operator_facilitator.js"></script>
 </body>
