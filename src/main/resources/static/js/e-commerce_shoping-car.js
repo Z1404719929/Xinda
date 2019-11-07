@@ -24,7 +24,7 @@ $( function(){
 	var userid=sessionStorage.getItem("id");
 	$.ajax({
 			type:"post",
-			url:'/product/getproductinfo',
+			url:"/product/getproductinfo",
 			   data: {
 				userid:userid,
              },

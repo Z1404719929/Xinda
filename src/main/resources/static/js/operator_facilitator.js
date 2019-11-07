@@ -193,23 +193,23 @@ function page1(i,index){
 //上一页
 $(".last").on("click",function(){
 	if(nowpage!=1){	
-		page1(nowpage-1,index1);}
+		page2(nowpage-1,index1);}
 })
 
 //下一页
 $(".next").on("click",function(){
 	if(nowpage!=pageNum){	
-		page1(nowpage+1,index1);}
+		page2(nowpage+1,index1);}
 })
 
 //首页
 $(".pagefirst").on("click",function(){
-		page1(1,index1);
+		page2(1,index1);
 })
 
 //尾页
 $(".pagelast").on("click",function(){
-		page1(pageNum,index1);
+		page2(pageNum,index1);
 })
 
 

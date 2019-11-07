@@ -37,8 +37,8 @@ public class ServiceOrderlmpl implements ServiceOrderService {
 	public List<ServiceOrder> getpay() {
 		ServiceOrderExample serviceOrderExample = new ServiceOrderExample();
 		ServiceOrderExample.Criteria criteria = serviceOrderExample.createCriteria();
-		criteria.andPayTypeNotEqualTo(1);
-		return ServiceOrderMapper.selectByExample(serviceOrderExample);
+		serviceOrderExample.setStatus(2);
+		return ServiceOrderMapper.selectByLike2(serviceOrderExample);
 	}
 
 }

@@ -29,6 +29,7 @@ import com.datangedu.cn.servicegps.RegionService;
 @RequestMapping("/provider2")
 public class ControllerProvider2 {
 
+
 		@Resource
 		RegionService regionService;
 		@Resource

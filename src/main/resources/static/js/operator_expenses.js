@@ -41,46 +41,46 @@ $(function(){
 })
 
 
-//function page(){
-//	$.ajax({
-//		type: "get",
-//		url: "/oo1/getlist1",
-//		dataType: "json",
-//		success: function(data){
-//			var userid=sessionStorage.getItem("id")
-//			var username=sessionStorage.getItem("name")
-//			var status=sessionStorage.getItem("status")
-//			if(status!=1){
-//				alert("请先登录");
-//				 location.href="redirect?page=operator_login"
-//			}
-//			$("#sysuser").html("");
-//			var txt="";
-//			txt +=username
-//			$("#sysuser").append(txt);
-//			
-//			
-//			var soList = data.soList;
-//			$("#list").html("");
-//			txt="";
-//			for(var i = 0;i<2;i++){
-//				txt +=`<tr>
-//            <td>${soList[i].memberId}</td>
-//            <td>${soList[i].createTime}</td>
-//            <td>${soList[i].serviceNo}</td>
-//            <td>￥${soList[i].totalPrice}</td>
-//            <td>银联支付</td>
-//            <td>${soList[i].serviceId}</td>
-//        </tr>`
-//			}
-//			$("#list").append(txt);
-//			
-//		},
-//		error: function(data){
-//			console.log("失败后返回的数据",data);
-//		}
-//	})
-//}
+function page(){
+	$.ajax({
+		type: "get",
+		url: "/oo1/getlist2",
+		dataType: "json",
+		success: function(data){
+			var userid=sessionStorage.getItem("id")
+			var username=sessionStorage.getItem("name")
+			var status=sessionStorage.getItem("status")
+			if(status!=1){
+				alert("请先登录");
+				 location.href="redirect?page=operator_login"
+			}
+			$("#sysuser").html("");
+			var txt="";
+			txt +=username
+			$("#sysuser").append(txt);
+			
+			
+			var soList = data.List;
+			$("#list").html("");
+			txt="";
+			for(var i = 0;i<2;i++){
+				txt +=`<tr>
+            <td>${soList[i].memberId}</td>
+            <td>${soList[i].createTime}</td>
+            <td>${soList[i].serviceNo}</td>
+            <td>￥${soList[i].totalPrice}</td>
+            <td>银联支付</td>
+            <td>${soList[i].serviceId}</td>
+        </tr>`
+			}
+			$("#list").append(txt);
+			
+		},
+		error: function(data){
+			console.log("失败后返回的数据",data);
+		}
+	})
+}
 
 
 

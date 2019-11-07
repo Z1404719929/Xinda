@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,7 +17,13 @@ import com.datangedu.cn.model.sysUser.Region;
 import com.datangedu.cn.zservice.ProviderService;
 import com.datangedu.cn.zservice.RegionService;
 
+
 public class ControllerProvider5 {
+
+@Controller
+@RequestMapping("/p")
+public class ControllerProvider2 {
+	
 	@Resource
 	ProviderService pService;
 	@Resource
@@ -59,5 +66,5 @@ public class ControllerProvider5 {
 				
 				return map;
 		}
-	
+}
 }

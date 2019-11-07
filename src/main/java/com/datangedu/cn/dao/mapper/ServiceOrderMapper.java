@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.datangedu.cn.model.sysUser.Provider;
+import com.datangedu.cn.model.sysUser.ProviderExample;
 import com.datangedu.cn.model.sysUser.ServiceOrder;
 import com.datangedu.cn.model.sysUser.ServiceOrderExample;
 
@@ -27,6 +29,10 @@ public interface ServiceOrderMapper {
 	List<ServiceOrder> selectByExample(ServiceOrderExample example);
 	
 	List<ServiceOrder> selectByLike(String name);	//模糊查询
+	
+	List<ServiceOrder> selectByLike2(ServiceOrderExample example);	//模糊查询
+	
+	List<ServiceOrder> selectBypaging(ServiceOrderExample example);	//分页模糊查询
 
 	ServiceOrder selectByPrimaryKey(String serviceNo);
 
