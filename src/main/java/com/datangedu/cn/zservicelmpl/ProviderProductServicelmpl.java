@@ -7,7 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
+import com.datangedu.cn.dao.mapper.CartMapper;
 import com.datangedu.cn.dao.mapper.ProviderProductMapper;
+import com.datangedu.cn.model.sysUser.Cart;
+import com.datangedu.cn.model.sysUser.CartExample;
 import com.datangedu.cn.model.sysUser.ProviderProduct;
 import com.datangedu.cn.model.sysUser.ProviderProductExample;
 import com.datangedu.cn.model.sysUser.SysUserExample;
@@ -19,7 +22,7 @@ public class ProviderProductServicelmpl implements ProviderProductService {
 
 	@Resource
 	ProviderProductMapper providerProductMapper;
-	
+
 	//查询所有产品
 	@Override
 	public List<ProviderProduct> getpp() {
@@ -55,4 +58,21 @@ public class ProviderProductServicelmpl implements ProviderProductService {
 		pp.setStatus(1);
 		return providerProductMapper.updateByExampleSelective(pp, providerProductExample);
 	}
+
+	
+	//查询所有商品
+	@Override
+	public List<ProviderProduct> getProviderProductInfoById() {
+		// TODO Auto-generated method stub
+		ProviderProductExample providerProductExample = new ProviderProductExample();
+		ProviderProductExample.Criteria criteria = providerProductExample.createCriteria();
+		System.out.println("查询结果几条==="+providerProductMapper.selectByExample(providerProductExample).size());
+		return providerProductMapper.selectByExample(providerProductExample);
+	}
+
+	
+
+	
+	
+	
 }

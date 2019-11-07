@@ -12,6 +12,7 @@ import com.datang.hrb.util.MD5Util;
 import com.datangedu.cn.dao.mapper.MemberMapper;
 import com.datangedu.cn.model.sysUser.Member;
 import com.datangedu.cn.model.sysUser.MemberExample;
+import com.datangedu.cn.model.sysUser.SysUserExample;
 import com.datangedu.cn.zservice.MemberService;
 
 @Service
@@ -19,6 +20,18 @@ public class MemberServicelmpl implements MemberService {
 	
 	@Resource
 	MemberMapper memberMapper;
+	
+	public List<Member> getMemberInfoById(HttpServletRequest request){
+		System.out.println("查询前");
+		System.out.println("输入的手机号=="+request.getParameter("cellphone"));
+		System.out.println("输入的密码=="+request.getParameter("password"));
+		MemberExample memberExample = new MemberExample();
+		MemberExample.Criteria criteria = memberExample.createCriteria();
+		criteria.andCellphoneEqualTo(request.getParameter("cellphone"));
+		criteria.andPasswordEqualTo(request.getParameter("password"));
+		System.out.println("查询结束");
+		return memberMapper.selectByExample(memberExample);
+	}
 	
 	@Override
 	public List<Member> getList() {

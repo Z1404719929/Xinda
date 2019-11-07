@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.datangedu.cn.model.sysUser.Cart">
     <result column="SERVICE_ID" jdbcType="VARCHAR" property="serviceId" />
     <result column="BUY_NUM" jdbcType="INTEGER" property="buyNum" />
+    <result column="USER_ID" jdbcType="VARCHAR" property="userId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -64,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    SERVICE_ID, BUY_NUM
+    SERVICE_ID, BUY_NUM, USER_ID
   </sql>
   <select id="selectByExample" parameterType="com.datangedu.cn.model.sysUser.CartExample" resultMap="BaseResultMap">
     select
@@ -87,8 +88,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.datangedu.cn.model.sysUser.Cart">
-    insert into cart (SERVICE_ID, BUY_NUM)
-    values (#{serviceId,jdbcType=VARCHAR}, #{buyNum,jdbcType=INTEGER})
+    insert into cart (SERVICE_ID, BUY_NUM, USER_ID
+      )
+    values (#{serviceId,jdbcType=VARCHAR}, #{buyNum,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.datangedu.cn.model.sysUser.Cart">
     insert into cart
@@ -99,6 +102,9 @@
       <if test="buyNum != null">
         BUY_NUM,
       </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="serviceId != null">
@@ -106,6 +112,9 @@
       </if>
       <if test="buyNum != null">
         #{buyNum,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -124,6 +133,9 @@
       <if test="record.buyNum != null">
         BUY_NUM = #{record.buyNum,jdbcType=INTEGER},
       </if>
+      <if test="record.userId != null">
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -132,7 +144,8 @@
   <update id="updateByExample" parameterType="map">
     update cart
     set SERVICE_ID = #{record.serviceId,jdbcType=VARCHAR},
-      BUY_NUM = #{record.buyNum,jdbcType=INTEGER}
+      BUY_NUM = #{record.buyNum,jdbcType=INTEGER},
+      USER_ID = #{record.userId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

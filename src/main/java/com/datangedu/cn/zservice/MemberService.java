@@ -13,4 +13,5 @@ public interface MemberService {
 	public int register(HttpServletRequest request);
 	List<Member> getcellphone(String id);
 	public int updatepassword(Member member,HttpServletRequest request);
+	public List<Member> getMemberInfoById(HttpServletRequest request);
 }
