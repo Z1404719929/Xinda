@@ -34,11 +34,45 @@ public class ServiceOrderlmpl implements ServiceOrderService {
 	
 	/////////////////////////////////////////////////
 	@Override//费用中心查询
-	public List<ServiceOrder> getpay() {
+	public List<ServiceOrder> getpaylist(HttpServletRequest request) {
 		ServiceOrderExample serviceOrderExample = new ServiceOrderExample();
 		ServiceOrderExample.Criteria criteria = serviceOrderExample.createCriteria();
 		serviceOrderExample.setStatus(2);
 		return ServiceOrderMapper.selectByLike2(serviceOrderExample);
+	}
+	
+	@Override//费用中心分页查询
+	public List<ServiceOrder> getpay(HttpServletRequest request) {
+		ServiceOrderExample serviceOrderExample = new ServiceOrderExample();
+		ServiceOrderExample.Criteria criteria = serviceOrderExample.createCriteria();
+		serviceOrderExample.setStatus(2);
+		serviceOrderExample.setPageSize((Integer.valueOf(request.getParameter("pageSize"))-1)*2);
+		System.out.println("getPageSize"+serviceOrderExample.getPageSize());
+		serviceOrderExample.setPageNum(Integer.valueOf(request.getParameter("pageNum")));
+		System.out.println("getPageNum"+serviceOrderExample.getPageNum());
+		return ServiceOrderMapper.selectBypaging(serviceOrderExample);
+	}
+	
+	@Override//费用中心分页查询
+	public List<ServiceOrder> gettime(HttpServletRequest request) {
+		ServiceOrderExample serviceOrderExample = new ServiceOrderExample();
+		ServiceOrderExample.Criteria criteria = serviceOrderExample.createCriteria();
+		serviceOrderExample.setStatus(2);
+		serviceOrderExample.setTime(Integer.valueOf(request.getParameter("time")));
+		return ServiceOrderMapper.selectBytime(serviceOrderExample);
+	}
+	
+	@Override//费用中心分页查询
+	public List<ServiceOrder> gettimepage(HttpServletRequest request) {
+		ServiceOrderExample serviceOrderExample = new ServiceOrderExample();
+		ServiceOrderExample.Criteria criteria = serviceOrderExample.createCriteria();
+		serviceOrderExample.setStatus(2);
+		serviceOrderExample.setTime(Integer.valueOf(request.getParameter("time")));
+		serviceOrderExample.setPageSize((Integer.valueOf(request.getParameter("pageSize"))-1)*2);
+		System.out.println("getPageSize"+serviceOrderExample.getPageSize());
+		serviceOrderExample.setPageNum(Integer.valueOf(request.getParameter("pageNum")));
+		System.out.println("getPageNum"+serviceOrderExample.getPageNum());
+		return ServiceOrderMapper.selectBytimepage(serviceOrderExample);
 	}
 
 }

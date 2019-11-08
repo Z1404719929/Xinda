@@ -1,8 +1,23 @@
+var pageNum=1;
+var nowpage=1;
+var index1=1;
+var time1=0;
+
 $(function(){
-	
+	page(1);
+})
+
+function time(i,time){
+	time1=time;
+	nowpage=i;
 	$.ajax({
 		type: "get",
-		url: "/oo1/getlist2",
+		url: "/oo1/getlist3",
+		data:{
+			pageSize:i,
+			pageNum:2,
+			time:time,
+		},
 		dataType: "json",
 		success: function(data){
 			var userid=sessionStorage.getItem("id")
@@ -19,32 +34,55 @@ $(function(){
 			
 			
 			var soList = data.soList;
+			console.log(data);
+			var paytype=null;
 			$("#list").html("");
 			txt="";
-			for(var i = 0;i<1;i++){
+			for(var i = 0;i<soList.length;i++){
+				if(soList[i].payType==1){paytype="银联支付"}
+				if(soList[i].payType==2){paytype="微信支付"}
+				if(soList[i].payType==3){paytype="支付宝支付"}
 				txt +=`<tr>
             <td>${soList[i].memberId}</td>
             <td>${soList[i].createTime}</td>
             <td>${soList[i].serviceNo}</td>
             <td>￥${soList[i].totalPrice}</td>
-            <td>银联支付</td>
+            <td>${paytype}</td>
             <td>${soList[i].serviceId}</td>
         </tr>`
 			}
 			$("#list").append(txt);
+			
+			var allprice=data.allprice;
+			$(".allprice").html("");
+			txt="";
+			txt +="￥"+allprice
+			$(".allprice").append(txt);
+			
+			pageNum = data.pageNum;
+			$(".page").html("");
+			txt="";
+			for(var i = 1;i<=pageNum;i++){
+				txt +=`<span class="main-pagination-page" onclick="time(${i},${time})" >${i}</span>`
+			}
+			$(".page").append(txt);
 			
 		},
 		error: function(data){
 			console.log("失败后返回的数据",data);
 		}
 	})
-})
+}
 
-
-function page(){
+function page(i){
+	nowpage=i;
 	$.ajax({
 		type: "get",
 		url: "/oo1/getlist2",
+		data:{
+			pageSize:i,
+			pageNum:2,
+		},
 		dataType: "json",
 		success: function(data){
 			var userid=sessionStorage.getItem("id")
@@ -60,20 +98,38 @@ function page(){
 			$("#sysuser").append(txt);
 			
 			
-			var soList = data.List;
+			var soList = data.soList;
+			var paytype=null;
 			$("#list").html("");
 			txt="";
-			for(var i = 0;i<2;i++){
+			for(var i = 0;i<soList.length;i++){
+				if(soList[i].payType==1){paytype="银联支付"}
+				if(soList[i].payType==2){paytype="微信支付"}
+				if(soList[i].payType==3){paytype="支付宝支付"}
 				txt +=`<tr>
             <td>${soList[i].memberId}</td>
             <td>${soList[i].createTime}</td>
             <td>${soList[i].serviceNo}</td>
             <td>￥${soList[i].totalPrice}</td>
-            <td>银联支付</td>
+            <td>${paytype}</td>
             <td>${soList[i].serviceId}</td>
         </tr>`
 			}
 			$("#list").append(txt);
+			
+			var allprice=data.allprice;
+			$(".allprice").html("");
+			txt="";
+			txt +="￥"+allprice
+			$(".allprice").append(txt);
+			
+			pageNum = data.pageNum;
+			$(".page").html("");
+			txt="";
+			for(var i = 1;i<=pageNum;i++){
+				txt +=`<span class="main-pagination-page" onclick="page(${i})" >${i}</span>`
+			}
+			$(".page").append(txt);
 			
 		},
 		error: function(data){
@@ -81,8 +137,42 @@ function page(){
 		}
 	})
 }
-
-
+//首页
+$(".pagefirst").on("click",function(){
+	if(time1!=0){
+		time(1,time1);
+	}else{
+		page(1);
+	}
+})
+//上一页
+$(".last").on("click",function(){
+	if(nowpage!=1){	
+		if(time1!=0){
+			time(nowpage-1,time1);
+		}else{
+			page(nowpage-1);
+		}
+	}
+})
+//下一页
+$(".next").on("click",function(){
+	if(nowpage!=pageNum){	
+		if(time1!=0){
+			time(nowpage+1,time1);
+		}else{
+			page(nowpage+1);
+		}
+	}
+})
+//尾页
+$(".pagelast").on("click",function(){
+	if(time1!=0){
+		time(pageNum,time1);
+	}else{
+		page(pageNum);
+	}
+})
 
 //退出登录
 $(".exit").on("click",function(){
@@ -121,16 +211,21 @@ $(".service-order").on("click", function () {
 $(".search li").eq(0).on("click", function () {
     $(".search li").removeClass("font-red");
     $(this).addClass("font-red");
+	time(1,1);
 })
 $(".search li").eq(1).on("click", function () {
     $(".search li").removeClass("font-red");
     $(this).addClass("font-red");
+	time(1,7);
 })
 $(".search li").eq(2).on("click", function () {
     $(".search li").removeClass("font-red");
     $(this).addClass("font-red");
+	time(1,30);
 })
 $(".search li").eq(3).on("click", function () {
     $(".search li").removeClass("font-red");
     $(this).addClass("font-red");
+    time1=0;
+    page(1);
 })

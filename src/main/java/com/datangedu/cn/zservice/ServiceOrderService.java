@@ -12,5 +12,11 @@ public interface ServiceOrderService {
 
 	public List<ServiceOrder> select(HttpServletRequest request);
 
-	List<ServiceOrder> getpay();
+	List<ServiceOrder> getpay(HttpServletRequest request);
+
+	List<ServiceOrder> getpaylist(HttpServletRequest request);
+
+	List<ServiceOrder> gettime(HttpServletRequest request);
+
+	List<ServiceOrder> gettimepage(HttpServletRequest request);
 }

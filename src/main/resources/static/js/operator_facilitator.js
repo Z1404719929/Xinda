@@ -32,7 +32,6 @@ function page2(i,index){
 				 location.href="redirect?page=operator_login"
 			}
 			
-			var soList = data.soList;
 			$("#sysuser").html("");
 			var txt="";
 			txt +=sessionStorage.getItem("name")
@@ -128,7 +127,6 @@ function page1(i,index){
 			txt +=`<input class="select" placeholder="请输入服务商名称查询" /><button onclick="page2(1,${index})"><i class="fa fa-search fa-fw"></i></button>`
 			$(".search").append(txt);
 			
-			var soList = data.soList;
 			$("#sysuser").html("");
 			var txt="";
 			txt +=sessionStorage.getItem("name")

@@ -102,13 +102,23 @@
     select * from service_order where status=${status}
   </select>
   
-    <select id="selectBypaging" parameterType="com.datangedu.cn.model.sysUser.ProviderExample" resultMap="BaseResultMap">
-    select * from provider where  status=${status}
+    <select id="selectBypaging" parameterType="com.datangedu.cn.model.sysUser.ServiceOrderExample" resultMap="BaseResultMap">
+    select * from service_order where  status=${status}
      <if test="pageSize >= 0">
       limit ${pageSize},${pageNum}
     </if>
   </select>
   
+  <select id="selectBytime" parameterType="com.datangedu.cn.model.sysUser.ServiceOrderExample" resultMap="BaseResultMap">
+    select * from service_order where status=${status}  and CREATE_TIME>DATE_ADD(NOW(),INTERVAL -${time} DAY)
+  </select>
+  
+  <select id="selectBytimepage" parameterType="com.datangedu.cn.model.sysUser.ServiceOrderExample" resultMap="BaseResultMap">
+    select * from service_order where  status=${status}  and CREATE_TIME>DATE_ADD(NOW(),INTERVAL -${time} DAY)
+     <if test="pageSize >= 0">
+      limit ${pageSize},${pageNum}
+    </if>
+  </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from service_order
