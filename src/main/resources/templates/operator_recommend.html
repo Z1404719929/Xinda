@@ -26,7 +26,7 @@
             <li><i class="fa fa-cube fa-fw"></i>业务管理</li>
             <li>
                 <img src="./images/default_user.png">
-                <span>用户名字</span>
+                <span  id="sysuser">用户名字</span>
                 <i class="fa fa-chevron-down fa-fw user-arrow-down"></i>
                 <ul class="dropdown">
                     <li>更改信息</li>
@@ -97,7 +97,7 @@
                     <select>
                         <option value="">--选择服务分类</option>
                     </select>
-                    <input placeholder="服务名称" /><button><i class="fa fa-search fa-fw"></i></button>
+                    <input class="select" placeholder="服务名称" /><button class="select-btn"><i class="fa fa-search fa-fw"></i></button>
                     <span><span class="font-orange">提示：</span>销量排名靠前的可选为优质服务，价格最低的选择为推荐服务</span>
                 </div>
                 <ul class="sort">
@@ -118,7 +118,7 @@
                         <th>初创企业必备</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="list">
                     <tr>
                         <td>社保补缴（三个月外）</td>
                         <td>社保补缴三个月外，单月的服务费，社保金额及滞纳金单独核算</td>
@@ -140,11 +140,13 @@
                 </tbody>
             </table>
             <div class="main-pagination">
-                <span>首页</span>
-                <span>上一页</span>
+                <span class="pagefirst">首页</span>
+                <span class="last">上一页</span>
+                <span class="page">
                 <span class="main-pagination-page">1</span>
-                <span>下一页</span>
-                <span>尾页</span>
+                </span>
+                <span class="next">下一页</span>
+                <span class="pagelast">尾页</span>
             </div>
             <div class="main-sercive">结算中心...</div>
     </div>

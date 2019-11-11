@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.datangedu.cn.model.sysUser.Provider;
 import com.datangedu.cn.model.sysUser.ProviderProduct;
 import com.datangedu.cn.zservice.ProviderProductService;
 
@@ -97,5 +98,47 @@ public class ControllerProviderProduct2 {
 		}
 		return map;
 	}
+	
+	@ResponseBody				//所有产品下线
+	@RequestMapping(value="/del",method = RequestMethod.POST)
+	public Map <String,Object> del(HttpServletRequest request) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		ppService.del(request);
+		return map;
+	}
+	
+	//////////////////////////////////////////////////////////////////
+	@ResponseBody	
+	@RequestMapping(value="/recommend",method = RequestMethod.POST)
+	public Map <String,Object> paging(HttpServletRequest request) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		System.out.println("传入pageSize=="+request.getParameter("pageSize"));
+		System.out.println("传入pageNum=="+request.getParameter("pageNum"));
+		List<ProviderProduct> allList= ppService.selectAll(request);	//得到查询的所有数量
+		int pageNum=(allList.size()+1)/2;		//计算页数
+		map.put("pageNum", pageNum);
+		List<ProviderProduct> mList= ppService.selectpaging(request);
+		System.out.println();
+		System.out.println("mList.size()"+mList.size());
+		map.put("List", mList);
+		return map;
+	}
+	
+	//是否推荐
+	@ResponseBody	
+	@RequestMapping(value="/check1",method = RequestMethod.POST)
+	public Map <String,Object> check1(HttpServletRequest request) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		ppService.check1(request);
+		return map;
+	}
+	//是否必备
+		@ResponseBody	
+		@RequestMapping(value="/check2",method = RequestMethod.POST)
+		public Map <String,Object> check2(HttpServletRequest request) {
+			Map<String,Object> map = new HashMap<String,Object>();
+			ppService.check2(request);
+			return map;
+		}
 	
 }

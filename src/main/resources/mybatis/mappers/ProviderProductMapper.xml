@@ -104,6 +104,23 @@
   </select>
   
   
+  <select id="selectByAll" parameterType="com.datangedu.cn.model.sysUser.ProviderProductExample" resultMap="BaseResultMap">
+    select * from provider_product where service_content like '%${likeName}%'
+     <if test="orderByClause != null">
+      order by ${orderByClause} desc
+    </if>
+  </select>
+  
+  
+  <select id="selectBypaging" parameterType="com.datangedu.cn.model.sysUser.ProviderProductExample" resultMap="BaseResultMap">
+    select * from provider_product where service_content like '%${likeName}%'
+     <if test="orderByClause != null">
+      order by ${orderByClause} desc
+    </if>
+    <if test="pageSize >= 0">
+      limit ${pageSize},${pageNum}
+    </if>
+  </select>
   
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

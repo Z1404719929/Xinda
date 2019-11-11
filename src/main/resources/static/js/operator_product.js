@@ -36,7 +36,7 @@ $(function(){
                         <td><span class="up-line-mark up-line-mark-red ">上线</span></td>
                         <td>
                             <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span>
-                            <span class="handle-btn"><i class="fa fa-close fa-fw"></i>删除</span>
+                            <span class="handle-btn" onclick="del('${ppList[i].id}')"><i class="fa fa-close fa-fw"></i>删除</span>
                             <span class="handle-btn" onclick="zt('${ppList[i].id}')"><i class="fa fa-arrow-down fa-fw"></i>下线</span>
                         </td>
 				</tr>`
@@ -97,7 +97,7 @@ $(".select-btn").on("click",function(){
                         <td><span class="up-line-mark up-line-mark-red ">上线</span></td>
                         <td>
                             <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span>
-                            <span class="handle-btn"><i class="fa fa-close fa-fw"></i>删除</span>
+                            <span class="handle-btn" onclick="del('${ppList[i].id}')"><i class="fa fa-close fa-fw"></i>删除</span>
                             <span class="handle-btn" onclick="zt('${ppList[i].id}')"><i class="fa fa-arrow-down fa-fw"></i>下线</span>
                         </td>
 				</tr>`
@@ -133,6 +133,25 @@ function zt(id){
 	$.ajax({
 		type: "post",
 		url: "/pp/us",			//修改状态
+		data:{
+			id:id,
+		},
+		dataType: "json",
+		success: function(data){
+			console.log("成功后返回的数据",data);
+			 location.href="redirect?page=operator_product"
+		},error: function(data){
+			console.log("失败后返回的数据",data);
+		}
+	})
+}
+
+//删除
+function del(id){
+	console.log("下线id",id);
+	$.ajax({
+		type: "post",
+		url: "/pp/del",			//修改状态
 		data:{
 			id:id,
 		},

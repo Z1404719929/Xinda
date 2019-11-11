@@ -76,10 +76,66 @@ public class ProviderProductServicelmpl implements ProviderProductService {
 		System.out.println("查询结果几条==="+providerProductMapper.selectByExample(providerProductExample).size());
 		return providerProductMapper.selectByExample(providerProductExample);
 	}
-
 	
-
+	public int del(HttpServletRequest request) {
+		ProviderProductExample providerProductExample = new ProviderProductExample();
+		ProviderProductExample.Criteria criteria = providerProductExample.createCriteria();
+		System.out.println("1444");
+		criteria.andIdEqualTo(request.getParameter("id"));
+		return providerProductMapper.deleteByExample(providerProductExample);
+	}
 	
+	//////////////////////////////////////////////////////////
+	//运营优质推荐页面查询
+	@Override
+	public List<ProviderProduct> selectAll(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		ProviderProductExample providerProductExample = new ProviderProductExample();
+		ProviderProductExample.Criteria criteria = providerProductExample.createCriteria();
+		providerProductExample.setOrderByClause(request.getParameter("index"));
+		System.out.println("cs"+providerProductExample.getOrderByClause());
+		providerProductExample.setLikeName(request.getParameter("name"));
+		return providerProductMapper.selectByAll(providerProductExample);
+	}
 	
+	//运营优质推荐页面查询分页
+		@Override
+		public List<ProviderProduct> selectpaging(HttpServletRequest request) {
+			// TODO Auto-generated method stub
+			ProviderProductExample providerProductExample = new ProviderProductExample();
+			ProviderProductExample.Criteria criteria = providerProductExample.createCriteria();
+			providerProductExample.setOrderByClause(request.getParameter("index"));
+			providerProductExample.setLikeName(request.getParameter("name"));
+			providerProductExample.setPageSize((Integer.valueOf(request.getParameter("pageSize"))-1)*2);
+			System.out.println("getPageSize"+providerProductExample.getPageSize());
+			providerProductExample.setPageNum(Integer.valueOf(request.getParameter("pageNum")));
+			System.out.println("getPageNum"+providerProductExample.getPageNum());
+			return providerProductMapper.selectBypaging(providerProductExample);
+		}
+	
+		@Override		//是否推荐服务
+		public int check1(HttpServletRequest request) {
+			ProviderProduct pp=new ProviderProduct();
+			pp.setId(request.getParameter("id"));
+			if(request.getParameter("a").equals("1")) {
+			pp.setRecommend(2);}else {
+				pp.setRecommend(1);
+			}
+			return providerProductMapper.updateByPrimaryKeySelective(pp);
+		}
+		
+		@Override		//是否创业必备
+		public int check2(HttpServletRequest request) {
+			ProviderProduct pp=new ProviderProduct();
+			System.out.println("1444");
+			pp.setId(request.getParameter("id"));
+			if(request.getParameter("b").equals("1")) {
+			pp.setHighQuality(2);
+			}else {
+				pp.setHighQuality(1);
+			}
+			System.out.println("125");
+			return providerProductMapper.updateByPrimaryKeySelective(pp);
+		}
 	
 }
