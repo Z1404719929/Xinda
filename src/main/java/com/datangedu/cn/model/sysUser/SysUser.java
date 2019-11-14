@@ -7,8 +7,6 @@ public class SysUser {
 
     private String userName;
 
-    private String headImg;
-
     private String password;
 
     private String email;
@@ -18,6 +16,8 @@ public class SysUser {
     private Integer status;
 
     private Date registerTime;
+
+    private byte[] headImg;
 
     public String getId() {
         return id;
@@ -33,14 +33,6 @@ public class SysUser {
 
     public void setUserName(String userName) {
         this.userName = userName == null ? null : userName.trim();
-    }
-
-    public String getHeadImg() {
-        return headImg;
-    }
-
-    public void setHeadImg(String headImg) {
-        this.headImg = headImg == null ? null : headImg.trim();
     }
 
     public String getPassword() {
@@ -81,5 +73,13 @@ public class SysUser {
 
     public void setRegisterTime(Date registerTime) {
         this.registerTime = registerTime;
+    }
+
+    public byte[] getHeadImg() {
+        return headImg;
+    }
+
+    public void setHeadImg(byte[] headImg) {
+        this.headImg = headImg;
     }
 }

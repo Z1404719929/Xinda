@@ -1,5 +1,8 @@
 package com.datangedu.cn.controller.providerproduct;
 
+
+
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,14 +10,19 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.datangedu.cn.model.sysUser.Provider;
 import com.datangedu.cn.model.sysUser.ProviderProduct;
+import com.datangedu.cn.model.sysUser.SysUser;
 import com.datangedu.cn.zservice.ProviderProductService;
+import com.datangedu.cn.zservice.SysUserService;
 
 @Controller
 @RequestMapping("/pp")
@@ -22,18 +30,40 @@ public class ControllerProviderProduct2 {
 
 	@Resource
 	ProviderProductService ppService;
-//	SysUserService suService;
+	@Resource
+	SysUserService sysUserService;
 	
 	@ResponseBody			//查询所有产品
 	@RequestMapping(value="/getlist",method = RequestMethod.GET)
 	public Map <String,Object> getlist(HttpServletRequest request) {
 		Map<String,Object> map = new HashMap<String,Object>();
 		List<ProviderProduct> ppList= ppService.getpp();
-		System.out.println(ppList); 
+//		System.out.println(ppList); 
 		map.put("ppList", ppList);
-		System.out.println("map"+map);
+//		System.out.println("map"+map);
+		////////////////////////////////////////////////////////////头像
 		return map;
 	}
+	
+	@ResponseBody	
+	@RequestMapping(value="/headImg", produces = MediaType.IMAGE_PNG_VALUE)
+	public ResponseEntity<byte[]> headImg(String id) throws Exception{
+		System.out.println("tp");
+		byte[] imageContent ;
+		// 根据id获取当前用户的信息
+		SysUser user = sysUserService.getUserInfo(id);
+				        
+		imageContent = user.getHeadImg();
+		System.out.println("图片==="+user.getHeadImg());
+				        
+		// 设置http头部信息
+		final HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.IMAGE_PNG);
+		// 返回响应实体
+		return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
+	}
+
+	
 	
 	@ResponseBody			//模糊查询
 	@RequestMapping(value="/select",method = RequestMethod.POST)

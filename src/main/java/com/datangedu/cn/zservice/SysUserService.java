@@ -11,4 +11,5 @@ import com.datangedu.cn.model.sysUser.SysUser;
 public interface SysUserService {
 	public List<SysUser> setUserLogin(HttpServletRequest request);
 	public int updatepassword(SysUser su,HttpServletRequest request);
+	SysUser getUserInfo(String id);
 }

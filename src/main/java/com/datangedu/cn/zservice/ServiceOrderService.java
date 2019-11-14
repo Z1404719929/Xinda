@@ -19,4 +19,8 @@ public interface ServiceOrderService {
 	List<ServiceOrder> gettime(HttpServletRequest request);
 
 	List<ServiceOrder> gettimepage(HttpServletRequest request);
+
+	List<ServiceOrder> getlist(HttpServletRequest request);
+
+	List<ServiceOrder> getlist2(HttpServletRequest request);
 }

@@ -37,6 +37,10 @@ public interface ServiceOrderMapper {
 	List<ServiceOrder> selectBytime(ServiceOrderExample example);	//
 	
 	List<ServiceOrder> selectBytimepage(ServiceOrderExample example);	//
+	
+	List<ServiceOrder> selectByorderform(ServiceOrderExample example);	//
+	
+	List<ServiceOrder> selectByorderformpage(ServiceOrderExample example);	//
 
 	ServiceOrder selectByPrimaryKey(String serviceNo);
 

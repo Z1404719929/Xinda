@@ -12,6 +12,7 @@ import com.datangedu.cn.model.sysUser.ProviderProduct;
 import com.datangedu.cn.model.sysUser.ServiceOrder;
 import com.datangedu.cn.model.sysUser.ServiceOrderExample;
 import com.datangedu.cn.zservice.ServiceOrderService;
+import com.fasterxml.jackson.databind.ser.std.StdArraySerializers.IntArraySerializer;
 
 @Service
 public class ServiceOrderlmpl implements ServiceOrderService {
@@ -73,6 +74,28 @@ public class ServiceOrderlmpl implements ServiceOrderService {
 		serviceOrderExample.setPageNum(Integer.valueOf(request.getParameter("pageNum")));
 		System.out.println("getPageNum"+serviceOrderExample.getPageNum());
 		return ServiceOrderMapper.selectBytimepage(serviceOrderExample);
+	}
+	
+	///////////////////////////////////////////////////////////////////////////服务商订单
+	@Override
+	public List<ServiceOrder> getlist(HttpServletRequest request) {
+		ServiceOrderExample serviceOrderExample = new ServiceOrderExample();
+		ServiceOrderExample.Criteria criteria = serviceOrderExample.createCriteria();
+		serviceOrderExample.setStatus(Integer.valueOf(request.getParameter("status")));
+		System.out.println("serviceOrderExample"+serviceOrderExample.getStatus());
+		return ServiceOrderMapper.selectByorderform(serviceOrderExample);
+	}
+
+	@Override
+	public List<ServiceOrder> getlist2(HttpServletRequest request) {
+		ServiceOrderExample serviceOrderExample = new ServiceOrderExample();
+		ServiceOrderExample.Criteria criteria = serviceOrderExample.createCriteria();
+		serviceOrderExample.setStatus(2);
+		serviceOrderExample.setPageSize((Integer.valueOf(request.getParameter("pageSize"))-1)*2);
+		System.out.println("getPageSize"+serviceOrderExample.getPageSize());
+		serviceOrderExample.setPageNum(Integer.valueOf(request.getParameter("pageNum")));
+		System.out.println("getPageNum"+serviceOrderExample.getPageNum());
+		return ServiceOrderMapper.selectByorderformpage(serviceOrderExample);
 	}
 
 }

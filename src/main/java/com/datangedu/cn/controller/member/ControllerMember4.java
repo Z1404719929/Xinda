@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.datang.hrb.util.MD5Util;
 import com.datangedu.cn.model.sysUser.Member;
 import com.datangedu.cn.zservice.MemberService;
 
@@ -55,13 +56,17 @@ public class ControllerMember4 {
 		   return map;
 		  }
 		
-		List<Member> memberInfo=memberService.getMemberInfoById(request);
+		List<Member> memberInfo=memberService.getcellphone(request.getParameter("cellphone"));
 		System.out.println(memberInfo);
 		
 		if(memberInfo.isEmpty()) {
 			map.put("msg","帐号不存在");
 			return map;
-		}else {
+		}else if(!memberInfo.get(0).getPassword().equals(MD5Util.getMD5(request.getParameter("password").getBytes()))) {
+			map.put("msg","密码错误" );
+			return map;
+		}
+		else {
 			map.put("code", 1);
 			map.put("msg","恭喜登录成功");		
 		}

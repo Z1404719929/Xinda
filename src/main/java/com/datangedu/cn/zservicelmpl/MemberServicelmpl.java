@@ -83,6 +83,7 @@ public class MemberServicelmpl implements MemberService {
 		System.out.println("密码"+request.getParameter("password"));
 
 		java.sql.Date ctime = new java.sql.Date(new java.util.Date().getTime());
+
 		m.setRegisterTime(ctime);
 		m.setId(uuid);
 		m.setName(request.getParameter("cellphone"));

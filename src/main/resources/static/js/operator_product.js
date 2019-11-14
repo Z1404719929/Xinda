@@ -3,19 +3,33 @@ var check =null;
 var str="";
 
 $(function(){
+	img();
+	var userid=sessionStorage.getItem("id");
+	var username=sessionStorage.getItem("name");
+	var status=sessionStorage.getItem("status");
+	
+	$(".img").html("");
+	var txt="";
+	txt +=`<img class="ss" src="/pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+	"/>`
+	$(".img").append(txt);
 	
 	$.ajax({
 		type: "get",
 		url: "/pp/getlist",
 		dataType: "json",
 		success: function(data){
-			var userid=sessionStorage.getItem("id")
-			var username=sessionStorage.getItem("name")
-			var status=sessionStorage.getItem("status")
+			
+			console.log(userid);
 			if(status!=1){
 				alert("请先登录");
 				 location.href="redirect?page=operator_login"
 			}
+			
 			$("#sysuser").html("");
 			var txt="";
 			txt +=username
@@ -62,6 +76,19 @@ $(function(){
 		}
 	})
 })
+
+function img(){
+	var userid=sessionStorage.getItem("id")
+	$(".img").html("");
+	var txt="";
+	txt +=`<img  src="/pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+	"/>`
+	$(".img").append(txt);
+}
 
 //退出登录
 $(".exit").on("click",function(){
@@ -221,6 +248,14 @@ $(".down-line").on("click",function(){
 		}
 	})
 })
+
+
+//头像
+function defaultImg(img){
+		img.src="/images/user-lg.png";
+}
+
+
 
 $(".user-arrow-down").on("click",function(){
     if($(".dropdown").is(":hidden")){

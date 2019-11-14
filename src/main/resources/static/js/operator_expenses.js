@@ -4,8 +4,22 @@ var index1=1;
 var time1=0;
 
 $(function(){
+	img();
 	page(1);
 })
+
+function img(){
+	var userid=sessionStorage.getItem("id")
+	$(".img").html("");
+	var txt="";
+	txt +=`<img  src="/pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+	"/>`
+	$(".img").append(txt);
+}
 
 function time(i,time){
 	time1=time;
