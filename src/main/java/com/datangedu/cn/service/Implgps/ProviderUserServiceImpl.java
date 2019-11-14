@@ -12,6 +12,8 @@ import com.datang.hrb.util.MD5Util;
 import com.datangedu.cn.dao.mapper.ProviderMapper;
 import com.datangedu.cn.model.sysUser.Provider;
 import com.datangedu.cn.model.sysUser.ProviderExample;
+import com.datangedu.cn.model.sysUser.ProviderProduct;
+import com.datangedu.cn.model.sysUser.ProviderProductExample;
 import com.datangedu.cn.servicegps.ProviderUserService;
 @Service
 public class ProviderUserServiceImpl implements ProviderUserService{
@@ -91,10 +93,20 @@ public class ProviderUserServiceImpl implements ProviderUserService{
 					}
 					
 					
-					//营业执照上传和展示
+					//头像上传和展示
 					@Override
 					public void saveUserImg(Provider provider) throws Exception{
 							int i = providerMapper.saveUserImg(provider);
+							System.out.println("ppt==="+i);
+							if(i!=1) {
+								throw new Exception("更新用户头像失败");
+							} 
+						}
+					
+					//营业执照
+					@Override
+					public void saveFileImg(Provider provider) throws Exception{
+							int i = providerMapper.saveFileImg(provider);
 							System.out.println("iiiiiii==="+i);
 							if(i!=1) {
 								throw new Exception("更新用户营业执照失败");
@@ -105,5 +117,15 @@ public class ProviderUserServiceImpl implements ProviderUserService{
 					public Provider getProviderUserInfo(String id) {
 						return providerMapper.selectByPrimaryKey(id);
 					}
+					
+					// 通过id查
+					@Override
+					public List<Provider> getProviderId(String id) {
+						ProviderExample providerExample = new ProviderExample();
+						ProviderExample.Criteria criteria = providerExample.createCriteria();
+						criteria.andIdEqualTo(id);
+						return providerMapper.selectByExample(providerExample);
+					}
+
 
 }

@@ -17,7 +17,9 @@ $(".save").on("click", function(event){
 			var serviceContent=$(".service_content").val();
 			var price=$(".service_price").val();
 			console.log(id,serviceName,serviceContent,price);
-			
+			var userid=sessionStorage.getItem("id")
+			var uuid=sessionStorage.getItem("uuid")
+			var sn=sessionStorage.getItem("name")
 			 $.ajax({
 				//请求类型
 				type:"post",
@@ -29,6 +31,9 @@ $(".save").on("click", function(event){
 					serviceName:serviceName,
 					serviceContent:serviceContent,
 					price:price,
+					uuid:uuid,
+					userid:userid,
+					sn:sn,
 				},
 				//返回数据类型
 				dataType:"json",
@@ -46,7 +51,30 @@ $(".save").on("click", function(event){
 $(".cancel").on("click", function(event){
     $(".masking").hide();
     console.log("取消");
+    var uuid=sessionStorage.getItem("uuid")
+    $.ajax({
+		//请求类型
+		type:"post",
+		//请求路径
+		url:"/provider/providerdelete",
+		//返回数据类型
+		data:{
+			id:uuid,
+		},
+		dataType:"json",
+		//请求成功后调用函数
+		success:function(data){
+			console.log("成功后返回的数据",data);
+			location.href="redirect?page=service_product"
+		},
+		//请求失败后调用函数
+		error:function(data){
+			console.log("请求失败",data);
+		}
 })
+})
+
+
  		$(function(){
  			$.ajax({
  				//请求类型
@@ -187,3 +215,32 @@ $(".cancel").on("click", function(event){
 		txt +=sessionStorage.getItem("name")
 		$("#sysuser").append(txt);
 })
+
+$(".apa").on("click", function(){
+	$.ajax({
+		//请求类型
+		type:"get",
+		//请求路径
+		url:"/provider/apa",
+		//返回数据类型
+		dataType:"json",
+		//请求成功后调用函数
+		success:function(data){
+			console.log("成功后返回的数据",data);
+			sessionStorage.setItem("uuid",data.providerInfo)
+			$(".aaa").html("");
+			var txt="";
+			txt +=`<input name="id" class="userid" type="hidden" value="${data.providerInfo}"/>`
+			$(".aaa").append(txt);
+		},
+		//请求失败后调用函数
+		error:function(data){
+			console.log("请求失败",data);
+		}
+})
+})
+
+$("#form3").ajaxForm(function(data) {
+	console.log("str:" + JSON.stringify(data));
+	}
+);

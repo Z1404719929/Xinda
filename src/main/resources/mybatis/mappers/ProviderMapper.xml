@@ -257,6 +257,9 @@
   <update id="saveUserImg" parameterType="com.datangedu.cn.model.sysUser.Provider">
     update provider set PROVIDER_IMG = #{providerImg} where ID = #{id}
 </update>
+<update id="saveFileImg" parameterType="com.datangedu.cn.model.sysUser.Provider">
+    update provider set AUTH_FILE = #{authFile} where ID = #{id}
+</update>
   <update id="updateByExampleSelective" parameterType="map">
     update provider
     <set>

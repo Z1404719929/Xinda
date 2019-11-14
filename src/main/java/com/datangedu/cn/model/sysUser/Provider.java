@@ -23,7 +23,7 @@ public class Provider {
 
     private Integer status;
 
-    private String authFile;
+    private byte[] authFile;
 
     private String weixin;
 
@@ -117,12 +117,12 @@ public class Provider {
         this.status = status;
     }
 
-    public String getAuthFile() {
+    public byte[] getAuthFile() {
         return authFile;
     }
 
-    public void setAuthFile(String authFile) {
-        this.authFile = authFile == null ? null : authFile.trim();
+    public void setAuthFile(byte[] data) {
+    	this.authFile = data;
     }
 
     public String getWeixin() {

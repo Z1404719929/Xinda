@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./css/element-ui_2.12.0.css">
 
     <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="/js/jquery-form.js"></script>
 </head>
 
 <body>
@@ -87,7 +88,7 @@
                 </div>
                 
                 <div class="product-action">
-                    <span class="add-product-action"><i class="fa fa-plus fa-fw"></i>添加服务产品</span>
+                    <span class="add-product-action apa"><i class="fa fa-plus fa-fw"></i>添加服务产品</span>
                 </div>
             </div>
             <table border="0" cellspacing="0" cellpadding="0">
@@ -113,15 +114,24 @@
             <ul>
                 <li>
                     <span>图片简介</span>
-                    <button>选择图片</button>
+                    <form id="form3" action="/provider/savePpImg" method="post" enctype ="multipart/form-data" style="display:inline-table">
+                    <label for="file"  class="btn btn-primary" style="width: 100px;
+    background-color: #409eff;
+    display: inline-block;
+    border-radius: 4px;
+    color: #fff;
+    text-align: center;
+    line-height: 35px;
+    vertical-align: middle;
+    margin-right: 10px;">选择图片</label>
+                    <input id="file" name="file" type="file" style="float: left;display:none"/>
+	                <a class="aaa"><input name="id" class="userid" type="hidden"/></a>
+	                <button class="btn btn-primary" type="submit">上传</button>
+	                </form>
                 </li>
                 <li>
                     <span>服务名称</span>
                     <input class="service_name"  type="text" placeholder="请输入服务名称" />
-                </li>
-                <li>
-                <span>序号id</span>
-                    <input class="product_id" type="text"  placeholder="请输入id" />
                 </li>
                 <li>
                     <span class="ver-top">服务说明</span>

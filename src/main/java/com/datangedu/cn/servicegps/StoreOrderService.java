@@ -8,5 +8,5 @@ public interface StoreOrderService {
 
 	public int setStoreRegister(HttpServletRequest request);
 	
-	public int setMassageRegister(HttpServletRequest request);
+	public int setInformationUpdate(HttpServletRequest request);
 }

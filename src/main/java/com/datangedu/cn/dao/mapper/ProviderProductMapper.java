@@ -43,4 +43,6 @@ public interface ProviderProductMapper {
 	int updateByPrimaryKeySelective(ProviderProduct record);
 
 	int updateByPrimaryKey(ProviderProduct record);
+
+	int saveServiceImg(ProviderProduct providerProduct);
 }

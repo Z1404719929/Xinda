@@ -17,3 +17,10 @@ $(".order2").on("click", function(){
     $(".order2").addClass("border-red");
     $(".order1").removeClass("border-red");
 })
+
+ $(function(){
+		$("#sysuser").html("");
+		var txt="";
+		txt +=sessionStorage.getItem("name")
+		$("#sysuser").append(txt);
+})

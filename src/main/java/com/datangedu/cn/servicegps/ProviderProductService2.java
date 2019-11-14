@@ -19,4 +19,10 @@ public interface ProviderProductService2 {
 	
 	public int setProviderDelete(HttpServletRequest request);
 
+	void saveServiceImg(ProviderProduct providerProduct) throws Exception;
+	
+	ProviderProduct getProviderInfoByld(String id);
+
+	String setProviderApa(HttpServletRequest request);
+
 }

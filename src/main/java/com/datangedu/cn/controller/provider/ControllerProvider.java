@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.datang.hrb.util.MD5Util;
 import com.datangedu.cn.model.sysUser.Provider;
-import com.datangedu.cn.model.sysUser.SysUser;
+import com.datangedu.cn.model.sysUser.ProviderProduct;
+import com.datangedu.cn.model.sysUser.Region;
 import com.datangedu.cn.servicegps.ProviderUserService;
+import com.datangedu.cn.servicegps.RegionService;
 import com.datangedu.cn.servicegps.StoreOrderService;
 
 
@@ -26,6 +28,8 @@ public class ControllerProvider {
 	
 	@Resource
 	ProviderUserService providerUserService;
+	@Resource
+	RegionService rService;
 	
 	@ResponseBody
 	@RequestMapping(value = "/providerlogin",method = RequestMethod.POST)
@@ -73,47 +77,6 @@ public class ControllerProvider {
 		return map;
 }
 	
-	@ResponseBody
-	@RequestMapping(value = "/findpassword",method = RequestMethod.POST)
-	public Map <String,Object> findPassword(HttpServletRequest request) {
-		Map<String,Object> map = new HashMap<String,Object>();
-		Provider provideruser=new Provider();
-		
-		if(request.getParameter("loginId").isEmpty()) {
-			map.put("msg","输入手机号" );
-			return map;
-		}
-		if(request.getParameter("code").isEmpty()) {
-			map.put("msg","输入验证码" );
-			return map;
-		}
-		if(request.getParameter("password1").isEmpty()) {
-			map.put("msg","输入密码" );
-			return map;
-		}
-		if(request.getParameter("password2").isEmpty()) {
-			map.put("msg","再输入密码" );
-			return map;
-		}
-		if(!request.getParameter("password1").equals(request.getParameter("password2"))) {
-			map.put("msg","两次密码不一致");
-			return map;
-		}
-		provideruser.setCellphone(request.getParameter("loginId"));
-		provideruser.setPassword(MD5Util.getMD5(request.getParameter("password1").getBytes()));
-		int a=providerUserService.updatepassword(provideruser, request);
-		System.out.println("修改密码5"+a);
-		map.put("stu", a);
-		if(a==1) {
-		map.put("msg", "修改成功");
-		}else {
-			map.put("msg", "账号不存在");
-		}
-		return map;
-	}
-	
-	
-	
 	
 	@Resource
 	StoreOrderService providerOrderService;
@@ -135,16 +98,53 @@ public class ControllerProvider {
 	@Resource
 	StoreOrderService provideOrderService;
 	@ResponseBody
-	@RequestMapping(value = "/massageregister", method = RequestMethod.POST)
+	@RequestMapping(value = "/informationUpdate", method = RequestMethod.POST)
 	public Map<String, Object> provideRegister(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		int massageInfo = provideOrderService.setMassageRegister(request);
+		int massageInfo = provideOrderService.setInformationUpdate(request);
 		if (massageInfo == 4) {
 			map.put("msg", "输入有误");
 			return map;
 		} else {
 			map.put("msg", "保存成功");
 		}
+		return map;
+	}
+	
+	
+	@Resource
+	ProviderUserService providerService;
+	@ResponseBody
+	@RequestMapping(value = "/getprovider", method = RequestMethod.GET)
+	public Map<String, Object> ProviderInfo(HttpServletRequest request) {
+		System.out.println("666");
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<Provider> provider = providerService.getProviderId(request.getParameter("loginId"));
+		System.out.println(provider.get(0).getName());
+		
+		//把地区代号改为名字
+		String[] str = new String[3];
+		String str8 = "";
+		List<Region> rList = rService.getList(provider.get(0).getRegionId());
+		str[2] = rList.get(0).getName();
+
+		if (rList.get(0).getLevel() == 3) {
+			rList = rService.getList(rList.get(0).getParentId());
+			str[1] = rList.get(0).getName();
+		}
+
+		if (rList.get(0).getLevel() == 2) {
+			rList = rService.getList(rList.get(0).getParentId());
+			str[0] = rList.get(0).getName();
+		}
+		str8 = str[0] + " " + str[1] + " " + str[2];
+		str[0] = "";
+		str[1] = "";
+		str[2] = "";
+		System.out.println(str8);
+		provider.get(0).setRegionId(str8);
+		
+		map.put("provider", provider);
 		return map;
 	}
 }
