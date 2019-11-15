@@ -11,12 +11,13 @@
     <link rel="stylesheet" href="./css/e-commerce_account.css">
 
     <script src="./js/jquery-3.4.1.min.js"></script>
+      <script src="/js/jquery-form.js"></script>
 </head>
 
 <body>
     <div class="headder-top">
         <div class="width1200 headder-top-content">
-            <div><span>{用户名}</span>欢饮来到信达！<span class="user-quit">[退出]</span></div>
+            <div><span class="sysuser">{用户名}</span>欢饮来到信达！<span class="user-quit">[退出]</span></div>
             <ul>
                 <li><a href="redirect?page=e-commerce_shoping-car"><i class="fa fa-shopping-cart fa-lg"></i>
                         购物车<span>1</span>件</a></li>
@@ -92,27 +93,30 @@
                 </li>
             </ul>
             <ul class="account-info">
+             <form id="form1" action="/ou/saveUserImg" method="post" enctype ="multipart/form-data" style="display:inline-table">
                 <li>
                     <span>当前头像：</span>
-                    <img src="./images/user-lg.png" alt="">
+                    <a class="img"><img src="./images/user-lg.png" alt=""></a>
+                    <input  id="file" name="file" type="file" style="float: left;display:none"/>   
                 </li>
                 <li>
                     <span>性别：</span>
-                    <input class="radio" type="radio" name="sex" /> 男 
-                    <input class="radio" type="radio" name="sex" /> 女
+                    <input class="radio radio1" type="radio" name="sex" /> 男 
+                    <input class="radio radio2" type="radio" name="sex" /> 女
                 </li>
                 <li>
                     <span>姓名：</span>
-                    <input type="text" />
+                    <input class="name" type="text" />
                 </li>
                 <li>
                     <span>邮箱：</span>
-                    <input type="text" />
+                    <input class="email" type="text" />
                 </li>
                 <li>
-                    <p class="save">保存</p>
+                    <input  class="save btn btn-primary" type="submit" value="保存"  >
                 </li>
             </ul>
+            </form>
         </div>
 
         <script src="./js/e-commerce_account.js"></script>

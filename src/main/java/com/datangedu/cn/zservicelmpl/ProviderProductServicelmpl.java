@@ -137,5 +137,11 @@ public class ProviderProductServicelmpl implements ProviderProductService {
 			System.out.println("125");
 			return providerProductMapper.updateByPrimaryKeySelective(pp);
 		}
+		
+		@Override
+		public ProviderProduct getUserInfo(String id) {
+			return providerProductMapper.selectByPrimaryKey(id);
+		}
+
 	
 }

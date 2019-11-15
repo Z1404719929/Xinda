@@ -1,3 +1,109 @@
+
+$(function(){
+	list(1);
+})
+
+function list(content){//content=1未评价
+	var userid=sessionStorage.getItem("id");
+	var username=sessionStorage.getItem("name");
+	var status=sessionStorage.getItem("status");
+	
+	$.ajax({
+		type: "post",
+		url: "/ou/content",
+		data:{
+			userid:userid,
+			content:content,
+		},
+		dataType: "json",
+		success: function(data){
+			login();
+			var List = data.list;
+			console.log(data.list);
+			$("#list3").html("");
+			txt="";
+			if(content==1){
+			for(var i = 0;i<List.length;i++){
+				console.log(List[i].ppId);
+				txt +=`<div class="article ">
+				<img class="ss" src="/pp/headImg2?id=${List[i].ppId}" onerror="defaultImg(this)" style="
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+	"/>
+                <ul class="article-info">
+					<li>${List[i].serviceName}</li>
+                    <li>${List[i].serviceId}</li>
+                    <li>${List[i].providerName}</li>
+                </ul>
+                <p>购买时间：${List[i].createTime}</p>
+                <p class="evaluate_btn">去评价</p>
+                </div>
+				`
+			}
+			}else{
+				for(var i = 0;i<List.length;i++){
+					txt +=`<div class="article ">
+				<img class="ss" src="/pp/headImg2?id=${List[i].ppId}" onerror="defaultImg(this)" style="
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+	"/>
+	                <ul class="article-info">
+						<li>${List[i].serviceName}</li>
+	                    <li>${List[i].serviceId}</li>
+	                    <li>${List[i].providerName}</li>
+	                </ul>
+	                <p>购买时间：${List[i].createTime}</p>
+	                <p class="evaluate_btn">已评价</p>
+	                </div>
+					`
+				}
+			}
+			$("#list3").append(txt);
+		},
+		error: function(data){
+			console.log("失败后返回的数据",data);
+		}
+	})
+	
+}
+
+
+
+
+
+
+
+
+
+
+function login(){
+	var userid=sessionStorage.getItem("id");
+	var username=sessionStorage.getItem("name");
+	var status=sessionStorage.getItem("status");
+	console.log(userid);
+	if(status!=1){
+		alert("请先登录");
+		 location.href="redirect?page=operator_login"
+	}
+	
+	$("#sysuser").html("");
+	var txt="";
+	txt +=username
+	$("#sysuser").append(txt);
+}
+
+$(".change1").on("click", function(){
+	list(1);
+})
+
+$(".change2").on("click", function(){
+	list(2);
+})
+
 $(".search-product").on("click", function(){
     $(".search-product").addClass("font-aqua");
     $(".search-service").removeClass("font-aqua");

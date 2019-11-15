@@ -98,4 +98,13 @@ public class ServiceOrderlmpl implements ServiceOrderService {
 		return ServiceOrderMapper.selectByorderformpage(serviceOrderExample);
 	}
 
+	//////////////////////////////////////////////用户id查订单
+	@Override
+	public List<ServiceOrder> content(HttpServletRequest request) {
+		ServiceOrderExample serviceOrderExample = new ServiceOrderExample();
+		ServiceOrderExample.Criteria criteria = serviceOrderExample.createCriteria();
+		criteria.andMemberIdEqualTo(request.getParameter("userid"));
+		return ServiceOrderMapper.selectByExample(serviceOrderExample);
+	}
+	
 }

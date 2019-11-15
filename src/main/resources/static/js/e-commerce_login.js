@@ -19,6 +19,7 @@ success:function(data){
                         location.href="/redirect?page=e-commerce_product"
        sessionStorage.setItem("id",data.userid);
    sessionStorage.setItem("name",data.username);
+   sessionStorage.setItem("status",1);
                 }
             },
         		error:function(data){

@@ -48,6 +48,7 @@ function img(){
 	txt +=`<img  src="/pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
     width: 50px;
     height: 50px;
+    border-radius: 50px;
     display: inline-block;
     border: 1px solid #e1e1e1;
 	"/>`

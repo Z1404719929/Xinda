@@ -75,6 +75,7 @@ public class MemberServicelmpl implements MemberService {
 	}
 	
 	//注册插入用户
+	@Override
 	public int register(HttpServletRequest request) {
 		String uuid = UUID.randomUUID().toString().trim().replaceAll("-", "");
 		System.out.println("id=="+uuid);
@@ -108,11 +109,38 @@ public class MemberServicelmpl implements MemberService {
 
 		
 		//修改密码
+		@Override
 		public int updatepassword(Member member,HttpServletRequest request) {
 			MemberExample memberExample = new MemberExample();
 			MemberExample.Criteria criteria = memberExample.createCriteria();
 			criteria.andCellphoneEqualTo(request.getParameter("cellphone"));
 			return memberMapper.updateByExampleSelective(member, memberExample);
 		}
+		
+		//////////////////////////显示图片用
+		@Override
+		public Member getUserInfo(String id) {
+			return memberMapper.selectByPrimaryKey(id);
+		}
+		///////////////////////////////////////修改账户信息
+		@Override
+		public int updatexx(HttpServletRequest request) {
+			Member member=new Member();
+			member.setId(request.getParameter("userid"));
+			member.setName(request.getParameter("name"));
+			member.setEmail(request.getParameter("email"));
+			member.setGender(Integer.valueOf(request.getParameter("sex")));
+			return memberMapper.updateByPrimaryKeySelective(member);
+		}
+		
+		/////////////////////////////////保存头像
+		@Override
+		public void saveUserImg(Member member) throws Exception {
+			int i = memberMapper.saveUserImg(member);
+			if(i!=1) {
+				throw new Exception("更新用户头像失败");
+			}
+		}
+
 		
 }

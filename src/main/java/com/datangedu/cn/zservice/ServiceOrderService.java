@@ -23,4 +23,6 @@ public interface ServiceOrderService {
 	List<ServiceOrder> getlist(HttpServletRequest request);
 
 	List<ServiceOrder> getlist2(HttpServletRequest request);
+
+	List<ServiceOrder> content(HttpServletRequest request);
 }

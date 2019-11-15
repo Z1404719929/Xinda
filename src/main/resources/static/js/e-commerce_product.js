@@ -24,6 +24,7 @@ $( function(){
 	              dataType:"json",
 	              success:function(data){
 	    	          	console.log("成功后返回的数据",data);
+	    	          	login();
 	    	        //	alert(data.msg);
 	    	          	var providerProductInfo=data.providerProductInfo;
 	    	        	$(".list").html("");
@@ -31,7 +32,12 @@ $( function(){
 	    	          	for(var i=0;i<providerProductInfo.length;i++){
 	    	          		txt+= `    	          		
 	    	          		    <div class="article" value="${providerProductInfo[i].id}">	    	          		    
-	    	          		    <img src="" alt="图片" />
+	    	          		    <img class="ss" src="/pp/headImg2?id=${providerProductInfo[i].id}" onerror="defaultImg(this)" style="
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+	"/>
             <ul class="article-info">
                 <li>${providerProductInfo[i].serviceName}</li>
                 <li>${providerProductInfo[i].serviceContent}</li>
@@ -73,6 +79,22 @@ $( function(){
 			console.log("失败后返回的数据",data);
 		}
 	})
+}
+
+function login(){
+	var userid=sessionStorage.getItem("id");
+	var username=sessionStorage.getItem("name");
+	var status=sessionStorage.getItem("status");
+	console.log(userid);
+	if(status!=1){
+		alert("请先登录");
+		 location.href="redirect?page=operator_login"
+	}
+	
+	$("#sysuser").html("");
+	var txt="";
+	txt +=username
+	$("#sysuser").append(txt);
 }
 
 /*

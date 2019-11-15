@@ -19,4 +19,5 @@ public interface ProviderProductService {
 	int check1(HttpServletRequest request);
 	int check2(HttpServletRequest request);
 	public int del(HttpServletRequest request);
+	ProviderProduct getUserInfo(String id);
 }

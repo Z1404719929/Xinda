@@ -44,7 +44,7 @@ public class ControllerProviderProduct2 {
 		////////////////////////////////////////////////////////////头像
 		return map;
 	}
-	
+	////用户头像
 	@ResponseBody	
 	@RequestMapping(value="/headImg", produces = MediaType.IMAGE_PNG_VALUE)
 	public ResponseEntity<byte[]> headImg(String id) throws Exception{
@@ -62,8 +62,24 @@ public class ControllerProviderProduct2 {
 		// 返回响应实体
 		return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
 	}
-
-	
+///产品头像
+	@ResponseBody	
+	@RequestMapping(value="/headImg2", produces = MediaType.IMAGE_PNG_VALUE)
+	public ResponseEntity<byte[]> headImg2(String id) throws Exception{
+		System.out.println("tp");
+		byte[] imageContent ;
+		// 根据id获取当前用户的信息
+		ProviderProduct pp = ppService.getUserInfo(id);
+				        
+		imageContent = pp.getServiceImg();
+		System.out.println("图片==="+pp.getServiceImg());
+				        
+		// 设置http头部信息
+		final HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.IMAGE_PNG);
+		// 返回响应实体
+		return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
+	}
 	
 	@ResponseBody			//模糊查询
 	@RequestMapping(value="/select",method = RequestMethod.POST)

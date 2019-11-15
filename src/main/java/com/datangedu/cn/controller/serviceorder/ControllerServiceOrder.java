@@ -41,7 +41,7 @@ public class ControllerServiceOrder {
 		List<ServiceOrder> soList = soService.getlist(request);
 		System.out.println("soList长度=="+soList.size());
 		
-		List<ServiceOrder> setList = new ArrayList<ServiceOrder>(); ;
+		List<ServiceOrder> setList = new ArrayList<ServiceOrder>();
 		List<Member> member;
 		List<ProviderProduct> ppList= ppService.select(request);		//模糊查询查到所有产品id
 		System.out.println("模糊查询=="+ppList.size());
