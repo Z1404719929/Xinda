@@ -4,6 +4,31 @@ import java.sql.Date;
 
 public class ServiceOrder {
 
+
+	public String getPpId() {
+		return ppId;
+	}
+
+	public void setPpId(String ppId) {
+		this.ppId = ppId;
+	}
+
+	public String getServiceName() {
+		return serviceName;
+	}
+
+	public void setServiceName(String serviceName) {
+		this.serviceName = serviceName;
+	}
+
+	public String getProviderName() {
+		return providerName;
+	}
+
+	public void setProviderName(String providerName) {
+		this.providerName = providerName;
+	}
+
 	private String serviceNo;
 
 	private String memberId;
@@ -21,6 +46,12 @@ public class ServiceOrder {
     private String content;
     
     private String zt;
+    
+    private String providerName;
+    
+    private String serviceName;
+    
+    private String ppId;
     
     public String getZt() {
 		return zt;

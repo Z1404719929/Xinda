@@ -18,11 +18,12 @@ public class StoreOrderServiceImpl implements StoreOrderService {
 		// 校验信息
 		System.out.println("sss"+request.getParameter("providerInfo").isEmpty());
 		System.out.println("sss"+request.getParameter("providerInfo")+request.getParameter("workTime")+request.getParameter("qq")+request.getParameter("cellphone"));
-		if (request.getParameter("providerInfo").isEmpty()|| request.getParameter("workTime").isEmpty()||request.getParameter("qq").isEmpty()||request.getParameter("cellphone").isEmpty()
-							 ) {
-			System.out.println("aaa");	
-			return 3;
-		}
+		/*
+		 * if (request.getParameter("providerInfo").isEmpty()||
+		 * request.getParameter("workTime").isEmpty()||request.getParameter("qq").
+		 * isEmpty()||request.getParameter("cellphone").isEmpty() ) {
+		 * System.out.println("aaa"); return 3; }
+		 */
 		System.out.println("ooo");
 		Provider provider=new Provider();
 		provider.setId(request.getParameter("id"));
@@ -30,25 +31,29 @@ public class StoreOrderServiceImpl implements StoreOrderService {
 		provider.setProviderInfo(request.getParameter("providerInfo"));
 		provider.setWorkTime(request.getParameter("workTime"));
 		provider.setQq(request.getParameter("qq"));
-		return providerMapper.insert(provider);
+		return providerMapper.updateByPrimaryKeySelective(provider);
 	}
-	public int setMassageRegister(HttpServletRequest request) {
+	
+	
+	
+	public int setInformationUpdate(HttpServletRequest request) {
 		// 校验信息
 		System.out.println("ddd"+request.getParameter("qq")+request.getParameter("weixin"));
-		if (request.getParameter("name").isEmpty()||request.getParameter("cellphone").isEmpty()||request.getParameter("qq").isEmpty()||request.getParameter("weixin").isEmpty()
-				||request.getParameter("email").isEmpty()			 ) {
-			System.out.println("bbb");	
-			return 4;
-		}
+//		if (request.getParameter("name").isEmpty()||request.getParameter("cellphone").isEmpty()||request.getParameter("qq").isEmpty()||request.getParameter("weixin").isEmpty()
+//				||request.getParameter("email").isEmpty()			 ) {
+//			System.out.println("bbb");	
+//			return 4;
+//		}
 		System.out.println("ooo");
 		Provider provider=new Provider();
 		provider.setId(request.getParameter("id"));
 		provider.setName(request.getParameter("name"));
 		provider.setCellphone(request.getParameter("cellphone"));
 		provider.setQq(request.getParameter("qq"));
+		provider.setRegionId(request.getParameter("regionId"));
 		provider.setWeixin(request.getParameter("weixin"));
 		provider.setEmail(request.getParameter("email"));
-		return providerMapper.insert(provider);
+		return providerMapper.updateByPrimaryKeySelective(provider);
 	}
 
 }

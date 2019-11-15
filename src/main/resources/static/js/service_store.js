@@ -34,12 +34,16 @@ function submit(){
  				success:function(data){
  					console.log("成功后返回的数据",data);
  					alert(data.msg);
+ 					location.href="redirect?page=service_store"
  				},
  				error:function(data){
  					console.log("失败后返回的数据",data);
+ 					alert(data.msg);
+ 					location.href="redirect?page=service_store"
  				}
  			}) 
  		}
+
 
 //控制登录名
 $(function(){
@@ -49,13 +53,12 @@ $(function(){
 	$("#sysuser").append(txt);
 	var id=sessionStorage.getItem("id");
 	var id1=$(".userid").val(id);
-	//$(".img").attr("src",id)
 	console.log(id1);
-	$("#ss").html("");
+	$("#ss2").html("");
 	var txt="";
 	txt +=`
-	<img class="img" name="id" src="/provider2/provider_Img?id=${id}" onerror="defaultImg(this)"/>`
-		$("#ss").append(txt);
+	<img class="img" name="id" src="/provider2/file_Img?id=${id}" onerror="defaultImg(this)"/>`
+		$("#ss2").append(txt);
 })
 
 
@@ -65,10 +68,26 @@ $(function(){
 		img.src="/images/user-lg.png";
 	}
 
-$("#form1").ajaxForm(function(data) {
+$("#form2").ajaxForm(function(data) {
 	console.log(data);
 	location.href="redirect?page=service_store"
 	console.log("str:" + JSON.stringify(data));
-
 	}
 );
+
+$(function(){
+	img();
+})
+function img(){
+	var userid=sessionStorage.getItem("id")
+	$(".img").html("");
+	var txt="";
+	txt +=`<img  src="/provider/headImg?id=${userid}" onerror="defaultImg(this)" style="
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+	"/>`
+	$(".img").append(txt);
+}

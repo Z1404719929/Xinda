@@ -3,19 +3,34 @@ var check =null;
 var str="";
 
 $(function(){
+	img();
+	var userid=sessionStorage.getItem("id");
+	var username=sessionStorage.getItem("name");
+	var status=sessionStorage.getItem("status");
+	
+	$(".img").html("");
+	var txt="";
+	txt +=`<img class="ss" src="/pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+	"/>`
+	$(".img").append(txt);
 	
 	$.ajax({
 		type: "get",
 		url: "/pp/getlist",
 		dataType: "json",
 		success: function(data){
-			var userid=sessionStorage.getItem("id")
-			var username=sessionStorage.getItem("name")
-			var status=sessionStorage.getItem("status")
+			
+			console.log(userid);
 			if(status!=1){
 				alert("请先登录");
 				 location.href="redirect?page=operator_login"
 			}
+			
 			$("#sysuser").html("");
 			var txt="";
 			txt +=username
@@ -36,7 +51,7 @@ $(function(){
                         <td><span class="up-line-mark up-line-mark-red ">上线</span></td>
                         <td>
                             <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span>
-                            <span class="handle-btn"><i class="fa fa-close fa-fw"></i>删除</span>
+                            <span class="handle-btn" onclick="del('${ppList[i].id}')"><i class="fa fa-close fa-fw"></i>删除</span>
                             <span class="handle-btn" onclick="zt('${ppList[i].id}')"><i class="fa fa-arrow-down fa-fw"></i>下线</span>
                         </td>
 				</tr>`
@@ -62,6 +77,19 @@ $(function(){
 		}
 	})
 })
+
+function img(){
+	var userid=sessionStorage.getItem("id")
+	$(".img").html("");
+	var txt="";
+	txt +=`<img  src="/pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+	"/>`
+	$(".img").append(txt);
+}
 
 //退出登录
 $(".exit").on("click",function(){
@@ -97,7 +125,7 @@ $(".select-btn").on("click",function(){
                         <td><span class="up-line-mark up-line-mark-red ">上线</span></td>
                         <td>
                             <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span>
-                            <span class="handle-btn"><i class="fa fa-close fa-fw"></i>删除</span>
+                            <span class="handle-btn" onclick="del('${ppList[i].id}')"><i class="fa fa-close fa-fw"></i>删除</span>
                             <span class="handle-btn" onclick="zt('${ppList[i].id}')"><i class="fa fa-arrow-down fa-fw"></i>下线</span>
                         </td>
 				</tr>`
@@ -133,6 +161,25 @@ function zt(id){
 	$.ajax({
 		type: "post",
 		url: "/pp/us",			//修改状态
+		data:{
+			id:id,
+		},
+		dataType: "json",
+		success: function(data){
+			console.log("成功后返回的数据",data);
+			 location.href="redirect?page=operator_product"
+		},error: function(data){
+			console.log("失败后返回的数据",data);
+		}
+	})
+}
+
+//删除
+function del(id){
+	console.log("下线id",id);
+	$.ajax({
+		type: "post",
+		url: "/pp/del",			//修改状态
 		data:{
 			id:id,
 		},
@@ -202,6 +249,14 @@ $(".down-line").on("click",function(){
 		}
 	})
 })
+
+
+//头像
+function defaultImg(img){
+		img.src="/images/user-lg.png";
+}
+
+
 
 $(".user-arrow-down").on("click",function(){
     if($(".dropdown").is(":hidden")){

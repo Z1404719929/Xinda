@@ -1,5 +1,6 @@
 package com.datangedu.cn.controller.serviceorder;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,74 +31,63 @@ public class ControllerServiceOrder {
 	ProviderProductService ppService;
 
 	@ResponseBody
-	@RequestMapping(value = "/getlist", method = RequestMethod.GET)
+	@RequestMapping(value = "/getlist", method = RequestMethod.POST)
 	public Map<String, Object> getlist(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<ServiceOrder> soList = soService.getso();
-		List<ProviderProduct> ppList = ppService.getpp();
+//		List<ServiceOrder> allList = soService.getlist(request);
+//		int pageNum=(allList.size()+1)/2;		//计算页数
+//		map.put("pageNum", pageNum);
+//		System.out.println("分页=="+pageNum);
+		List<ServiceOrder> soList = soService.getlist(request);
+		System.out.println("soList长度=="+soList.size());
 		
-		// 查id
+		List<ServiceOrder> setList = new ArrayList<ServiceOrder>();
 		List<Member> member;
-		String[] name = new String[10];
-		System.out.println(soList.size());
-		for (int i = 0; i < soList.size(); i++) {
-			System.out.println("用户id" + soList.get(i).getMemberId());
-			member = mservice.getMember(soList.get(i).getMemberId());
-			name[i] = member.get(0).getName();
-			soList.get(i).setMemberId(member.get(0).getName());
-			System.out.println("用户名" + soList.get(i).getMemberId());
-			soList.get(i).setCellphone(member.get(0).getCellphone());
-		}
-//		map.put("name", name);
-
-		// 查订单内容
-
-		for (int j = 0; j < soList.size(); j++) {
-
-			String[] str = soList.get(j).getServiceId().split(",");// str={0003*1,0002*2}
-//			System.out.println(str[0]);
-//			System.out.println(str.length);
-
-			String[] str1 = new String[10];
-			String[] str2 = new String[10];
-			List<ProviderProduct> pp;
-			StringBuffer buf = new StringBuffer();
-
-			String str5 = "0001";
-			for (int i = 0; i < str.length; i++) {
-				String[] str3 = str[i].split("\\*"); // str3={0003,1}
-				pp = ppService.getid(str3[0]); // 查询产品id
-				str1[i] = pp.get(0).getServiceName(); // 产品名称存入str1
-//				System.out.println(str1[i]);
-				// 判断登录和当前需要展示的是否一样
-				// List<ProviderProduct> ppList = ppservice.getid(pp.get(0).getProviderId());
-				 System.out.println("5515"+pp.get(0).getProviderId().toString());
-				// pp.get(0).getProviderId();
-				 soList.get(i).setsName(pp.get(0).getServiceContent());
-
-				str2[i] = str3[1]; // 数量存入str2
-				 soList.get(i).setServiceNum(Integer.parseInt(str2[i]));
-				System.out.println("结果" + str1[i] + "*" + str2[i]);
-				/* buf.append(str1[i] + "*" + str2[i] + " "); */
-				soList.get(j).setServiceId(buf.toString());
-				System.out.println(buf.toString());
+		List<ProviderProduct> ppList= ppService.select(request);		//模糊查询查到所有产品id
+		System.out.println("模糊查询=="+ppList.size());
+		for(int i=0;i<soList.size();i++) {		//
+			System.out.println("4444444444444444444444444444444444444");
+			String name = "";
+				System.out.println("用户id" + soList.get(i).getMemberId());
+				member = mservice.getMember(soList.get(i).getMemberId());
+				name= member.get(0).getName();
+				soList.get(i).setMemberId(member.get(0).getName());
+				System.out.println("用户名" + soList.get(i).getMemberId());
+				soList.get(i).setCellphone(member.get(0).getCellphone());
 				
-				if (pp.get(0).getProviderId().toString().equals(str5)) {
-					soList.get(j).setLL(1);
-					System.out.println("2222");
+				String[] str = soList.get(i).getServiceId().split(",");	//00003*2 00004*3
+				for(int j=0;j<str.length;j++) {
+					String[] str2 = str[j].split("\\*"); // str2={00003,2} 00004,3
+					List<ProviderProduct> pp = ppService.getid(str2[0]); // 查询00003产品信息
+					System.out.println("str2[0]"+str2[0]);
+					for(int n=0;n<ppList.size();n++) {
+					if(str2[0].equals(ppList.get(n).getId())&&pp.get(0).getProviderId().equals(request.getParameter("userid"))) {
+						ServiceOrder so=new ServiceOrder();
+						so.setServiceNo(soList.get(i).getServiceNo());
+						so.setServiceId(pp.get(0).getServiceContent());
+						System.out.println("yongh=="+so.getServiceId());
+						so.setMemberId(soList.get(i).getMemberId());
+						so.setCellphone(member.get(0).getCellphone());
+						so.setServiceNum(Integer.valueOf(str2[1]));
+						so.setTotalPrice(pp.get(0).getPrice()*Integer.valueOf(str2[1]));
+						so.setCreateTime(soList.get(i).getCreateTime());
+						setList.add(so);
+					}
+					}
 				}
-				
-			}
-			System.out.println("zt"+soList.get(j).getLL());
 		}
+		
+		for(int i=0;i<setList.size();i++) {
+			System.out.println("hhhh"+setList.get(i).getServiceNo());
+			System.out.println("service==="+setList.get(i).getServiceId());
+		}
+		
+		//计算页数
+		int pageNum=(setList.size()+1)/2;	
+		map.put("pageNum", pageNum);
+		System.out.println("分页=="+pageNum);
 
-		/*
-		 * // 状态 for (int i = 0; i < soList.size(); i++) { if (soList.get(i).getStatus()
-		 * == 1) { soList.get(i).setZt("未支付"); } else { soList.get(i).setZt("已支付"); } }
-		 */
-
-//		System.out.println("map" + map);
-		map.put("soList", soList);
+		map.put("soList", setList);
 		return map;
 	}
 

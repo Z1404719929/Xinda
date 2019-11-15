@@ -69,6 +69,7 @@ public class ControllerProvider2 {
 			return map;
 		}
 		
+		
 		@ResponseBody		//注册
 		@RequestMapping(value="/register",method = RequestMethod.POST)
 		public Map<String,Object> register(HttpServletRequest request) {
@@ -140,10 +141,12 @@ public class ControllerProvider2 {
 			return map;
 		}
 		
+		//用户头像
 		@ResponseBody
-		@RequestMapping("/saveUserImg")
+		@RequestMapping("/saveProviderImg")
 		public Map<String,Object> saveUserImg(MultipartFile file,String id) {
 			Map<Object,Object> result = new HashMap<Object,Object>();
+			System.out.println("用户id"+id);
 			try {
 			// 获取客户端传图图片的输入流
 			InputStream ins = file.getInputStream();
@@ -172,7 +175,7 @@ public class ControllerProvider2 {
 				System.out.println("保存头像失败");
 			}	
 			Map<String,Object> map = new HashMap<String,Object>();
-			map.put("msg", "图片更新失败");
+			map.put("msg", "头像更新失败");
 			return map;
 		}
 
@@ -185,7 +188,7 @@ public class ControllerProvider2 {
 			Provider provider = providerUserService.getProviderUserInfo(id);
 					        
 			imageContent = provider.getProviderImg();
-			System.out.println("图片==="+provider.getProviderImg());
+			System.out.println("头像==="+provider.getProviderImg());
 					        
 			// 设置http头部信息
 			final HttpHeaders headers = new HttpHeaders();
@@ -193,5 +196,62 @@ public class ControllerProvider2 {
 			// 返回响应实体
 			return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
 		}
+		
+		
+		//营业执照
+		@ResponseBody
+		@RequestMapping("/saveFileImg")
+		public Map<String,Object> saveFileImg(MultipartFile file,String id) {
+			Map<Object,Object> result = new HashMap<Object,Object>();
+			try {
+			// 获取客户端传图图片的输入流
+			InputStream ins = file.getInputStream();
+			byte[] buffer=new byte[1024];//bit---byte---1k---1m
+			int len=0;
+			 // 字节输出流
+			 ByteArrayOutputStream bos=new ByteArrayOutputStream();
+			while((len=ins.read(buffer))!=-1){
+				bos.write(buffer,0,len);
+			 }
+			 bos.flush();
+			byte data[] = bos.toByteArray();
+			// 调用接口对图片进行存储
+			Provider provider = new Provider();
+			provider.setId(id);
+			provider.setAuthFile(data);
+			result.put("msg", "保存图片成功");
+			System.out.println("保存图片saveFileImg"+data);
+			providerUserService.saveFileImg(provider);
+					            
+			result.put("code",1);
+			result.put("msg", "保存图片成功");
+			} catch (Exception e) {
+				result.put("code",0);
+				result.put("msg", "保存图片失败");
+				System.out.println("保存图片失败");
+			}	
+			Map<String,Object> map = new HashMap<String,Object>();
+			map.put("msg", "图片更新失败");
+			return map;
+		}
+
+		
+		@RequestMapping(value = "/file_Img", produces = MediaType.IMAGE_PNG_VALUE)
+		public ResponseEntity<byte[]> headImg1( String id) throws Exception{
+
+			byte[] imageContent ;
+			// 根据id获取当前用户的信息
+			Provider provider = providerUserService.getProviderUserInfo(id);
+					        
+			imageContent = provider.getAuthFile();
+			System.out.println("图片==="+provider.getAuthFile());
+					        
+			// 设置http头部信息
+			final HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.IMAGE_PNG);
+			// 返回响应实体
+			return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
+		}
+
 
 }

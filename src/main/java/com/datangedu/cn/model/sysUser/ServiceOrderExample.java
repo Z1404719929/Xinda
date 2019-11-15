@@ -6,7 +6,15 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ServiceOrderExample {
-    public int getPageSize() {
+    public int getTime() {
+		return time;
+	}
+
+	public void setTime(int time) {
+		this.time = time;
+	}
+
+	public int getPageSize() {
 		return pageSize;
 	}
 
@@ -51,6 +59,8 @@ public class ServiceOrderExample {
     protected String likeName;
     
     protected int status;
+    
+    protected int time;
 
     public ServiceOrderExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -107,6 +117,7 @@ public class ServiceOrderExample {
         pageNum=2;
         likeName=null;
         status=1;
+        time=0;
     }
 
     protected abstract static class GeneratedCriteria {

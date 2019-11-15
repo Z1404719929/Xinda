@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.datangedu.cn.model.sysUser.ProviderProduct;
 
 public interface ProviderProductService2 {
-	public List<ProviderProduct> getProviderInfoByld();
+	public List<ProviderProduct> getProviderInfoByld(HttpServletRequest request);
 
 	int setProviderRegister(HttpServletRequest request);
 
@@ -18,5 +18,13 @@ public interface ProviderProductService2 {
 	public List<ProviderProduct> getid(String id);
 	
 	public int setProviderDelete(HttpServletRequest request);
+
+	void saveServiceImg(ProviderProduct providerProduct) throws Exception;
+	
+	ProviderProduct getProviderInfoByld(String id);
+
+	String setProviderApa(HttpServletRequest request);
+
+	List<ProviderProduct> selectByLikeProductId(HttpServletRequest request);
 
 }

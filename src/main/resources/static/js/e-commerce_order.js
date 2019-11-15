@@ -16,6 +16,7 @@ $(".user-action a").on("click", function(event){
     $(".user-action a").removeClass("bg-gray");
     $(event.target).addClass("bg-gray");
 })
+<<<<<<< HEAD
 
 
 
@@ -118,3 +119,8 @@ function pay(serviceNo){
    
 
 
+=======
+function pay(){
+    location.href="redirect?page=e-commerce_settlement";
+}
+>>>>>>> bfec8b7cdfd02ef53c978270ec49e3c1e8ba7e42

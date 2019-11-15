@@ -279,6 +279,12 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+  
+  <update id="saveUserImg" parameterType="com.datangedu.cn.model.sysUser.Member">
+    update member set head_img = #{headImg} where id = #{id}
+</update>
+  
+  
   <update id="updateByPrimaryKeySelective" parameterType="com.datangedu.cn.model.sysUser.Member">
     update member
     <set>

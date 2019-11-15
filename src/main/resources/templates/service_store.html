@@ -26,8 +26,8 @@
             <li><i class="fa fa-shopping-cart fa-fw"></i>新订单(0)</li>
             <li><i class="fa fa-bell-o fa-fw"></i>通知(0)</li>
             <li>
-                <img src="/images/default_user.png">
-                <span id="sysuser">用户名字</span>
+                <a class="img"></a>
+                 <span id="sysuser">用户名字</span>
                 <i class="fa fa-chevron-down fa-fw user-arrow-down"></i>
                 <ul class="dropdown">
                     <li>更改信息</li>
@@ -109,14 +109,14 @@
             <ul class="store-info">	
                 <li>
                     <span>营业执照</span>
-    <form id="form1" action="/provider2/saveUserImg" method="post" enctype ="multipart/form-data">
+    <form id="form2" action="/provider2/saveFileImg" method="post" enctype ="multipart/form-data">
 	    <label for="file" class="btn btn-primary" style="float: left;height: 10px;width: 80px;margin-right: 10px">选择图片</label>
 	    <input id="file" name="file" type="file" style="float: left;display:none"/>
 	    <input name="id" class="userid" type="hidden"/>
 	    <input class="btn btn-primary" type="submit" value="提交" style="float: left">
 	</form>
                 </li>
-                <li id="ss">
+                <li id="ss2">
                <!-- <img class="img" name="id" src="/provider2/provider_Img?id=0001" onerror="defaultImg(this)"/> -->
                 </li>
             </ul>

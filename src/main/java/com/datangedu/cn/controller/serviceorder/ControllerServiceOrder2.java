@@ -172,8 +172,19 @@ public class ControllerServiceOrder2 {
 	@RequestMapping(value="/getlist2",method = RequestMethod.GET)
 	public Map<String,Object> getlist2(HttpServletRequest request){
 		Map<String,Object> map = new HashMap<String,Object>();
-		List<ServiceOrder> soList= soService.getpay();
+		List<ServiceOrder> allList= soService.getpaylist(request);
+		int pageNum=(allList.size()+1)/2;		//计算页数
+		map.put("pageNum", pageNum);
+		int allprice=0;
+		for(int i=0;i<allList.size();i++) {
+			allprice+=allList.get(i).getTotalPrice();
+		}
+		map.put("allprice", allprice);
+		
+		List<ServiceOrder> soList= soService.getpay(request);
 		map.put("soList", soList);
+		
+		System.out.println("查询到的数量"+soList.size());
 		//查id
 		List<Member> member;
 		String [] name=new String[10];
@@ -230,7 +241,80 @@ public class ControllerServiceOrder2 {
 		return map;
 }
 	
-	
+	//时间查询
+	@ResponseBody
+	@RequestMapping(value="/getlist3",method = RequestMethod.GET)
+	public Map<String,Object> getlist3(HttpServletRequest request){
+		Map<String,Object> map = new HashMap<String,Object>();
+		List<ServiceOrder> allList= soService.gettime(request);
+		int pageNum=(allList.size()+1)/2;		//计算页数
+		map.put("pageNum", pageNum);
+		System.out.println("今天页数"+pageNum);
+		int allprice=0;
+		for(int i=0;i<allList.size();i++) {
+			allprice+=allList.get(i).getTotalPrice();
+		}
+		map.put("allprice", allprice);
+		
+		List<ServiceOrder> soList= soService.gettimepage(request);
+		map.put("soList", soList);
+		
+		System.out.println("查询到的数量"+soList.size());
+		//查id
+		List<Member> member;
+		String [] name=new String[10];
+		System.out.println(soList.size());
+		for(int i=0;i<soList.size();i++) {
+			System.out.println("用户id"+soList.get(i).getMemberId());
+			member=mservice.getMember(soList.get(i).getMemberId());
+			name[i]=member.get(0).getName();
+			soList.get(i).setMemberId(member.get(0).getName());
+			System.out.println("用户名"+soList.get(i).getMemberId());
+		}
+//		map.put("name", name);
+		
+		//查订单内容
+		
+		for(int j=0;j<soList.size();j++) {
+
+		String [] str=soList.get(j).getServiceId().split(",");//str={0003*1,0002*2}
+		System.out.println(str[0]);
+		System.out.println(str.length);
+		
+		String [] str1=new String[10];
+		String [] str2=new String[10];
+		List<ProviderProduct> pp;
+		StringBuffer buf=new StringBuffer();
+		
+		//“0002”
+		
+		for(int i=0;i<str.length;i++) {
+			String [] str3=str[i].split("\\*");	//str3={0003,1}
+			
+			pp=ppservice.getid(str3[0]);		//查询产品id
+			str1[i]=pp.get(0).getServiceName();		//产品名称存入str1
+
+			str2[i]=str3[1];											//数量存入str2
+			System.out.println("结果"+str1[i]+"*"+str2[i]);
+			buf.append(str1[i]+"*"+str2[i]+" ");
+			soList.get(j).setServiceId(buf.toString());
+			System.out.println(buf.toString());
+		}
+		
+		}
+		
+		//状态
+		for(int i=0;i<soList.size();i++) {
+			if(soList.get(i).getStatus()==1) {
+			soList.get(i).setZt("未支付");
+		}else {
+			soList.get(i).setZt("已支付");
+		}
+		}
+		
+		System.out.println("map"+map);
+		return map;
+}
 	
 	
 	

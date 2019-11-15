@@ -11,7 +11,7 @@ public class ProviderProduct {
 
     private String serviceName;
 
-    private String serviceImg;
+    private byte[] serviceImg;
 
     private String serviceContent;
 
@@ -63,12 +63,12 @@ public class ProviderProduct {
         this.serviceName = serviceName == null ? null : serviceName.trim();
     }
 
-    public String getServiceImg() {
+    public byte[] getServiceImg() {
         return serviceImg;
     }
 
-    public void setServiceImg(String serviceImg) {
-        this.serviceImg = serviceImg == null ? null : serviceImg.trim();
+    public void setServiceImg(byte[] data) {
+        this.serviceImg = data;
     }
 
     public String getServiceContent() {

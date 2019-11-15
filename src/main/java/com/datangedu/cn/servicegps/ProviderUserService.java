@@ -23,9 +23,11 @@ public interface ProviderUserService {
 
 	void saveUserImg(Provider provider) throws Exception;
 
+	List<Provider> getProviderId(String id);
+
 	Provider getProviderUserInfo(String id);
 
-
+	void saveFileImg(Provider provider) throws Exception;
 
 
 }

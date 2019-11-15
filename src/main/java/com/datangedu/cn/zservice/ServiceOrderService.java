@@ -12,7 +12,7 @@ public interface ServiceOrderService {
 
 	public List<ServiceOrder> select(HttpServletRequest request);
 
-	List<ServiceOrder> getpay();
+
 
 	List<ServiceOrder> getuid(String userid);
 
@@ -28,4 +28,19 @@ public interface ServiceOrderService {
 
 	List<ServiceOrder> getmm(String serciceNo);
 	
+
+	List<ServiceOrder> getpay(HttpServletRequest request);
+
+	List<ServiceOrder> getpaylist(HttpServletRequest request);
+
+	List<ServiceOrder> gettime(HttpServletRequest request);
+
+	List<ServiceOrder> gettimepage(HttpServletRequest request);
+
+	List<ServiceOrder> getlist(HttpServletRequest request);
+
+	List<ServiceOrder> getlist2(HttpServletRequest request);
+
+	List<ServiceOrder> content(HttpServletRequest request);
+
 }

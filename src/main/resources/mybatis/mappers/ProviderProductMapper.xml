@@ -77,6 +77,7 @@
     ID, PROVIDER_ID, SERVICE_NAME, SERVICE_IMG, SERVICE_CONTENT, PRICE, STATUS, RECOMMEND, 
     HIGH_QUALITY, CREATE_TIME, SALE_NUM, PROVIDER_NAME
   </sql>
+  
   <select id="selectByExample" parameterType="com.datangedu.cn.model.sysUser.ProviderProductExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -104,6 +105,23 @@
   </select>
   
   
+  <select id="selectByAll" parameterType="com.datangedu.cn.model.sysUser.ProviderProductExample" resultMap="BaseResultMap">
+    select * from provider_product where service_content like '%${likeName}%'
+     <if test="orderByClause != null">
+      order by ${orderByClause} desc
+    </if>
+  </select>
+  
+  
+  <select id="selectBypaging" parameterType="com.datangedu.cn.model.sysUser.ProviderProductExample" resultMap="BaseResultMap">
+    select * from provider_product where service_content like '%${likeName}%'
+     <if test="orderByClause != null">
+      order by ${orderByClause} desc
+    </if>
+    <if test="pageSize >= 0">
+      limit ${pageSize},${pageNum}
+    </if>
+  </select>
   
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
@@ -213,6 +231,12 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+   <update id="saveServiceImg" parameterType="com.datangedu.cn.model.sysUser.Provider">
+    update provider_product set SERVICE_IMG = #{serviceImg} where ID = #{id}
+</update>
+  <update id="savePpImg" parameterType="com.datangedu.cn.model.sysUser.ProviderProduct">
+    update provider_product set SERVICE_IMG = #{serviceImg} where ID = #{id}
+</update>
   <update id="updateByExampleSelective" parameterType="map">
     update provider_product
     <set>

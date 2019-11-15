@@ -14,7 +14,7 @@ public class Member {
 
     private String password;
 
-    private String headImg;
+    private byte[] headImg;
 
     private Date registerTime;
 
@@ -68,12 +68,12 @@ public class Member {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getHeadImg() {
+    public byte[] getHeadImg() {
         return headImg;
     }
 
-    public void setHeadImg(String headImg) {
-        this.headImg = headImg == null ? null : headImg.trim();
+    public void setHeadImg(byte[] headImg) {
+        this.headImg = headImg;
     }
 
     public Date getRegisterTime() {

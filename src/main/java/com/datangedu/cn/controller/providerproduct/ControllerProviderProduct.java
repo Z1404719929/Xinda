@@ -1,6 +1,8 @@
 
 package com.datangedu.cn.controller.providerproduct;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,11 +10,17 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.datangedu.cn.model.sysUser.Provider;
 import com.datangedu.cn.model.sysUser.ProviderProduct;
 import com.datangedu.cn.servicegps.ProviderProductService;
 import com.datangedu.cn.servicegps.ProviderProductService2;
@@ -24,21 +32,32 @@ public class ControllerProviderProduct {
 	ProviderProductService2 providerProductService;
 
 	@ResponseBody
-	@RequestMapping(value = "/getproviderinfo", method = RequestMethod.GET)
-	public Map<String, Object> ProviderInfo() {
+	@RequestMapping(value = "/getproviderinfo", method = RequestMethod.POST)
+	public Map<String, Object> ProviderInfo(HttpServletRequest request) {
 		System.out.println("1111");
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<ProviderProduct> providerInfo = providerProductService.getProviderInfoByld();
+		List<ProviderProduct> providerInfo = providerProductService.getProviderInfoByld(request);
+		map.put("providerInfo", providerInfo);
+		return map;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/apa", method = RequestMethod.GET)
+	public Map<String, Object> Apa(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		String providerInfo = providerProductService.setProviderApa(request);
 		map.put("providerInfo", providerInfo);
 		return map;
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/providerregister", method = RequestMethod.POST)
-	public Map<String, Object> providerRegister(HttpServletRequest request) {
+	public Map<String, Object> providerRegister(HttpServletRequest request,MultipartFile file) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		int providerInfo = providerProductService.setProviderRegister(request);
+		
+			int providerInfo = providerProductService.setProviderRegister(request);
+				
 		if (providerInfo == 2) {
 			map.put("msg", "输入有误");
 		} else {
@@ -81,5 +100,58 @@ public class ControllerProviderProduct {
 			return map;
 		}
 		
+		//产品图片
+				@ResponseBody
+				@RequestMapping("/savePpImg")
+				public Map<String,Object> saveServiceImg(MultipartFile file,String id) {
+					Map<Object,Object> result = new HashMap<Object,Object>();
+					System.out.println("yhid"+id);
+					try {
+					// 获取客户端传图图片的输入流
+					InputStream ins = file.getInputStream();
+					byte[] buffer=new byte[1024];//bit---byte---1k---1m
+					int len=0;
+					 // 字节输出流
+					 ByteArrayOutputStream bos=new ByteArrayOutputStream();
+					while((len=ins.read(buffer))!=-1){
+						bos.write(buffer,0,len);
+					 }
+					 bos.flush();
+					byte data[] = bos.toByteArray();
+					// 调用接口对图片进行存储
+					ProviderProduct providerProduct = new ProviderProduct();
+					providerProduct.setId(id);
+					providerProduct.setServiceImg(data);
+					result.put("msg", "保存图片成功");
+					System.out.println("保存图片saveServiceImg"+data);
+					providerProductService.saveServiceImg(providerProduct);
+							            
+					result.put("code",1);
+					result.put("msg", "保存图片成功");
+					} catch (Exception e) {
+						result.put("code",0);
+						result.put("msg", "保存图片失败");
+						System.out.println("保存图片失败");
+					}	
+					Map<String,Object> map = new HashMap<String,Object>();
+					map.put("msg", "图片更新失败");
+					return map;
+				}
+				
+	// 查询
+	@ResponseBody
+	@RequestMapping(value="/lectLikeByOrderId",method = RequestMethod.POST)
+	public Map<String, Object> selectByLikeProductId(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<ProviderProduct> productList = providerProductService.selectByLikeProductId(request);
+		if (productList.size() > 0) {
+			map.put("productList", productList);
+			// System.out.println(map);
+			map.put("code", 1);
+		} else {
+			map.put("code", 0);
+		}
+		return map;
+	}
 }
 

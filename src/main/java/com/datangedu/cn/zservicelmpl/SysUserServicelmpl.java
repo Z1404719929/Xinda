@@ -33,6 +33,13 @@ public class SysUserServicelmpl implements SysUserService {
 		return sysUserMapper.selectByExample(sysUserExample);
 	}
 	
+	@Override
+	public SysUser getUserInfo(String id) {
+		System.out.println("11111111111111111");
+		return sysUserMapper.selectByPrimaryKey(id);
+	}
+
+	
 	//修改密码
 	public int updatepassword(SysUser su,HttpServletRequest request) {
 		SysUserExample sysUserExample = new SysUserExample();

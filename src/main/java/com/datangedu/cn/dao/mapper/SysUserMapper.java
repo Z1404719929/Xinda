@@ -7,31 +7,33 @@ import org.apache.ibatis.annotations.Param;
 
 import com.datangedu.cn.model.sysUser.SysUser;
 import com.datangedu.cn.model.sysUser.SysUserExample;
-
-
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface SysUserMapper {
-	long countByExample(SysUserExample example);
+    long countByExample(SysUserExample example);
 
-	int deleteByExample(SysUserExample example);
+    int deleteByExample(SysUserExample example);
 
-	int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(String id);
 
-	int insert(SysUser record);
+    int insert(SysUser record);
 
-	int insertSelective(SysUser record);
+    int insertSelective(SysUser record);
 
-	List<SysUser> selectByExample(SysUserExample example);
+    List<SysUser> selectByExampleWithBLOBs(SysUserExample example);
 
-	SysUser selectByPrimaryKey(String id);
+    List<SysUser> selectByExample(SysUserExample example);
 
-	int updateByExampleSelective(@Param("record") SysUser record, @Param("example") SysUserExample example);
+    SysUser selectByPrimaryKey(String id);
 
-	int updateByExample(@Param("record") SysUser record, @Param("example") SysUserExample example);
+    int updateByExampleSelective(@Param("record") SysUser record, @Param("example") SysUserExample example);
 
-	int updateByPrimaryKeySelective(SysUser record);
+    int updateByExampleWithBLOBs(@Param("record") SysUser record, @Param("example") SysUserExample example);
 
-	int updateByPrimaryKey(SysUser record);
+    int updateByExample(@Param("record") SysUser record, @Param("example") SysUserExample example);
+
+    int updateByPrimaryKeySelective(SysUser record);
+
+    int updateByPrimaryKeyWithBLOBs(SysUser record);
+
+    int updateByPrimaryKey(SysUser record);
 }

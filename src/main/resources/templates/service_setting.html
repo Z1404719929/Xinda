@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./css/element-ui_2.12.0.css">
 
     <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="/js/jquery-form.js"></script>
 </head>
 
 <body>
@@ -26,7 +27,7 @@
             <li><i class="fa fa-shopping-cart fa-fw"></i>新订单(0)</li>
             <li><i class="fa fa-bell-o fa-fw"></i>通知(0)</li>
             <li>
-                <img src="./images/default_user.png">
+                <a class="img"></a>
                 <span id="sysuser">用户名字</span>
                 <i class="fa fa-chevron-down fa-fw user-arrow-down"></i>
                 <ul class="dropdown">
@@ -83,33 +84,33 @@
             </ul>
             <div class="main-content">
                 <div class="avatars">
-                    <img src="" alt="用户头像">
-                    <p>更换头像</p>
+                    <li id="ss"></li>
+                    <p>用户头像</p>
                 </div>
                 <ul class="store-info">
                     <li>
                         <span>服务商名称</span>
-                        <span>云智汇咨询服务有限公司</span>
+                        <span class="service_name"></span>
                     </li>
                     <li>
                         <span>地区</span>
-                        <span>北京-朝阳区</span>
+                        <span class="service_regionId"></span>
                     </li>
                     <li>
                         <span>手机号</span>
-                        <span>18912345678</span>
+                        <span class="service_cellphone"></span>
                     </li>
                     <li>
                         <span>微信</span>
-                        <span></span>
+                        <span class="service_weixin"></span>
                     </li>
                     <li>
                         <span>QQ</span>
-                        <span>10001</span>
+                        <span class="service_qq"></span>
                     </li>
                     <li>
                         <span>邮箱</span>
-                        <span>10001@qq.com</span>
+                        <span class="service_email"></span>
                     </li>
                     <li>
                         <button class="change-info">修改</button>
@@ -124,40 +125,53 @@
             <h3>添加服务产品</h3>
             <ul>
                 <li>
-                    <span>头像</span>
-                    <button>选择图片</button>
+                    <span>头像</span> 
+                    <form id="form1" action="/provider2/saveProviderImg" method="post" enctype ="multipart/form-data" style="display:inline-table">
+                    <label for="file"  class="btn btn-primary" style="width: 100px;
+    background-color: #409eff;
+    display: inline-block;
+    border-radius: 4px;
+    color: #fff;
+    text-align: center;
+    line-height: 35px;
+    vertical-align: middle;
+    margin-right: 10px;">选择图片</label>
+                    <input id="file" name="file" type="file" style="float: left;display:none"/>
+	                <input name="id" class="userid" type="hidden"/>
+	                <button class="btn btn-primary" type="submit">上传</button>
+	                </form>
                 </li>
                 <li>
                     <span>服务商名称</span>
-                    <input placeholder="请输入服务名称" class="service_name"/>
+                    <input type="text" id="ProviderName" name="ProviderName" placeholder="请输入新的名称" class="service_name1"/>
                 </li>
                 <li>
                     <span class="ver-top">选择地区</span>
-                    <select name="" id="">
-                        <option value="">省</option>
+                    <select name="" id="province" onchange="changesheng()" >
+                    	<option value="">省</option>
                     </select>
-                    <select name="" id="">
+                    <select name="" id="county" onchange="changeshi()" >
                         <option value="">市</option>
                     </select>
-                    <select name="" id="">
+                    <select name="" id="district" >
                         <option value="">区</option>
                     </select>
                 </li>
                 <li>
                     <span class="ver-top">手机号</span>
-                    <input type="text" placeholder="请输入手机号" class="service_cellphone">
+                    <input type="text" placeholder="请输入手机号" class="service_cellphone1">
                 </li>
                 <li>
                     <span class="ver-top">微信</span>
-                    <input type="text" placeholder="请输入微信" class="service_weixin">
+                    <input type="text" placeholder="请输入微信" class="service_weixin1">
                 </li>
                 <li>
                     <span class="ver-top">QQ</span>
-                    <input type="text" placeholder="请输入QQ" class="service_qq">
+                    <input type="text" placeholder="请输入QQ" class="service_qq1">
                 </li>
                 <li>
                     <span class="ver-top">邮箱</span>
-                    <input type="text" placeholder="请输入邮箱" class="service_email">
+                    <input type="text" placeholder="请输入邮箱" class="service_email1">
                 </li>
             </ul>
             <button class="save">提交</button>

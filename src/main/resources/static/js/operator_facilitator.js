@@ -3,9 +3,23 @@ var nowpage=1;
 var index1=1;
 
 $(function(){
+	img();
 	page2(1,1);
 })
 
+function img(){
+	var userid=sessionStorage.getItem("id")
+	$(".img").html("");
+	var txt="";
+	txt +=`<img  src="/pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+	"/>`
+	$(".img").append(txt);
+}
 
 //用户分页模糊查询
 function page2(i,index){
@@ -32,7 +46,6 @@ function page2(i,index){
 				 location.href="redirect?page=operator_login"
 			}
 			
-			var soList = data.soList;
 			$("#sysuser").html("");
 			var txt="";
 			txt +=sessionStorage.getItem("name")
@@ -128,7 +141,6 @@ function page1(i,index){
 			txt +=`<input class="select" placeholder="请输入服务商名称查询" /><button onclick="page2(1,${index})"><i class="fa fa-search fa-fw"></i></button>`
 			$(".search").append(txt);
 			
-			var soList = data.soList;
 			$("#sysuser").html("");
 			var txt="";
 			txt +=sessionStorage.getItem("name")

@@ -27,6 +27,7 @@ $( function(){
 	      			console.log("成功后返回的数据",userid);
 	    			var username=sessionStorage.getItem("name")
 	    	          	console.log("成功后返回的数据",data);
+	    	          	login();
 	    	        //	alert(data.msg);
 	    	          	var providerProductInfo=data.providerProductInfo;
 	    	        	$(".list").html("");
@@ -34,7 +35,12 @@ $( function(){
 	    	          	for(var i=0;i<providerProductInfo.length;i++){
 	    	          		txt+= `    	          		
 	    	          		    <div class="article" value="${providerProductInfo[i].id}">	    	          		    
-	    	          		    <img src="" alt="图片" />
+	    	          		    <img class="ss" src="/pp/headImg2?id=${providerProductInfo[i].id}" onerror="defaultImg(this)" style="
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+	"/>
             <ul class="article-info">
                 <li>${providerProductInfo[i].serviceName}</li>
                 <li>${providerProductInfo[i].serviceContent}</li>
@@ -136,3 +142,82 @@ $(".search-btn").on("click",function(){
 	})
 }
 
+<<<<<<< HEAD
+=======
+function login(){
+	var userid=sessionStorage.getItem("id");
+	var username=sessionStorage.getItem("name");
+	var status=sessionStorage.getItem("status");
+	console.log(userid);
+	if(status!=1){
+		alert("请先登录");
+		 location.href="redirect?page=operator_login"
+	}
+	
+	$("#sysuser").html("");
+	var txt="";
+	txt +=username
+	$("#sysuser").append(txt);
+}
+
+/*
+
+$(".fa ").on("click", function(id){
+	console.log("增加",id);
+	
+	$.ajax({
+		type:"post",
+		url:"/product/add",
+		data:{
+			id:id,
+		}, 
+		dataType:"json",
+		
+		
+		success:function(data){
+			console.log("成功返回后的数据",data);
+			if(data.code==1){	
+				$.ajax({
+					type:"get",
+					url:"/product/getproductinfo",
+					data:{
+						id:id,
+					}, 
+					dataType:"json",
+					success:function(data){
+						console.log("成功返回后的数据",data);
+						var providerProductInfo=data.providerProductInfo;
+						$("#cart").html("");
+						var txt="";
+						for(var i=0;i<providerProductInfo.length;i++){
+							txt+=`<div class="article">
+	    	     <img src="" alt="图片" />
+                <ul class="article-info">
+                <li>${providerProductInfo[i].serviceName}<</li>
+                <li>${providerProductInfo[i].serviceContent}</li>
+                <li>${providerProductInfo[i].providerName}</li>
+                 </ul>
+                 <ul class="article-price">
+                <li>￥${providerProductInfo[i].price}	</li>
+				 </ul>
+			 </div> `;
+						}
+						console.log(txt);
+						$("#cart").append(txt);
+						},
+						error:function(data){
+							console.log("失败返回后的数据",data);	
+					}
+				})		
+			}
+				},
+				
+		
+				error:function(data){
+					console.log("失败返回后的数据",data);	
+			}
+
+	})	
+})
+*/
+>>>>>>> bfec8b7cdfd02ef53c978270ec49e3c1e8ba7e42

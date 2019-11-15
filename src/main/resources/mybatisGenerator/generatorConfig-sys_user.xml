@@ -27,7 +27,7 @@
 		</javaModelGenerator>
 		
 		<!-- java客户端类对应的xml映射文件存放位置 -->
-		<sqlMapGenerator targetPackage="mybatis.mappers" targetProject="Xinda/src/main/resources" />
+		<sqlMapGenerator targetPackage="mybatis.mappers" targetProject="Xinda_Xinda/src/main/resources" />
 		
 		<!-- java客户端类接口文件存放位置 -->
 		<javaClientGenerator targetPackage="com.datangedu.cn.dao.mapper"

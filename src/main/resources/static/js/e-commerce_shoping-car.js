@@ -22,6 +22,7 @@ var num1=new Array();
 var carsname=new Array();
 var n=0;
 
+<<<<<<< HEAD
 $( function(){
 		var userid=sessionStorage.getItem("id")
 			console.log("成功后返回的数据",userid);
@@ -117,6 +118,8 @@ $( function(){
 		})
 })
 
+=======
+>>>>>>> bfec8b7cdfd02ef53c978270ec49e3c1e8ba7e42
 
 //删除商品
  function dl(id){

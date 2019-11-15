@@ -18,11 +18,9 @@ import com.datangedu.cn.zservice.ProviderService;
 import com.datangedu.cn.zservice.RegionService;
 
 
-public class ControllerProvider5 {
-
 @Controller
 @RequestMapping("/p")
-public class ControllerProvider2 {
+public class ControllerProvider5 {
 	
 	@Resource
 	ProviderService pService;
@@ -63,8 +61,7 @@ public class ControllerProvider2 {
 				str[0]="";str[1]="";str[2]="";
 				mList.get(i).setRegionId(str8);
 				}
-				
+				System.out.println("hhhhh");
 				return map;
 		}
-}
 }

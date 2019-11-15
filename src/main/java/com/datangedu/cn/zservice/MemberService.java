@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import com.datangedu.cn.model.sysUser.Member;
+import com.datangedu.cn.model.sysUser.SysUser;
 
 
 public interface MemberService {
@@ -16,6 +17,11 @@ public interface MemberService {
 	public List<Member> getMemberInfoById(HttpServletRequest request);
 	List<Member> selectpaging(HttpServletRequest request);
 	List<Member> select(HttpServletRequest request);
+
 	public int updatepassword1(Member member,HttpServletRequest request);
-	
+
+	public Member getUserInfo(String id);
+	int updatexx(HttpServletRequest request);
+	public void saveUserImg(Member member) throws Exception;
+
 }
