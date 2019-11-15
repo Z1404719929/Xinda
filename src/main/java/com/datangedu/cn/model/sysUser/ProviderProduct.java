@@ -28,8 +28,18 @@ public class ProviderProduct {
     private Integer saleNum;
 
     private String providerName;
+    
+    private int num2;
 
-    public String getId() {
+    public int getNum2() {
+		return num2;
+	}
+
+	public void setNum2(int num2) {
+		this.num2 = num2;
+	}
+
+	public String getId() {
         return id;
     }
 

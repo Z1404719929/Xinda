@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.datang.hrb.util.MD5Util;
 import com.datangedu.cn.model.sysUser.Member;
 import com.datangedu.cn.zservice.MemberService;
 
@@ -71,54 +72,46 @@ public class ControllerMember4 {
 	}
 
 	
-	//注册
+	//用户修改新密码
+		@ResponseBody
+		@RequestMapping(value = "/updatepassword",method = RequestMethod.POST)
+		public Map <String,Object> findPassword(HttpServletRequest request) {
+			Map<String,Object> map = new HashMap<String,Object>();
+			Member member=new Member();
+		System.out.println(request.getParameter("password"));
+			if(request.getParameter("password").isEmpty()) {
+				map.put("msg","输入旧密码" );
+				return map;
+			}
+
+			if(request.getParameter("password1").isEmpty()) {
+				map.put("msg","输入密码" );
+				return map;
+			}
+			if(request.getParameter("password2").isEmpty()) {
+				map.put("msg","再输入密码" );
+				return map;
+			}
+			if(!request.getParameter("password1").equals(request.getParameter("password2"))) {
+				map.put("msg","两次密码不一致");
+				return map;
+			}
+			
+			member.setPassword(request.getParameter("password1"));
+			//member.setPassword(MD5Util.getMD5(request.getParameter("password1").getBytes()));
+			int a=memberService.updatepassword1(member, request);
+			System.out.println("修改密码5"+a);
+			map.put("data", a);
+			if(a==1) {
+			map.put("msg", "修改成功");
+			}else {
+				map.put("msg", "账号不存在");
+			}
+			return map;
+		}
+		
 	
 
-	 public static long genItemId() {
-	        //取当前时间的长整形值包含毫秒
-	        long millis = System.currentTimeMillis();
-	        //加上两位随机数
-	        Random random = new Random();
-	        int end2 = random.nextInt(99);
-	        //如果不足两位前面补0
-	        String str = millis + String.format("%02d", end2);
-	        long id = new Long(str);
-	        return id;
-	    }
-	
-	/*
-	 @ResponseBody
-	 
-	 @RequestMapping(value="/register/jghg",method=RequestMethod.POST) 
-	 public Map<String,Object> memberRegister(HttpServletRequest request) {
-	 Map<String,Object> map=new HashMap<String,Object>();
-	  int memberInfo=memberService.setMemberRegister(request);
-	  if(memberInfo==2) { 
-	 map.put("msg","密码小于6位重新输入"); 
-	 }
-	 else {
-	 map.put("msg","恭喜注册成功");
-	  }
-	  return map; 
-	  }
-	 */
-
-/*
-//购物车
-@ResponseBody
-@RequestMapping(value="/shopping",method=RequestMethod.POST)
-public Map<String,Object> membercart(HttpServletRequest request) {
-
-	Map<String,Object> map=new HashMap<String,Object>();
-	int cartInfo=memberService.setCartnum(request);
-	
-	//String id=request.getParameter("service_id");
-	map.put("msg","添加成功");
-	map.put("code", 1);
-	return map;
-}
-	
-	*/
 
 
 }

@@ -71,6 +71,8 @@ public class ProviderProductServicelmpl implements ProviderProductService {
 	@Override
 	public List<ProviderProduct> getProviderProductInfoById() {
 		// TODO Auto-generated method stub
+		System.out.println(123546);
+		
 		ProviderProductExample providerProductExample = new ProviderProductExample();
 		ProviderProductExample.Criteria criteria = providerProductExample.createCriteria();
 		System.out.println("查询结果几条==="+providerProductMapper.selectByExample(providerProductExample).size());

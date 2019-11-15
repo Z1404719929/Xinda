@@ -33,3 +33,34 @@ $(".content-banner li").eq(1).on("click", function (event) {
     $(".change-password").show();
     $(".account-info").hide();
 })
+
+
+$(".save").on("click", function(){
+	var password=$("#password").val();
+	var password1=$("#password1").val();
+	var password2=$("#password2").val();
+	console.log("成功后返回的数据",password);
+	
+	$.ajax({
+		type: "post",
+		url: "/login/updatepassword",
+		data:{
+			password:password,
+			password1:password1,
+			password2:password2,
+		},
+		dataType: "json",
+		success: function(data){
+			console.log("成功后返回的数据",data);
+			alert(data.msg);
+			if(data.code==1){
+			location.href="redirect?page=e-commerce_account"
+			}
+		},
+		error: function(data){
+			console.log("失败后返回的数据",data);
+		}
+	})
+})
+
+

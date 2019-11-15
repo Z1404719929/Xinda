@@ -16,4 +16,6 @@ public interface MemberService {
 	public List<Member> getMemberInfoById(HttpServletRequest request);
 	List<Member> selectpaging(HttpServletRequest request);
 	List<Member> select(HttpServletRequest request);
+	public int updatepassword1(Member member,HttpServletRequest request);
+	
 }

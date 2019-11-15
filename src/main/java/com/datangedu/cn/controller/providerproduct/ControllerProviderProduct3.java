@@ -18,8 +18,6 @@ import com.datangedu.cn.model.sysUser.ProviderProductExample;
 import com.datangedu.cn.model.sysUser.SysUser;
 import com.datangedu.cn.zservice.CartService;
 import com.datangedu.cn.zservice.ProviderProductService;
-
-
 @Controller
 @RequestMapping("/product")
 public class ControllerProviderProduct3 {
@@ -40,7 +38,15 @@ public class ControllerProviderProduct3 {
 
 	}
 	
-
+	@ResponseBody			//模糊查询
+	@RequestMapping(value="/select",method = RequestMethod.GET)
+	public Map <String,Object> selecte(HttpServletRequest request) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		List<ProviderProduct> providerProductInfo= providerProductService.select(request);
+		System.out.println(providerProductInfo); 
+		map.put("providerProductInfo", providerProductInfo);
+		return map;
+	}
 	
 
 	

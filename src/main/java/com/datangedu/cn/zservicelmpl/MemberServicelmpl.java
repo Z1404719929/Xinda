@@ -114,4 +114,14 @@ public class MemberServicelmpl implements MemberService {
 			return memberMapper.updateByExampleSelective(member, memberExample);
 		}
 		
+		
+		//修改旧密码
+		public int updatepassword1(Member member,HttpServletRequest request) {
+			MemberExample memberExample = new MemberExample();
+			MemberExample.Criteria criteria = memberExample.createCriteria();
+			criteria.andPasswordEqualTo(request.getParameter("password"));
+			return memberMapper.updateByExampleSelective(member, memberExample);
+		}
+		
+		
 }
