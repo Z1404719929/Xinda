@@ -45,4 +45,6 @@ public interface ProviderProductMapper {
 	int updateByPrimaryKey(ProviderProduct record);
 
 	int saveServiceImg(ProviderProduct providerProduct);
+
+	List<ProviderProduct> selectByLikeProductId(String id);
 }

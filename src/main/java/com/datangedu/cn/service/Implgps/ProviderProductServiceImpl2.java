@@ -22,10 +22,11 @@ public class ProviderProductServiceImpl2 implements ProviderProductService2 {
 	@Resource
 	ProviderProductMapper providerProductMapper;
 
-	public List<ProviderProduct> getProviderInfoByld() {
+	public List<ProviderProduct> getProviderInfoByld(HttpServletRequest request) {
 		System.out.println("查询用户");
 		ProviderProductExample providerProductExample = new ProviderProductExample();
 		ProviderProductExample.Criteria criteria = providerProductExample.createCriteria();
+		criteria.andProviderIdEqualTo(request.getParameter("userid"));
 
 		return providerProductMapper.selectByExample(providerProductExample);
 	}
@@ -120,5 +121,11 @@ public class ProviderProductServiceImpl2 implements ProviderProductService2 {
 	@Override
 	public ProviderProduct getProviderInfoByld(String id) {
 		return providerProductMapper.selectByPrimaryKey(id);
+	}
+	//模糊查询
+	@Override
+	public List<ProviderProduct> selectByLikeProductId(HttpServletRequest request) {
+		List<ProviderProduct> product = providerProductMapper.selectByLike(request.getParameter("name"));
+		return product;
 	}
 }

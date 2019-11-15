@@ -5,8 +5,22 @@ var status1=1;	//未支付订单==1已支付==2
 
 $(function(){
 	page2(1,1);
+	img();
 })
 
+function img(){
+	var userid=sessionStorage.getItem("id")
+	$(".img").html("");
+	var txt="";
+	txt +=`<img  src="/provider/headImg?id=${userid}" onerror="defaultImg(this)" style="
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+	"/>`
+	$(".img").append(txt);
+}
 
 
 function page(i,status){

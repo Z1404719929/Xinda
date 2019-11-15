@@ -24,3 +24,20 @@ $(".order2").on("click", function(){
 		txt +=sessionStorage.getItem("name")
 		$("#sysuser").append(txt);
 })
+
+$(function(){
+	img();
+})
+function img(){
+	var userid=sessionStorage.getItem("id")
+	$(".img").html("");
+	var txt="";
+	txt +=`<img  src="/provider/headImg?id=${userid}" onerror="defaultImg(this)" style="
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+	"/>`
+	$(".img").append(txt);
+}

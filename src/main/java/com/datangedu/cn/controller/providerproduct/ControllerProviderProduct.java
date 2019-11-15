@@ -32,11 +32,11 @@ public class ControllerProviderProduct {
 	ProviderProductService2 providerProductService;
 
 	@ResponseBody
-	@RequestMapping(value = "/getproviderinfo", method = RequestMethod.GET)
-	public Map<String, Object> ProviderInfo() {
+	@RequestMapping(value = "/getproviderinfo", method = RequestMethod.POST)
+	public Map<String, Object> ProviderInfo(HttpServletRequest request) {
 		System.out.println("1111");
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<ProviderProduct> providerInfo = providerProductService.getProviderInfoByld();
+		List<ProviderProduct> providerInfo = providerProductService.getProviderInfoByld(request);
 		map.put("providerInfo", providerInfo);
 		return map;
 	}
@@ -137,6 +137,21 @@ public class ControllerProviderProduct {
 					map.put("msg", "图片更新失败");
 					return map;
 				}
-
+				
+	// 查询
+	@ResponseBody
+	@RequestMapping(value="/lectLikeByOrderId",method = RequestMethod.POST)
+	public Map<String, Object> selectByLikeProductId(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<ProviderProduct> productList = providerProductService.selectByLikeProductId(request);
+		if (productList.size() > 0) {
+			map.put("productList", productList);
+			// System.out.println(map);
+			map.put("code", 1);
+		} else {
+			map.put("code", 0);
+		}
+		return map;
+	}
 }
 

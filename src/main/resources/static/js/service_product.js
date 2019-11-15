@@ -76,12 +76,16 @@ $(".cancel").on("click", function(event){
 
 
  		$(function(){
+ 			var userid=sessionStorage.getItem("id");
  			$.ajax({
  				//请求类型
- 				type:"get",
+ 				type:"post",
  				//请求路径
  				url:"/provider/getproviderinfo",
  				//返回数据类型
+ 				data:{
+ 					userid:userid,
+ 				},
  				dataType:"json",
  				//请求成功后调用函数
  				success:function(data){
@@ -244,3 +248,58 @@ $("#form3").ajaxForm(function(data) {
 	console.log("str:" + JSON.stringify(data));
 	}
 );
+    
+    $(".select-btn").on("click",function(){
+    	console.log("查询内容",$(".select").val());
+    	var name=$(".select").val();
+    	$.ajax({
+    		type: "post",
+    		url: "/provider/lectLikeByOrderId",
+    		data:{
+    			name:name,
+    		},
+    		dataType: "json",
+    		success: function(data){
+    			var productList = data.productList;
+    			$("#table").html("");
+    			txt="";
+    			for(var i = 0;i<productList.length;i++){
+    				txt += `
+    				<tr>
+    				<td><input type="checkbox" value="${productList[i].id}" class="checkbox" name="product"></td>
+                    <td>${productList[i].serviceName}</td>
+ 					<td>${productList[i].serviceContent}</td>
+ 					<td>${productList[i].price}</td>
+                    <td><span class="up-line-mark up-line-mark-red">上线</span></td>
+                    <td>
+ 	                            <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span>
+ 	                            <span class="handle-btn" onclick="dl('${productList[i].id}')"><i class="fa fa-close fa-fw"></i>删除</span>
+ 	                            <span class="handle-btn" onclick="down('${productList[i].id}')"><i class="fa fa-arrow-up fa-fw"></i>下线</span>
+ 	                        </td>
+                </tr>`
+    			}
+    			$("#table").append(txt);
+    			
+    		},error: function(data){
+    			console.log("失败后返回的数据",data);
+    		}
+    	})
+    })
+    
+    
+    $(function(){
+	img();
+})
+function img(){
+	var userid=sessionStorage.getItem("id")
+	$(".img").html("");
+	var txt="";
+	txt +=`<img  src="/provider/headImg?id=${userid}" onerror="defaultImg(this)" style="
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+	"/>`
+	$(".img").append(txt);
+}
