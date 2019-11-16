@@ -123,7 +123,8 @@ public class MemberServicelmpl implements MemberService {
 		public int updatepassword1(Member member,HttpServletRequest request) {
 			MemberExample memberExample = new MemberExample();
 			MemberExample.Criteria criteria = memberExample.createCriteria();
-			criteria.andPasswordEqualTo(request.getParameter("password"));
+			criteria.andIdEqualTo(request.getParameter("userid"));
+			criteria.andPasswordEqualTo(MD5Util.getMD5(request.getParameter("password").getBytes()));
 			return memberMapper.updateByExampleSelective(member, memberExample);
 		}
 

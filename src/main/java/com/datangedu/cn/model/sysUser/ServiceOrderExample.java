@@ -1,12 +1,25 @@
 package com.datangedu.cn.model.sysUser;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.xml.crypto.Data;
+
 public class ServiceOrderExample {
-    public int getTime() {
+
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
+	public int getTime() {
 		return time;
 	}
 
@@ -61,6 +74,9 @@ public class ServiceOrderExample {
     protected int status;
     
     protected int time;
+    
+    protected String memberId;
+    
 
     public ServiceOrderExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -118,6 +134,7 @@ public class ServiceOrderExample {
         likeName=null;
         status=1;
         time=0;
+        memberId=null;
     }
 
     protected abstract static class GeneratedCriteria {

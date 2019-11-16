@@ -12,8 +12,6 @@ public interface ServiceOrderService {
 
 	public List<ServiceOrder> select(HttpServletRequest request);
 
-
-
 	List<ServiceOrder> getuid(String userid);
 
 	public int up(HttpServletRequest request);
@@ -42,5 +40,7 @@ public interface ServiceOrderService {
 	List<ServiceOrder> getlist2(HttpServletRequest request);
 
 	List<ServiceOrder> content(HttpServletRequest request);
+
+	List<ServiceOrder> search(HttpServletRequest request);
 
 }

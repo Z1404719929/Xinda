@@ -33,10 +33,12 @@ public class ServiceOrderlmpl implements ServiceOrderService {
 	}
 	
 	//模糊查询
+	@Override
 	public List<ServiceOrder> select(HttpServletRequest request){
 		List<ServiceOrder> so=ServiceOrderMapper.selectByLike(request.getParameter("name"));
 		return so;
 	}
+	
 	
 
 
@@ -48,7 +50,16 @@ public class ServiceOrderlmpl implements ServiceOrderService {
 		return ServiceOrderMapper.selectByLike2(serviceOrderExample);
 	}
 	
-
+	@Override
+	public List<ServiceOrder> search(HttpServletRequest request){
+		ServiceOrderExample serviceOrderExample = new ServiceOrderExample();
+		ServiceOrderExample.Criteria criteria = serviceOrderExample.createCriteria();
+		serviceOrderExample.setLikeName(request.getParameter("name"));
+		serviceOrderExample.setMemberId(request.getParameter("userid"));
+		List<ServiceOrder> so=ServiceOrderMapper.selectByLike5(serviceOrderExample);
+		return so;
+	}
+	
 	
 	//通过用户userid查
 	@Override

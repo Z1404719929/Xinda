@@ -32,6 +32,8 @@ public interface ServiceOrderMapper {
 	
 	List<ServiceOrder> selectByLike2(ServiceOrderExample example);	//模糊查询
 	
+	List<ServiceOrder> selectByLike5(ServiceOrderExample example);	//模糊查询
+	
 	List<ServiceOrder> selectBypaging(ServiceOrderExample example);	//分页模糊查询
 	
 	List<ServiceOrder> selectBytime(ServiceOrderExample example);	//

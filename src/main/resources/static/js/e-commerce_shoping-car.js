@@ -22,14 +22,13 @@ var num1=new Array();
 var carsname=new Array();
 var n=0;
 
-<<<<<<< HEAD
 $( function(){
 		var userid=sessionStorage.getItem("id")
 			console.log("成功后返回的数据",userid);
 		var username=sessionStorage.getItem("name")
-	
+	login();
 
-   
+   cartnum();
 	$.ajax({
 			type:"get",
 			url:"/product/getproductinfo",
@@ -66,7 +65,12 @@ $( function(){
         <div class="cart">
         <ul class="merchandise">
             <li>
-                <img src="" alt="图片">
+               <img class="ss" src="/pp/headImg2?id=${product[i].product[j].id}" onerror="defaultImg(this)" style="
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+	"/>
             </li>
             <li>${product[i].product[j].serviceContent}</li>
             <li>￥${product[i].product[j].price}</li>
@@ -118,8 +122,13 @@ $( function(){
 		})
 })
 
-=======
->>>>>>> bfec8b7cdfd02ef53c978270ec49e3c1e8ba7e42
+function cartnum(){
+	var cartnum=sessionStorage.getItem("cartnum");
+	$(".cartnum").html("");
+	var txt="";
+	txt +=cartnum
+  	$(".cartnum").append(txt);
+}
 
 //删除商品
  function dl(id){
@@ -227,8 +236,24 @@ function changenum(id){
 }
 
 
+function login(){
+	var userid=sessionStorage.getItem("id");
+	var username=sessionStorage.getItem("name");
+	var status=sessionStorage.getItem("status");
+	console.log(userid);
+	if(status!=1){
+		alert("请先登录");
+		 location.href="redirect?page=e-commerce_login"
+	}
+	
+	$("#sysuser").html("");
+	var txt="";
+	txt +=username
+	$("#sysuser").append(txt);
+}
 
-
-
+$(".user-quit").on("click", function () {
+	sessionStorage.setItem("status",2);
+})
 
 

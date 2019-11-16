@@ -69,7 +69,7 @@ function page2(i,index){
             <td>${List[i].providerInfo}</td>
             <td>
                 <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>详情</span>
-                <span class="handle-btn star"><i class="fa fa-circle-o fa-fw"></i>停用</span>
+                <span class="handle-btn" onclick="star_stop('${List[i].id}',1)"><i class="fa fa-circle-o fa-fw"></i>停用</span>
             </td>
         </tr>`
 			}
@@ -91,7 +91,7 @@ function page2(i,index){
 	            <td>${List[i].providerInfo}</td>
 	            <td>
 	                <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>详情</span>
-	                <span class="handle-btn stop"><i class="fa fa-circle-o fa-fw"></i>启用</span>
+	                <span class="handle-btn" onclick="star_stop('${List[i].id}',2)"><i class="fa fa-circle-o fa-fw"></i>启用</span>
 	            </td>
 	        </tr>`
 				}
@@ -158,7 +158,7 @@ function page1(i,index){
             <td>${List[i].providerInfo}</td>
             <td>
                 <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>详情</span>
-                <span class="handle-btn"><i class="fa fa-circle-o fa-fw"></i>停用</span>
+                <span class="handle-btn" onclick="star_stop('${List[i].id}',1)"><i class="fa fa-circle-o fa-fw"></i>停用</span>
             </td>
         </tr>`
 			}
@@ -182,7 +182,7 @@ function page1(i,index){
 	            <td>${List[i].providerInfo}</td>
 	            <td>
 	                <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>详情</span>
-	                <span class="handle-btn"><i class="fa fa-circle-o fa-fw"></i>启用</span>
+	                <span class="handle-btn" onclick="star_stop('${List[i].id}',2)"><i class="fa fa-circle-o fa-fw"></i>启用</span>
 	            </td>
 	        </tr>`
 				}
@@ -224,6 +224,22 @@ $(".pagelast").on("click",function(){
 		page2(pageNum,index1);
 })
 
+function star_stop(id,status){
+	$.ajax({
+		type: "post",
+		url: "/p/startstop",
+		data:{
+			id:id,
+			status:status,
+		},
+		dataType: "json",
+		success: function(data){
+			location.href="redirect?page=operator_facilitator"
+		},error: function(data){
+			console.log("失败后返回的数据",data);
+		}
+	})
+}
 
 //退出登录
 $(".exit").on("click",function(){

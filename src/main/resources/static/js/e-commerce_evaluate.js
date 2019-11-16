@@ -1,8 +1,32 @@
 
 $(function(){
 	list(1);
+	cartnum();
+	userinfo();
 })
-
+function userinfo(){
+	var userid=sessionStorage.getItem("id")
+	var username=sessionStorage.getItem("name")
+	$(".userinfo").html("");
+	var txt="";
+	txt +=`
+	<img class="btn btn-primary" src="/ou/headImg?id=${userid}" onerror="defaultImg(this)" style="
+    width: 95px;
+    height: 95px;
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+	"/>
+<p>${username}</p>
+	`
+	$(".userinfo").append(txt);
+}
+function cartnum(){
+	var cartnum=sessionStorage.getItem("cartnum");
+	$(".cartnum").html("");
+	var txt="";
+	txt +=cartnum
+  	$(".cartnum").append(txt);
+}
 function list(content){//content=1未评价
 	var userid=sessionStorage.getItem("id");
 	var username=sessionStorage.getItem("name");
@@ -87,7 +111,7 @@ function login(){
 	console.log(userid);
 	if(status!=1){
 		alert("请先登录");
-		 location.href="redirect?page=operator_login"
+		 location.href="redirect?page=e-commerce_login"
 	}
 	
 	$("#sysuser").html("");
@@ -95,13 +119,19 @@ function login(){
 	txt +=username
 	$("#sysuser").append(txt);
 }
-
+function defaultImg(img){
+	img.src="/images/user-lg.png";
+}
 $(".change1").on("click", function(){
 	list(1);
 })
 
 $(".change2").on("click", function(){
 	list(2);
+})
+
+$(".user-quit").on("click", function () {
+	sessionStorage.setItem("status",2);
 })
 
 $(".search-product").on("click", function(){

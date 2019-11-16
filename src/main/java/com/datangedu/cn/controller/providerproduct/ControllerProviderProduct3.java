@@ -25,11 +25,16 @@ public class ControllerProviderProduct3 {
 	//显示所有商品
 	 @Resource 
 	 ProviderProductService  providerProductService;
+	 @Resource 
+	 CartService  cService;
+	 
 	@ResponseBody
-	@RequestMapping(value="/gmgm",method=RequestMethod.GET)
+	@RequestMapping(value="/gmgm",method=RequestMethod.POST)
 	public Map<String,Object> Provideproduct(HttpServletRequest request){
 		Map<String,Object> map=new HashMap<String,Object>();
 		//String id=request.getParameter("id");
+		List<Cart> cart=cService.getcartid(request);
+		map.put("cartnum", cart.size());
 		List<ProviderProduct> providerProductInfo=providerProductService.getProviderProductInfoById();
 		System.out.println(providerProductInfo); 
 		map.put("providerProductInfo",providerProductInfo);

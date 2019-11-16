@@ -16,4 +16,6 @@ public interface ProviderService {
 
 	List<Provider> getList2();
 
+	int starstop(HttpServletRequest request);
+
 }

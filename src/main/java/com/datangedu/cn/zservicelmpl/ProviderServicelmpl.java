@@ -61,4 +61,16 @@ public class ProviderServicelmpl implements ProviderService {
 				return providerMapper.selectBypaging(providerExample);
 			}
 
+			@Override
+			public int starstop(HttpServletRequest request) {
+				Provider p = new Provider();
+				p.setId(request.getParameter("id"));
+				if(request.getParameter("status").equals("1")) {
+					p.setStatus(2);
+				}else{
+					p.setStatus(1);
+				}
+				return providerMapper.updateByPrimaryKeySelective(p);
+			}
+			
 }

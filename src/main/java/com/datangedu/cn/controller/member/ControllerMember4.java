@@ -101,7 +101,7 @@ public class ControllerMember4 {
 				return map;
 			}
 			
-			member.setPassword(request.getParameter("password1"));
+			member.setPassword(MD5Util.getMD5(request.getParameter("password1").getBytes()));
 			//member.setPassword(MD5Util.getMD5(request.getParameter("password1").getBytes()));
 			int a=memberService.updatepassword1(member, request);
 			System.out.println("修改密码5"+a);

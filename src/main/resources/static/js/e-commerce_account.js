@@ -5,9 +5,16 @@ $(function(){
 	img();
 	login();
 	userinfo();
+	cartnum();
 })
-
-$(".save").on("click", function () {
+function cartnum(){
+	var cartnum=sessionStorage.getItem("cartnum");
+	$(".cartnum").html("");
+	var txt="";
+	txt +=cartnum
+  	$(".cartnum").append(txt);
+}
+$(".save1").on("click", function () {
 	var name=$(".name").val();
 	var email=$(".email").val();
 	var userid=sessionStorage.getItem("id");
@@ -22,7 +29,7 @@ $(".save").on("click", function () {
 		},
 		dataType: "json",
 		success: function(data){
-			alert(data.msg);
+//			alert(data.msg);
 			 location.href="redirect?page=e-commerce_account"
 		},
 		error: function(data){
@@ -81,10 +88,10 @@ function login(){
 	var userid=sessionStorage.getItem("id");
 	var username=sessionStorage.getItem("name");
 	var status=sessionStorage.getItem("status");
-	console.log(userid);
+	console.log(username);
 	if(status!=1){
 		alert("请先登录");
-		 location.href="redirect?page=operator_login"
+		 location.href="redirect?page=e-commerce_login"
 	}
 	
 	$("#sysuser").html("");
@@ -92,6 +99,9 @@ function login(){
 	txt +=username
 	$("#sysuser").append(txt);
 }
+$(".user-quit").on("click", function () {
+	sessionStorage.setItem("status",2);
+})
 
 $(".radio1").on("click", function () {
 	sex=1;
@@ -142,11 +152,12 @@ $(".save").on("click", function(){
 	var password1=$("#password1").val();
 	var password2=$("#password2").val();
 	console.log("成功后返回的数据",password);
-	
+	var userid=sessionStorage.getItem("id")
 	$.ajax({
 		type: "post",
 		url: "/login/updatepassword",
 		data:{
+			userid:userid,
 			password:password,
 			password1:password1,
 			password2:password2,

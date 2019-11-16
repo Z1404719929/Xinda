@@ -18,18 +18,23 @@ $(".content-nav li").on("click", function(event){
 })
 
 $( function(){
+	var userid=sessionStorage.getItem("id")
 	    $.ajax({
 	                url: "/product/gmgm",
-	                type: "get",
+	                type: "post",
 	              dataType:"json",
+	              data:{
+	            	  userid:userid,
+	              },
 	              success:function(data){
-	      			var userid=sessionStorage.getItem("id")
 	      			console.log("成功后返回的数据",userid);
 	    			var username=sessionStorage.getItem("name")
 	    	          	console.log("成功后返回的数据",data);
 	    	          	login();
+	    	          	sessionStorage.setItem("cartnum",data.cartnum);
 	    	        //	alert(data.msg);
 	    	          	var providerProductInfo=data.providerProductInfo;
+	    	          			cartnum();
 	    	        	$(".list").html("");
 	    	          	var txt="";
 	    	          	for(var i=0;i<providerProductInfo.length;i++){
@@ -89,7 +94,12 @@ $(".search-btn").on("click",function(){
 	    	          	for(var i=0;i<providerProductInfo.length;i++){
 	    	          		txt+= `    	          		
 	    	          		    <div class="article" value="${providerProductInfo[i].id}">	    	          		    
-	    	          		    <img src="" alt="图片" />
+	    	          		   <img class="ss" src="/pp/headImg2?id=${providerProductInfo[i].id}" onerror="defaultImg(this)" style="
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border: 1px solid #e1e1e1;
+	"/>
             <ul class="article-info">
                 <li>${providerProductInfo[i].serviceName}</li>
                 <li>${providerProductInfo[i].serviceContent}</li>
@@ -142,8 +152,14 @@ $(".search-btn").on("click",function(){
 	})
 }
 
-<<<<<<< HEAD
-=======
+function cartnum(){
+	var cartnum=sessionStorage.getItem("cartnum");
+	$(".cartnum").html("");
+	var txt="";
+	txt +=cartnum
+  	$(".cartnum").append(txt);
+}
+
 function login(){
 	var userid=sessionStorage.getItem("id");
 	var username=sessionStorage.getItem("name");
@@ -151,7 +167,7 @@ function login(){
 	console.log(userid);
 	if(status!=1){
 		alert("请先登录");
-		 location.href="redirect?page=operator_login"
+		 location.href="redirect?page=e-commerce_login"
 	}
 	
 	$("#sysuser").html("");
@@ -159,7 +175,9 @@ function login(){
 	txt +=username
 	$("#sysuser").append(txt);
 }
-
+$(".user-quit").on("click", function () {
+	sessionStorage.setItem("status",2);
+})
 /*
 
 $(".fa ").on("click", function(id){
@@ -220,4 +238,4 @@ $(".fa ").on("click", function(id){
 	})	
 })
 */
->>>>>>> bfec8b7cdfd02ef53c978270ec49e3c1e8ba7e42
+

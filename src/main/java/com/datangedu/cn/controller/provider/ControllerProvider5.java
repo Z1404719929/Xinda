@@ -64,4 +64,12 @@ public class ControllerProvider5 {
 				System.out.println("hhhhh");
 				return map;
 		}
+			
+			@ResponseBody
+			@RequestMapping(value="/startstop",method = RequestMethod.POST)
+			public Map <String,Object> startstop(HttpServletRequest request) {
+				Map<String,Object> map = new HashMap<String,Object>();
+				int a= pService.starstop(request);	//得到查询的所有数量
+				return map;
+			}
 }

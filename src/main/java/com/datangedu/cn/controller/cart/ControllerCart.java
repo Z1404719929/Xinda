@@ -217,7 +217,15 @@ public class ControllerCart {
 		return map;
 		
 	}
-	
+	@ResponseBody
+	@RequestMapping(value="/mmm2",method=RequestMethod.POST)
+	public Map<String,Object> Productxiangqing2(HttpServletRequest request) {
+		Map<String,Object> map=new HashMap<String,Object>();
+		List<ServiceOrder> list=serviceOrderService.search(request);
+		map.put("list", list);	
+		return map;
+		
+	}
 	
 	//删除订单
 	@ResponseBody

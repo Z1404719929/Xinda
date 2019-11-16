@@ -39,7 +39,11 @@ console.log("serviceName",str3);
 var str4="";
 for(var i=0;i<str.length;i++){
 	console.log("cars",str[i]);
-	str4+=str[i]+"*"+str1[i]+" ";
+	if(i<str.length-1){
+	str4+=str[i]+"*"+str1[i]+",";
+	}else{
+	str4+=str[i]+"*"+str1[i]
+	}
 }
 
 var nn=RndNum(16);

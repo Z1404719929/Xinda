@@ -6,6 +6,7 @@ var status1=1;	//未支付订单==1已支付==2
 $(function(){
 	page2(1,1);
 	img();
+	login();
 })
 
 function img(){
@@ -21,7 +22,24 @@ function img(){
 	"/>`
 	$(".img").append(txt);
 }
+//退出登录
+$(".exit").on("click",function(){
+	sessionStorage.setItem("id","")
+	sessionStorage.setItem("name","")
+	sessionStorage.setItem("status",2)
+	 location.href="redirect?page=service_login"
+})
 
+function login(){
+	var userid=sessionStorage.getItem("id");
+	var username=sessionStorage.getItem("name");
+	var status=sessionStorage.getItem("status");
+	console.log(username);
+	if(status!=1){
+		alert("请先登录");
+		 location.href="redirect?page=service_login"
+	}
+}
 
 function page(i,status){
 	console.log(i);
