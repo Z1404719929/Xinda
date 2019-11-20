@@ -47,6 +47,16 @@ public class ProviderProductServicelmpl implements ProviderProductService {
 			List<ProviderProduct> pp=providerProductMapper.selectByLike(request.getParameter("name"));
 			return pp;
 		}
+		@Override
+		public List<ProviderProduct> select2(HttpServletRequest request) {
+			ProviderProductExample providerProductExample = new ProviderProductExample();
+			ProviderProductExample.Criteria criteria = providerProductExample.createCriteria();
+			providerProductExample.setOrderByClause(request.getParameter("index"));
+			System.out.println("cs"+providerProductExample.getOrderByClause());
+			providerProductExample.setLikeName(request.getParameter("name"));
+			return providerProductMapper.selectByAll2(providerProductExample);
+		}
+		
 	
 	@Override		//修改状态为2下线
 	public int xx(ProviderProduct pp,String id) {
@@ -69,12 +79,13 @@ public class ProviderProductServicelmpl implements ProviderProductService {
 	
 	//查询所有商品
 	@Override
-	public List<ProviderProduct> getProviderProductInfoById() {
+	public List<ProviderProduct> getProviderProductInfoById(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		System.out.println(123546);
 		
 		ProviderProductExample providerProductExample = new ProviderProductExample();
 		ProviderProductExample.Criteria criteria = providerProductExample.createCriteria();
+		providerProductExample.setOrderByClause(request.getParameter("index"));
 		System.out.println("查询结果几条==="+providerProductMapper.selectByExample(providerProductExample).size());
 		return providerProductMapper.selectByExample(providerProductExample);
 	}

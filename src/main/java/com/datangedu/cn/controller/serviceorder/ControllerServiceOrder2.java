@@ -39,7 +39,7 @@ public class ControllerServiceOrder2 {
 		map.put("soList", soList);
 		//查id
 		List<Member> member;
-		String [] name=new String[10];
+		String [] name=new String[1024];
 		System.out.println(soList.size());
 		for(int i=0;i<soList.size();i++) {
 			System.out.println("用户id"+soList.get(i).getMemberId());
@@ -69,7 +69,7 @@ public class ControllerServiceOrder2 {
 			String [] str3=str[i].split("\\*");	//str3={0003,1}
 			
 			pp=ppservice.getid(str3[0]);		//查询产品id
-			str1[i]=pp.get(0).getServiceName();		//产品名称存入str1
+			str1[i]=pp.get(0).getServiceContent();		//产品名称存入str1
 
 			str2[i]=str3[1];											//数量存入str2
 			System.out.println("结果"+str1[i]+"*"+str2[i]);

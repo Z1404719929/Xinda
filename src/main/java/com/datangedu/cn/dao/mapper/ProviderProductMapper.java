@@ -31,6 +31,8 @@ public interface ProviderProductMapper {
 	
 	List<ProviderProduct> selectByAll(ProviderProductExample example);	//排序
 	
+	List<ProviderProduct> selectByAll2(ProviderProductExample example);	//排序
+	
 	List<ProviderProduct> selectBypaging(ProviderProductExample example);	//排序分页
 
 	ProviderProduct selectByPrimaryKey(String id);

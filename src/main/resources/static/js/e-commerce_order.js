@@ -49,7 +49,7 @@ $( function(){
           		                    <li>
           		                        <img src="./images/user-lg.png" alt="图片">
           		                        <ul>
-          		                            <li>${str3}</li>          		                         
+          		                            <li>${list[i].serviceId}</li>
           		                        </ul>
           		                    </li>
           		                    <li class="font-aqua">¥${list[i].totalPrice}</li>
@@ -91,6 +91,7 @@ $(".search111-btn").on("click",function(){
 	var name=$(".search111").val();
 	var data1=$(".data1").val();
 	var data2=$(".data2").val();
+	console.log("查询时间",data1,data2)
 	$.ajax({
 		type: "post",
 		url: "/product/mmm2",
@@ -194,9 +195,9 @@ function pay(serviceNo){
 		txt +=cartnum
 	  	$(".cartnum").append(txt);
 	}
-function pay(){
-    location.href="redirect?page=e-commerce_settlement";
-}
+//function pay(){
+//    location.href="redirect?page=e-commerce_settlement";
+//}
 function login(){
 	var userid=sessionStorage.getItem("id");
 	var username=sessionStorage.getItem("name");

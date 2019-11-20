@@ -56,6 +56,16 @@ public class ServiceOrderlmpl implements ServiceOrderService {
 		ServiceOrderExample.Criteria criteria = serviceOrderExample.createCriteria();
 		serviceOrderExample.setLikeName(request.getParameter("name"));
 		serviceOrderExample.setMemberId(request.getParameter("userid"));
+		if(!request.getParameter("data1").isEmpty()) {
+			serviceOrderExample.setData1(request.getParameter("data1"));
+		}else {
+			serviceOrderExample.setData1("1970-01-01");
+		}
+		if(!request.getParameter("data2").isEmpty()) {
+			serviceOrderExample.setData2(request.getParameter("data2"));
+		}else {
+			serviceOrderExample.setData2("3030-01-01");
+		}
 		List<ServiceOrder> so=ServiceOrderMapper.selectByLike5(serviceOrderExample);
 		return so;
 	}
@@ -69,12 +79,6 @@ public class ServiceOrderlmpl implements ServiceOrderService {
 		criteria.andMemberIdEqualTo(userid);
 		return ServiceOrderMapper.selectByExample(serviceOrderExample);
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 	//通过用户userid查

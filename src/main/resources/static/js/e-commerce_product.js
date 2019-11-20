@@ -16,8 +16,13 @@ $(".content-nav li").on("click", function(event){
     $(".content-nav li").removeClass("nav-active");
     $(event.target).addClass("nav-active");
 })
+var index="id"
 
 $( function(){
+	list5();
+})
+	
+function list5(){
 	var userid=sessionStorage.getItem("id")
 	    $.ajax({
 	                url: "/product/gmgm",
@@ -25,6 +30,7 @@ $( function(){
 	              dataType:"json",
 	              data:{
 	            	  userid:userid,
+	            	  index:index,
 	              },
 	              success:function(data){
 	      			console.log("成功后返回的数据",userid);
@@ -54,25 +60,21 @@ $( function(){
             <ul class="article-price">
                 <li>￥${providerProductInfo[i].price}	</li>
                 <li>
-                    <a href="redirect?page=e-commerce_settlement">立即购买</a>
-                    <a href="redirect?page=e-commerce_shoping-car" class="fa fa-shopping-cart fa-lg" onclick=zt('${providerProductInfo[i].id}')>  加入购物车</a>
+                    <a onclick="buy('${providerProductInfo[i].id}','${providerProductInfo[i].serviceContent}','${providerProductInfo[i].price}')">立即购买</a>
+                    <a  class="fa fa-shopping-cart fa-lg" onclick=zt('${providerProductInfo[i].id}')>  加入购物车</a>
                   
                 </li>     
             </ul></div>  `;
 	    	          	}
 	    	        	$(".list").append(txt);
-	    	  
 	                },
 	            		error:function(data){
 			console.log("失败返回后的数据",data);	
 		}              
 	})
-})
-
-
-//模糊查询
-$(".search-btn").on("click",function(){
+}
 	
+function list6(){
 	console.log("查询内容",$(".select").val());
 	var name=$(".select").val();
 	    $.ajax({
@@ -80,6 +82,7 @@ $(".search-btn").on("click",function(){
 	                type: "get",
 		data:{
 			name:name,
+			index:index,
 		},
 	              dataType:"json",
 	              success:function(data){
@@ -108,24 +111,34 @@ $(".search-btn").on("click",function(){
             <ul class="article-price">
                 <li>￥${providerProductInfo[i].price}	</li>
                 <li>
-                    <a href="redirect?page=e-commerce_settlement">立即购买</a>
-                    <a href="redirect?page=e-commerce_shoping-car" class="fa fa-shopping-cart fa-lg" onclick=zt('${providerProductInfo[i].id}')>  加入购物车</a>
+                    <a onclick="buy('${providerProductInfo[i].id}','${providerProductInfo[i].serviceContent}','${providerProductInfo[i].price}')">立即购买</a>
+                    <a  class="fa fa-shopping-cart fa-lg" onclick=zt('${providerProductInfo[i].id}')>  加入购物车</a>
                   
                 </li>     
             </ul></div>  `;
 	    	          	}
 	    	        	$(".list").append(txt);
-	    	  
 	                },
 	            		error:function(data){
 			console.log("失败返回后的数据",data);	
 		}              
 	})
+}
+
+//模糊查询
+$(".search-btn").on("click",function(){
+	list6();
 })
 
+$(".price ").on("click", function(id){
+	index="price";
+	list6();
+})
 
-
-
+$(".id ").on("click", function(id){
+	index="id";
+	list6();
+})
 
 
 //网页得到id
@@ -133,6 +146,7 @@ $(".search-btn").on("click",function(){
 	console.log("id",id);
 	var userid=sessionStorage.getItem("id")
 	var username=sessionStorage.getItem("name")
+	console.log("zt",id,userid);
 	$.ajax({
 		type: "post",
 		url: "/product/jkk",			
@@ -178,6 +192,17 @@ function login(){
 $(".user-quit").on("click", function () {
 	sessionStorage.setItem("status",2);
 })
+
+function buy(id,service_content,price){
+	sessionStorage.setItem("cars",id,);
+	sessionStorage.setItem("num1",1,);
+	sessionStorage.setItem("carsname",service_content,);
+	sessionStorage.setItem("totalprice1",price);
+	 location.href="redirect?page=e-commerce_settlement"
+}
+
+
+
 /*
 
 $(".fa ").on("click", function(id){

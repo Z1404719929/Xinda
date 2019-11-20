@@ -21,6 +21,7 @@ var cars=new Array();
 var num1=new Array();
 var carsname=new Array();
 var n=0;
+var num3=0;
 
 $( function(){
 		var userid=sessionStorage.getItem("id")
@@ -91,6 +92,7 @@ $( function(){
         </div>
   
 			 `;
+		num3=num3+1;//计算购物车数量
 				}
 				}
 
@@ -101,6 +103,7 @@ $( function(){
 					console.log("1111111111",carsname);	
 			      sessionStorage.setItem("cars",cars);
 			      sessionStorage.setItem("num1",num1);
+			      sessionStorage.setItem("cartnum",num3);
 			      
 	  	$(".price").html("");
 		var txt="";

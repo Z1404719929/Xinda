@@ -49,10 +49,12 @@ public class CartServiceImpl  implements  CartService{
 
 	//通过商品id查
 	@Override
-	public List<Cart> getcid(String id) {	
+	public List<Cart> getcid(HttpServletRequest request) {	
 		CartExample cartExample = new CartExample();
 		CartExample.Criteria criteria = cartExample.createCriteria();
-		criteria.andServiceIdEqualTo(id);
+		criteria.andServiceIdEqualTo(request.getParameter("id"));
+		criteria.andUserIdEqualTo(request.getParameter("userid"));
+		System.out.println("用户名=="+request.getParameter("userid")+"=="+request.getParameter("id"));
 		return cartMapper.selectByExample(cartExample);
 	}
 

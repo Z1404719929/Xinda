@@ -103,7 +103,8 @@
   </select>
   
     <select id="selectByLike5" parameterType="com.datangedu.cn.model.sysUser.ServiceOrderExample" resultMap="BaseResultMap">
-    select * from service_order where service_no like '%${likeName}%' and member_id = '${memberId}' 
+    select * from service_order where service_no like '%${likeName}%' and member_id = '${memberId}'
+    and create_time > '${data1}'  and create_time &lt; '${data2}'
   </select>
   
     <select id="selectBypaging" parameterType="com.datangedu.cn.model.sysUser.ServiceOrderExample" resultMap="BaseResultMap">

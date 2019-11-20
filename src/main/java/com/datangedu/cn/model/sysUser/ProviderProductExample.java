@@ -6,7 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ProviderProductExample {
-    public int getPageSize() {
+
+	public int getPageSize() {
 		return pageSize;
 	}
 

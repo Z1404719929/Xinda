@@ -113,6 +113,14 @@
   </select>
   
   
+  <select id="selectByAll2" parameterType="com.datangedu.cn.model.sysUser.ProviderProductExample" resultMap="BaseResultMap">
+    select * from provider_product where service_content like '%${likeName}%'
+     <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  
   <select id="selectBypaging" parameterType="com.datangedu.cn.model.sysUser.ProviderProductExample" resultMap="BaseResultMap">
     select * from provider_product where service_content like '%${likeName}%'
      <if test="orderByClause != null">

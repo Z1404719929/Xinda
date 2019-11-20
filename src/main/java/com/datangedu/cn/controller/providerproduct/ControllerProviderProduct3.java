@@ -35,7 +35,7 @@ public class ControllerProviderProduct3 {
 		//String id=request.getParameter("id");
 		List<Cart> cart=cService.getcartid(request);
 		map.put("cartnum", cart.size());
-		List<ProviderProduct> providerProductInfo=providerProductService.getProviderProductInfoById();
+		List<ProviderProduct> providerProductInfo=providerProductService.getProviderProductInfoById(request);
 		System.out.println(providerProductInfo); 
 		map.put("providerProductInfo",providerProductInfo);
 		System.out.println("map"+map);
@@ -47,7 +47,7 @@ public class ControllerProviderProduct3 {
 	@RequestMapping(value="/select",method = RequestMethod.GET)
 	public Map <String,Object> selecte(HttpServletRequest request) {
 		Map<String,Object> map = new HashMap<String,Object>();
-		List<ProviderProduct> providerProductInfo= providerProductService.select(request);
+		List<ProviderProduct> providerProductInfo= providerProductService.select2(request);
 		System.out.println(providerProductInfo); 
 		map.put("providerProductInfo", providerProductInfo);
 		return map;

@@ -36,7 +36,8 @@ public class ControllerCart {
 	@RequestMapping(value = "/jkk", method = RequestMethod.POST)
 	public Map<String, Object> ProductAdd(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<Cart> cartInfo = cartService.getcid(request.getParameter("id"));
+		List<Cart> cartInfo = cartService.getcid(request);
+		System.out.println("加入购物车成功吗"+cartInfo.size());
 		if (cartInfo.isEmpty()) {
 			int a = cartService.insertCart(request);
 			System.out.println("插入成功" + a);
@@ -48,7 +49,6 @@ public class ControllerCart {
 			map.put("msg", "id已存在");
 			Cart cart = new Cart();
 			cart.setBuyNum(cartInfo.get(0).getBuyNum() + 1);
-
 			int a = cartService.updateBuynum(cart, request.getParameter("id"));
 		}
 
@@ -180,7 +180,7 @@ public class ControllerCart {
 			String danhao=request.getParameter("nn");
 			System.out.println(danhao);		
 			serviceOrder.setServiceNo(danhao);
-			int a = serviceOrderService.insertServiceOrder( request);
+			int a = serviceOrderService.insertServiceOrder(request);
 		  map.put("product", serviceOrderInfo);
 
 				map.put("code", 1);
@@ -212,8 +212,40 @@ public class ControllerCart {
 	@RequestMapping(value="/mmm",method=RequestMethod.POST)
 	public Map<String,Object> Productxiangqing(HttpServletRequest request) {
 		Map<String,Object> map=new HashMap<String,Object>();
-		List<ServiceOrder> list=serviceOrderService.getll(request.getParameter("userid"));
-		map.put("list", list);	
+		List<ServiceOrder> soList=serviceOrderService.getll(request.getParameter("userid"));
+		/////////////////////////////////////////////
+		
+		for(int j=0;j<soList.size();j++) {
+
+			String [] str=soList.get(j).getServiceId().split(",");//str={0003*1,0002*2}
+			System.out.println(str[0]);
+			System.out.println(str.length);
+			
+			String [] str1=new String[10];
+			String [] str2=new String[10];
+			List<ProviderProduct> pp;
+			StringBuffer buf=new StringBuffer();
+			
+			//“0002”
+			
+			for(int i=0;i<str.length;i++) {
+				String [] str3=str[i].split("\\*");	//str3={0003,1}
+				
+				pp=providerProductService.getid(str3[0]);		//查询产品id
+				str1[i]=pp.get(0).getServiceContent();		//产品名称存入str1
+
+				str2[i]=str3[1];											//数量存入str2
+				System.out.println("结果"+str1[i]+"*"+str2[i]);
+				buf.append(str1[i]+"*"+str2[i]+" ");
+				soList.get(j).setServiceId(buf.toString());
+				System.out.println(buf.toString());
+			}
+			
+			}
+		///////////////////////////////////////////////////
+		
+		
+		map.put("list", soList);	
 		return map;
 		
 	}
@@ -292,5 +324,16 @@ public class ControllerCart {
 					return map;
 
 	}
+	
+//	@ResponseBody
+//	@RequestMapping(value="/ttt",method=RequestMethod.POST)
+//	public Map<String,Object> ttt(HttpServletRequest request) {
+//		Map<String,Object> map=new HashMap<String,Object>();
+//		int a=serviceOrderService.getttt(request);
+//		
+//		
+//		
+//	}
+	
 	
 }

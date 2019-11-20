@@ -11,6 +11,22 @@ import javax.xml.crypto.Data;
 public class ServiceOrderExample {
 
 
+	public String getData1() {
+		return data1;
+	}
+
+	public void setData1(String data1) {
+		this.data1 = data1;
+	}
+
+	public String getData2() {
+		return data2;
+	}
+
+	public void setData2(String data2) {
+		this.data2 = data2;
+	}
+
 	public String getMemberId() {
 		return memberId;
 	}
@@ -77,6 +93,10 @@ public class ServiceOrderExample {
     
     protected String memberId;
     
+    protected String data1;
+    
+    protected String data2;
+    
 
     public ServiceOrderExample() {
         oredCriteria = new ArrayList<Criteria>();
@@ -135,6 +155,8 @@ public class ServiceOrderExample {
         status=1;
         time=0;
         memberId=null;
+        data1="1970-01-01";
+        data2="3000-01-01";
     }
 
     protected abstract static class GeneratedCriteria {
