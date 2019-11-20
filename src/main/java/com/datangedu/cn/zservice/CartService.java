@@ -17,7 +17,7 @@ public interface CartService {
 	List<Cart> getuid(String userid);
 	int providerProductDelete(HttpServletRequest request);
 	public int updateBuynum1(Cart cart,HttpServletRequest request);
-	List<Cart> getid(HttpServletRequest request, String id);
+
 	List<Cart> getcid(HttpServletRequest request);
 
 }

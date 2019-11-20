@@ -137,7 +137,7 @@ public class ControllerCart {
 	public Map<String,Object> Productreduce(HttpServletRequest request,String id) {
 		Map<String,Object> map=new HashMap<String,Object>();
 	//	List<Cart> cartInfo = cartService.getuid(request.getParameter("userid"));		
-		List<Cart> cartInfo = cartService.getid(request,id);	
+	//	List<Cart> cartInfo = cartService.getid(request,id);	
 				Cart cart = new Cart();
 				cart.setBuyNum(Integer.valueOf(request.getParameter("num")) -1);
 				
@@ -157,7 +157,7 @@ public class ControllerCart {
 	@RequestMapping(value="/addnum",method=RequestMethod.POST)
 	public Map<String,Object> Productadd(HttpServletRequest request,String id) {
 		Map<String,Object> map=new HashMap<String,Object>();
-		List<Cart> cartInfo = cartService.getid(request,id);
+	//	List<Cart> cartInfo = cartService.getid(request,id);
 				Cart cart = new Cart();
 				cart.setBuyNum(Integer.valueOf(request.getParameter("num")) +1);
 				cart.setServiceId(id);
@@ -168,6 +168,25 @@ public class ControllerCart {
 		return map;
 		
 	}
+	
+	
+	
+	//通过改变商品数量进行改变
+		@ResponseBody
+		@RequestMapping(value="/updatenum",method=RequestMethod.POST)
+		public Map<String,Object> Productupdate(HttpServletRequest request,String id) {
+			Map<String,Object> map=new HashMap<String,Object>();
+		//	List<Cart> cartInfo = cartService.getid(request,id);
+					Cart cart = new Cart();
+					cart.setBuyNum(Integer.valueOf(request.getParameter("num")) );
+					cart.setServiceId(id);
+					System.out.println(cart.getBuyNum());
+					int a = cartService.updateBuynum1(cart, request);
+					map.put("code", 1);
+					map.put("msg",a);	
+			return map;
+			
+		}
 	
 	
 	//通过结算向serviceorder里插入订单编号等

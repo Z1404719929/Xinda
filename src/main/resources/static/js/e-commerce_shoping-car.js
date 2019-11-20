@@ -232,10 +232,34 @@ function addnum(id,num){
 	
 }
 
+
 function changenum(id){
+	var userid=sessionStorage.getItem("id")
+	console.log("成功后返回的数据",userid);
 	var e=window.event;
-	console.log("8888888",e);
-	$(e.target).val();
+	var num=$(e.target).val()
+	console.log("成功后返回的数据",$(e.target).val());
+	var code=$(".code").val();
+	 $.ajax({
+		                url: "/product/updatenum",
+		                type: "post",
+		                data: {id:id, 
+		    	                //  name:name,
+		    	                  code:code,
+		    	                  userid:userid,
+		    						num:num,
+		    	                  },
+		    	          		dataType:"json",
+		    	          		success:function(data){
+		    	          			if(data.code==1){    	          		
+		    	          				console.log($(e.target).val());
+		    	          			}
+		    	          		},error:function(data){
+		    						console.log("请求失败",data);
+		    					}
+		    	          		})
+		    	          		
+
 }
 
 

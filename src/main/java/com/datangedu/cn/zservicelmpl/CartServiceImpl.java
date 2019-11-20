@@ -101,13 +101,6 @@ public class CartServiceImpl  implements  CartService{
 
 	}
 
-	
-	@Override
-	public List<Cart> getid(HttpServletRequest request, String id){
-		CartExample cartExample=new CartExample();
-		CartExample.Criteria criteria=cartExample.createCriteria();
-		criteria.andServiceIdEqualTo(id);
-		return cartMapper.selectByExample(cartExample);	
-	}
+
 	
 }
