@@ -241,6 +241,11 @@ function star_stop(id,status){
 	})
 }
 
+//图像展示
+function defaultImg(img){
+	img.src="/images/user-lg.png";
+}
+
 //退出登录
 $(".exit").on("click",function(){
 	sessionStorage.setItem("id","")

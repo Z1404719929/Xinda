@@ -25,12 +25,13 @@ $(".login-btn").on("click", function(){
 		dataType: "json",
 		success: function(data){
 			console.log("成功后返回的数据",data);
-			alert(data.msg);
 			if(data.code==1){
 			sessionStorage.setItem("id",data.userid),
 			sessionStorage.setItem("name",data.username),
 			sessionStorage.setItem("status",data.code),
 			 location.href="redirect?page=operator_product"
+			}else{
+				alert(data.msg);
 			}
 //			alert(data.msg);
 		},

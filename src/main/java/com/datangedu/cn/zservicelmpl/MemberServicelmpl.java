@@ -152,6 +152,15 @@ public class MemberServicelmpl implements MemberService {
 				throw new Exception("更新用户头像失败");
 			}
 		}
-
+		
+		////////////////////////////修改购买订单数量和消费金额
+		@Override
+		public Member select2(String m) {
+			return memberMapper.selectByPrimaryKey(m);
+		}
+		@Override
+		public int update2(Member m) {
+			return memberMapper.updateByPrimaryKeySelective(m);
+		}
 		
 }

@@ -1,4 +1,5 @@
 
+    
 $(function(){
 	img();
 	$.ajax({
@@ -54,7 +55,10 @@ function img(){
 	"/>`
 	$(".img").append(txt);
 }
-
+//图像展示
+function defaultImg(img){
+	img.src="/images/user-lg.png";
+}
 //模糊查询
 $(".select-btn").on("click",function(){
 	console.log("查询内容",$(".select").val());

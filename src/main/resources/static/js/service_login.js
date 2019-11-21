@@ -33,6 +33,7 @@ $(".login-btn").on("click", function(){
 			if(data.code==1){
 			sessionStorage.setItem("id",data.providerid),
 			sessionStorage.setItem("name",data.providername),
+			sessionStorage.setItem("status",data.code),
 			 location.href="redirect?page=service_product"
 			}
 		},

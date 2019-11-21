@@ -43,7 +43,7 @@ $(function(){
 			for(var i = 0;i<ppList.length;i++){
 				if(ppList[i].status==1){
 				txt +=`<tr>
-                        <td><input type="checkbox" class="checkbox" value="${ppList[i].id}" name="product"></td>
+                        <td><input type="checkbox" class="checkbox checkbox1" value="${ppList[i].id}" name="product"></td>
                         <td>${ppList[i].serviceName}</td>
                         <td>${ppList[i].serviceContent}</td>
                         <td>${ppList[i].price}元</td>
@@ -57,7 +57,7 @@ $(function(){
 				</tr>`
 					}else{
 						txt +=`<tr>
-	                        <td><input type="checkbox" class="checkbox" value="${ppList[i].id}" name="product"></td>
+	                        <td><input type="checkbox" class="checkbox checkbox1" value="${ppList[i].id}" name="product"></td>
 	                        <td>${ppList[i].serviceName}</td>
 	                        <td>${ppList[i].serviceContent}</td>
 	                        <td>${ppList[i].price}元</td>
@@ -117,7 +117,7 @@ $(".select-btn").on("click",function(){
 			for(var i = 0;i<ppList.length;i++){
 				if(ppList[i].status==1){
 				txt +=`<tr>
-                        <td><input type="checkbox" class="checkbox" value="${ppList[i].id}" name="product"></td>
+                        <td><input type="checkbox" class="checkbox checkbox1" value="${ppList[i].id}" name="product"></td>
                         <td>${ppList[i].serviceName}</td>
                         <td>${ppList[i].serviceContent}</td>
                         <td>${ppList[i].price}元</td>
@@ -131,7 +131,7 @@ $(".select-btn").on("click",function(){
 				</tr>`
 					}else{
 						txt +=`<tr>
-	                        <td><input type="checkbox" class="checkbox" value="${ppList[i].id}" name="product"></td>
+	                        <td><input type="checkbox" class="checkbox checkbox1" value="${ppList[i].id}" name="product"></td>
 	                        <td>${ppList[i].serviceName}</td>
 	                        <td>${ppList[i].serviceContent}</td>
 	                        <td>${ppList[i].price}元</td>
@@ -192,6 +192,48 @@ function del(id){
 		}
 	})
 }
+
+$(".checkall").click(function () {
+    $(".checkbox1").prop("checked", $(this).prop("checked"))
+});
+
+$(document).on("click", ".checkbox1", function (e) {
+    var flag = $(".checkbox1:checked").length == $(".checkbox1").length;
+    $(".checkall").prop("checked",flag);
+    console.log(e.toElement.value,flag);//获取点击元素的value值
+    var s5=str.split(',');
+    flag=false;
+    var index=-1;
+
+    for(var i=0;i<s5.length;i++){
+    	if(e.toElement.value==s5[i]){
+    		flag=true;
+    		index=i;
+    	}
+    }
+    if(index!=-1){
+    str="";
+    for(var i=0;i<s5.length;i++){
+    	if(i!=index){
+    		str+=s5[i]+",";
+    	}
+    }
+    }else{
+ str +=e.toElement.value+",";}
+    var s5=str.split(',');
+    str="";
+    for(var i=0;i<s5.length;i++){
+    	if(s5[i]!=""){
+    		str+=s5[i]+",";
+    	}
+    }
+    console.log(str);
+})
+
+$(".checkbox1").on("change",function(){
+	var flag = $(".checkbox1:checked").length == $(".checkbox1").length;
+	console.log(flag);
+})
 
 //全选
 $(".checkall").on("change",function(){

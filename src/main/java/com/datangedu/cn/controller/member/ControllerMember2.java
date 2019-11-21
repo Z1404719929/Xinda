@@ -219,6 +219,66 @@ public class ControllerMember2 {
 		List<ServiceOrder> setList=new ArrayList<ServiceOrder>();
 		List<ProviderProduct> ppList= ppService.select(request);		//模糊查询查到所有产品id
 		System.out.println(request.getParameter("content"));
+		
+//		for(int j=0;j<soList.size();j++) {
+//			String [] str=soList.get(j).getServiceId().split(",");//str={0003*1,0002*2}
+//			System.out.println(str[0]);
+//			System.out.println(str.length);
+//			String [] str1=new String[10];
+//			String [] str2=new String[10];
+//			List<ProviderProduct> pp;
+//			StringBuffer buf=new StringBuffer();
+//			//“0002”
+//			for(int i=0;i<str.length;i++) {
+//				String [] str3=str[i].split("\\*");	//str3={0003,1}
+//				pp=ppService.getid(str3[0]);		//查询产品id
+//				str1[i]=pp.get(0).getServiceContent();		//产品名称存入str1
+//				str2[i]=str3[1];											//数量存入str2
+//				System.out.println("结果"+str1[i]+"*"+str2[i]);
+//				buf.append(str1[i]+"*"+str2[i]+" ");
+//				soList.get(j).setServiceId(buf.toString());
+//				System.out.println(buf.toString());
+//			}
+//		}
+//		
+//		if(request.getParameter("content").equals("1")) {
+//			for(int i=0;i<soList.size();i++) {
+//				if(soList.get(i).getContent()==null) {
+//					ServiceOrder so=new ServiceOrder();
+//					so.setServiceNo(soList.get(i).getServiceNo());
+//					so.setServiceId(soList.get(i).getServiceId());
+//					so.setPpId(soList.get(i).getPpId());
+//					so.setServiceName(soList.get(i).getServiceName());
+//					so.setProviderName(soList.get(i).getProviderName());
+//					System.out.println("yongh=="+so.getServiceId());
+//					so.setMemberId(soList.get(i).getMemberId());
+//					so.setServiceNum(soList.get(i).getServiceNum());
+//					so.setTotalPrice(soList.get(i).getTotalPrice());
+//					so.setCreateTime(soList.get(i).getCreateTime());
+//					setList.add(so);
+//				}
+//				}
+//			}else {
+//				for(int i=0;i<soList.size();i++) {
+//					if(soList.get(i).getContent()!=null) {
+//						ServiceOrder so=new ServiceOrder();
+//						so.setServiceNo(soList.get(i).getServiceNo());
+//						so.setServiceId(soList.get(i).getServiceId());
+//						so.setPpId(soList.get(i).getPpId());
+//						so.setServiceName(soList.get(i).getServiceName());
+//						so.setProviderName(soList.get(i).getProviderName());
+//						System.out.println("yongh=="+so.getServiceId());
+//						so.setMemberId(soList.get(i).getMemberId());
+//						so.setServiceNum(soList.get(i).getServiceNum());
+//						so.setTotalPrice(soList.get(i).getTotalPrice());
+//						so.setCreateTime(soList.get(i).getCreateTime());
+//						setList.add(so);
+//					}
+//					}
+//			}
+			
+		
+		
 		if(request.getParameter("content").equals("1")) {
 			for(int i=0;i<soList.size();i++) {		//
 			if(soList.get(i).getContent()==null) {

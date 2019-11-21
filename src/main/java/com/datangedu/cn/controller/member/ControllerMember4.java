@@ -107,9 +107,10 @@ public class ControllerMember4 {
 			System.out.println("修改密码5"+a);
 			map.put("data", a);
 			if(a==1) {
+				map.put("code", 1);
 			map.put("msg", "修改成功");
 			}else {
-				map.put("msg", "账号不存在");
+				map.put("msg", "旧密码错误");
 			}
 			return map;
 		}

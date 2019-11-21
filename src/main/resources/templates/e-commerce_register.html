@@ -31,7 +31,7 @@
         <ul class="main">
             <ul class="input">
                 <li>
-                    <input id="cellphone" type="text" placeholder="请输入手机号">
+                    <input id="cellphone" type="text" placeholder="请输入手机号"   required="required" maxlength=11 onblur="if(/\d{11}/gi.test(this.value)?true:false){0}else{alert('手机号十一位数字');}">
                 </li>
                 <li>
                     <input type="text" class="code" placeholder="请输入验证码">

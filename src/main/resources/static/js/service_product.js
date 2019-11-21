@@ -106,7 +106,7 @@ $(".cancel").on("click", function(event){
  	                        <td>
  	                            <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span>
  	                            <span class="handle-btn" onclick="dl('${providerInfo[i].id}')"><i class="fa fa-close fa-fw"></i>删除</span>
- 	                            <span class="handle-btn" onclick="down('${providerInfo[i].id}')"><i class="fa fa-arrow-up fa-fw"></i>下线</span>
+ 	                            <span class="handle-btn" onclick="down('${providerInfo[i].id}')"><i class="fa fa-arrow-down fa-fw"></i>下线</span>
  	                        </td>
  	                    </tr>`
  						}else{

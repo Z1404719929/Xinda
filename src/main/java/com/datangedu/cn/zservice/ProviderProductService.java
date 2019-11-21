@@ -21,4 +21,5 @@ public interface ProviderProductService {
 	public int del(HttpServletRequest request);
 	ProviderProduct getUserInfo(String id);
 	public List<ProviderProduct> select2(HttpServletRequest request);
+	int update2(ProviderProduct pp);
 }

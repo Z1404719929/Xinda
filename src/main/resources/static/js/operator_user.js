@@ -68,7 +68,10 @@ function img(){
 	"/>`
 	$(".img").append(txt);
 }
-
+//头像
+function defaultImg(img){
+		img.src="/images/user-lg.png";
+}
 //分页模糊查询
 function page(i){
 	console.log(i)

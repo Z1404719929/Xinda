@@ -23,5 +23,7 @@ public interface MemberService {
 	public Member getUserInfo(String id);
 	int updatexx(HttpServletRequest request);
 	public void saveUserImg(Member member) throws Exception;
+	int update2(Member m);
+	Member select2(String m);
 
 }

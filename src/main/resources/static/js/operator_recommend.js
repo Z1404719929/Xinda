@@ -99,6 +99,10 @@ function page(i,index){
 		}
 	})
 }
+//头像
+function defaultImg(img){
+		img.src="/images/user-lg.png";
+}
 
 //上一页
 $(".last").on("click",function(){

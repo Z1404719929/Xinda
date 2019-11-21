@@ -57,8 +57,7 @@ function list(content){//content=1未评价
     border: 1px solid #e1e1e1;
 	"/>
                 <ul class="article-info">
-                
-					<li>${List[i].serviceName}</li>
+					<li>${List[i].serviceNo}</li>
                     <li>${List[i].serviceId}</li>
                     <li>${List[i].providerName}</li>
                 </ul>
@@ -77,7 +76,7 @@ function list(content){//content=1未评价
     border: 1px solid #e1e1e1;
 	"/>
 	                <ul class="article-info">
-						<li>${List[i].serviceName}</li>
+						<li>${List[i].serviceNo}</li>
 	                    <li>${List[i].serviceId}</li>
 	                    <li>${List[i].providerName}</li>
 	                </ul>

@@ -33,7 +33,8 @@ $(".save1").on("click", function () {
 		},
 		dataType: "json",
 		success: function(data){
-//			alert(data.msg);
+			alert(data.msg);
+			 sessionStorage.setItem("name",name);
 			 location.href="redirect?page=e-commerce_account"
 		},
 		error: function(data){

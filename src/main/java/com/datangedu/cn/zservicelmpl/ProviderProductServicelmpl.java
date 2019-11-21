@@ -11,6 +11,7 @@ import com.datangedu.cn.dao.mapper.CartMapper;
 import com.datangedu.cn.dao.mapper.ProviderProductMapper;
 import com.datangedu.cn.model.sysUser.Cart;
 import com.datangedu.cn.model.sysUser.CartExample;
+import com.datangedu.cn.model.sysUser.Member;
 import com.datangedu.cn.model.sysUser.ProviderProduct;
 import com.datangedu.cn.model.sysUser.ProviderProductExample;
 import com.datangedu.cn.model.sysUser.SysUserExample;
@@ -154,6 +155,10 @@ public class ProviderProductServicelmpl implements ProviderProductService {
 		@Override
 		public ProviderProduct getUserInfo(String id) {
 			return providerProductMapper.selectByPrimaryKey(id);
+		}
+		@Override
+		public int update2(ProviderProduct pp) {
+			return providerProductMapper.updateByPrimaryKeySelective(pp);
 		}
 
 	

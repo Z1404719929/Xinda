@@ -201,7 +201,10 @@ function buy(id,service_content,price){
 	 location.href="redirect?page=e-commerce_settlement"
 }
 
-
+//图像展示
+function defaultImg(img){
+	img.src="/images/user-lg.png";
+}
 
 
 

@@ -152,7 +152,7 @@ if(paytype==0){
 }else{
 	$.ajax({
 		type: "post",
-		url: "/product/hhh",			
+		url: "/product/hhh",	
 		data:{
 	nn:nn,
 	paytype:paytype, 

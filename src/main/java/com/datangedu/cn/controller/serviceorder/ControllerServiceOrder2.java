@@ -58,8 +58,8 @@ public class ControllerServiceOrder2 {
 		System.out.println(str[0]);
 		System.out.println(str.length);
 		
-		String [] str1=new String[10];
-		String [] str2=new String[10];
+		String [] str1=new String[1024];
+		String [] str2=new String[1024];
 		List<ProviderProduct> pp;
 		StringBuffer buf=new StringBuffer();
 		
@@ -103,7 +103,7 @@ public class ControllerServiceOrder2 {
 		map.put("soList", soList);
 		//查id
 		List<Member> member;
-		String [] name=new String[10];
+		String [] name=new String[1024];
 		System.out.println(soList.size());
 		for(int i=0;i<soList.size();i++) {
 			System.out.println("用户id"+soList.get(i).getMemberId());
@@ -122,8 +122,8 @@ public class ControllerServiceOrder2 {
 		System.out.println(str[0]);
 		System.out.println(str.length);
 		
-		String [] str1=new String[10];
-		String [] str2=new String[10];
+		String [] str1=new String[1024];
+		String [] str2=new String[1024];
 		List<ProviderProduct> pp;
 		StringBuffer buf=new StringBuffer();
 		
@@ -187,7 +187,7 @@ public class ControllerServiceOrder2 {
 		System.out.println("查询到的数量"+soList.size());
 		//查id
 		List<Member> member;
-		String [] name=new String[10];
+		String [] name=new String[1024];
 		System.out.println(soList.size());
 		for(int i=0;i<soList.size();i++) {
 			System.out.println("用户id"+soList.get(i).getMemberId());
@@ -206,8 +206,8 @@ public class ControllerServiceOrder2 {
 		System.out.println(str[0]);
 		System.out.println(str.length);
 		
-		String [] str1=new String[10];
-		String [] str2=new String[10];
+		String [] str1=new String[1024];
+		String [] str2=new String[1024];
 		List<ProviderProduct> pp;
 		StringBuffer buf=new StringBuffer();
 		
@@ -262,7 +262,7 @@ public class ControllerServiceOrder2 {
 		System.out.println("查询到的数量"+soList.size());
 		//查id
 		List<Member> member;
-		String [] name=new String[10];
+		String [] name=new String[1024];
 		System.out.println(soList.size());
 		for(int i=0;i<soList.size();i++) {
 			System.out.println("用户id"+soList.get(i).getMemberId());
@@ -281,8 +281,8 @@ public class ControllerServiceOrder2 {
 		System.out.println(str[0]);
 		System.out.println(str.length);
 		
-		String [] str1=new String[10];
-		String [] str2=new String[10];
+		String [] str1=new String[1024];
+		String [] str2=new String[1024];
 		List<ProviderProduct> pp;
 		StringBuffer buf=new StringBuffer();
 		

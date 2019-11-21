@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.datangedu.cn.model.sysUser.Cart;
+import com.datangedu.cn.model.sysUser.Member;
 import com.datangedu.cn.model.sysUser.ProviderProduct;
 import com.datangedu.cn.model.sysUser.ServiceOrder;
 import com.datangedu.cn.zservice.CartService;
+import com.datangedu.cn.zservice.MemberService;
 import com.datangedu.cn.zservice.ProviderProductService;
 import com.datangedu.cn.zservice.ServiceOrderService;
 
@@ -29,6 +31,8 @@ public class ControllerCart {
 	ProviderProductService providerProductService;
 	@Resource
 	ServiceOrderService serviceOrderService;
+	@Resource
+	MemberService mService;
 
 
 //将网页查询到的id插入购物车
@@ -259,11 +263,8 @@ public class ControllerCart {
 				soList.get(j).setServiceId(buf.toString());
 				System.out.println(buf.toString());
 			}
-			
 			}
 		///////////////////////////////////////////////////
-		
-		
 		map.put("list", soList);	
 		return map;
 		
@@ -339,8 +340,31 @@ public class ControllerCart {
 	public Map<String,Object> Productfukuan(HttpServletRequest request) {
 		Map<String,Object> map=new HashMap<String,Object>();
 		List<ServiceOrder> list1=serviceOrderService.getmm(request.getParameter("nn"));
-
 			int a = serviceOrderService.up(request);	
+			/////////////////////////////////修改用户表
+			Member m=mService.select2(list1.get(0).getMemberId());
+			m.setBuyNum(m.getBuyNum()+1);//数量加1
+			m.setTotalPrice(m.getTotalPrice()+list1.get(0).getTotalPrice());//消费金额增加
+			mService.update2(m);
+			////////////////////////////////////修改
+			System.out.println(list1.get(0).getServiceId().split(","));
+			String [] str=list1.get(0).getServiceId().split(",");//str={0003*1,0002*2}
+			  System.out.println(str[0]);
+			  System.out.println(str.length);
+			  
+			  String [] str1=new String[1024];
+			  String [] str2=new String[1024];
+			  
+
+			  for(int i=0;i<str.length;i++) {
+			   String [] str3=str[i].split("\\*"); //str3={0003,1}
+			   ProviderProduct pp=providerProductService.getUserInfo(str3[0]);  //查询产品id
+			   System.out.println("产品"+pp.getSaleNum());
+			   
+				pp.setSaleNum(pp.getSaleNum()+Integer.valueOf(str3[1]));//数量加1
+				System.out.println("产品销量"+pp.getSaleNum());
+				providerProductService.update2(pp);
+			  }
 					map.put("code", 1);
 					map.put("msg", "支付成功");
 					return map;
