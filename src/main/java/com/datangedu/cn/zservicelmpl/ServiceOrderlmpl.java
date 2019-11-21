@@ -151,13 +151,6 @@ public class ServiceOrderlmpl implements ServiceOrderService {
 			criteria.andServiceNoEqualTo(serviceNo);
 			return ServiceOrderMapper.deleteByExample(serviceOrderExample);
 	}	
-	
-	//修改订单支付
-	@Override
-	public int pProductup(HttpServletRequest request) {
-		return 0;
-		
-	}
 
 	
 	//通过订单serciceNo查

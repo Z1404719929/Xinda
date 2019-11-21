@@ -268,6 +268,9 @@ public class ControllerCart {
 		return map;
 		
 	}
+	
+	
+	
 	@ResponseBody
 	@RequestMapping(value="/mmm2",method=RequestMethod.POST)
 	public Map<String,Object> Productxiangqing2(HttpServletRequest request) {
@@ -344,15 +347,7 @@ public class ControllerCart {
 
 	}
 	
-//	@ResponseBody
-//	@RequestMapping(value="/ttt",method=RequestMethod.POST)
-//	public Map<String,Object> ttt(HttpServletRequest request) {
-//		Map<String,Object> map=new HashMap<String,Object>();
-//		int a=serviceOrderService.getttt(request);
-//		
-//		
-//		
-//	}
+
 	
 	
 }

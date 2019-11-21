@@ -7,6 +7,8 @@ $(function(){
 	userinfo();
 	cartnum();
 })
+
+
 function cartnum(){
 	var cartnum=sessionStorage.getItem("cartnum");
 	$(".cartnum").html("");
@@ -14,6 +16,8 @@ function cartnum(){
 	txt +=cartnum
   	$(".cartnum").append(txt);
 }
+
+//修改密码
 $(".save1").on("click", function () {
 	var name=$(".name").val();
 	var email=$(".email").val();

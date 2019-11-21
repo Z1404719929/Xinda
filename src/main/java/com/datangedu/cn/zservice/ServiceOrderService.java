@@ -22,7 +22,6 @@ public interface ServiceOrderService {
 
 	public int pProductDelete(HttpServletRequest request);
 
-	public int pProductup(HttpServletRequest request);
 
 	List<ServiceOrder> getmm(String serciceNo);
 	

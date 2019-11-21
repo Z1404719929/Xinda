@@ -47,7 +47,7 @@ $( function(){
           		       <div class="order-num">订单号：${list[i].serviceNo} 下单时间：${list[i].createTime}</div>
           		                <ul class="order-details">
           		                    <li>
-          		                        <img src="./images/user-lg.png" alt="图片">
+          	
           		                        <ul>
           		                            <li>${list[i].serviceId}</li>
           		                        </ul>
@@ -62,9 +62,9 @@ $( function(){
            		       <div class="order-num">订单号：${list[i].serviceNo} 下单时间：${list[i].createTime}</div>
            		                <ul class="order-details">
            		                    <li>
-           		                        <img src="./images/user-lg.png" alt="图片">
+           		 
            		                        <ul>
-           		                            <li>${str3}</li>          		     
+           		                            <li>${list[i].serviceId}</li>          		     
            		                        </ul>		           
            		                    </li>
            		                    <li class="font-aqua">¥${list[i].totalPrice}</li>
@@ -85,6 +85,7 @@ $( function(){
 	})
 })
 
+//模糊查询
 $(".search111-btn").on("click",function(){
 	var userid=sessionStorage.getItem("id")
 	var str3=sessionStorage.getItem("str3")
@@ -115,7 +116,7 @@ $(".search111-btn").on("click",function(){
           		       <div class="order-num">订单号：${list[i].serviceNo} 下单时间：${list[i].createTime}</div>
           		                <ul class="order-details">
           		                    <li>
-          		                        <img src="./images/user-lg.png" alt="图片">
+       
           		                        <ul>
           		                            <li>${str3}</li>          		                         
           		                        </ul>
@@ -130,7 +131,7 @@ $(".search111-btn").on("click",function(){
            		       <div class="order-num">订单号：${list[i].serviceNo} 下单时间：${list[i].createTime}</div>
            		                <ul class="order-details">
            		                    <li>
-           		                        <img src="./images/user-lg.png" alt="图片">
+
            		                        <ul>
            		                            <li>${str3}</li>          		     
            		                        </ul>		           
