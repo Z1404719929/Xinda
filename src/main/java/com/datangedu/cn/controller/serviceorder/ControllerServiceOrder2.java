@@ -133,7 +133,7 @@ public class ControllerServiceOrder2 {
 			String [] str3=str[i].split("\\*");	//str3={0003,1}
 			
 			pp=ppservice.getid(str3[0]);		//查询产品id
-			str1[i]=pp.get(0).getServiceName();		//产品名称存入str1
+			str1[i]=pp.get(0).getServiceContent();		//产品名称存入str1
 			
 //			System.out.println(pp.get(0).getProviderId());
 //			List<ProviderProduct> ppList= ppservice.getid(str1[i]);

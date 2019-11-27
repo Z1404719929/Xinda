@@ -220,131 +220,152 @@ public class ControllerMember2 {
 		List<ProviderProduct> ppList= ppService.select(request);		//模糊查询查到所有产品id
 		System.out.println(request.getParameter("content"));
 		
-//		for(int j=0;j<soList.size();j++) {
-//			String [] str=soList.get(j).getServiceId().split(",");//str={0003*1,0002*2}
-//			System.out.println(str[0]);
-//			System.out.println(str.length);
-//			String [] str1=new String[10];
-//			String [] str2=new String[10];
-//			List<ProviderProduct> pp;
-//			StringBuffer buf=new StringBuffer();
-//			//“0002”
-//			for(int i=0;i<str.length;i++) {
-//				String [] str3=str[i].split("\\*");	//str3={0003,1}
-//				pp=ppService.getid(str3[0]);		//查询产品id
-//				str1[i]=pp.get(0).getServiceContent();		//产品名称存入str1
-//				str2[i]=str3[1];											//数量存入str2
-//				System.out.println("结果"+str1[i]+"*"+str2[i]);
-//				buf.append(str1[i]+"*"+str2[i]+" ");
-//				soList.get(j).setServiceId(buf.toString());
-//				System.out.println(buf.toString());
-//			}
-//		}
-//		
-//		if(request.getParameter("content").equals("1")) {
-//			for(int i=0;i<soList.size();i++) {
-//				if(soList.get(i).getContent()==null) {
-//					ServiceOrder so=new ServiceOrder();
-//					so.setServiceNo(soList.get(i).getServiceNo());
-//					so.setServiceId(soList.get(i).getServiceId());
-//					so.setPpId(soList.get(i).getPpId());
-//					so.setServiceName(soList.get(i).getServiceName());
-//					so.setProviderName(soList.get(i).getProviderName());
-//					System.out.println("yongh=="+so.getServiceId());
-//					so.setMemberId(soList.get(i).getMemberId());
-//					so.setServiceNum(soList.get(i).getServiceNum());
-//					so.setTotalPrice(soList.get(i).getTotalPrice());
-//					so.setCreateTime(soList.get(i).getCreateTime());
-//					setList.add(so);
-//				}
-//				}
-//			}else {
-//				for(int i=0;i<soList.size();i++) {
-//					if(soList.get(i).getContent()!=null) {
-//						ServiceOrder so=new ServiceOrder();
-//						so.setServiceNo(soList.get(i).getServiceNo());
-//						so.setServiceId(soList.get(i).getServiceId());
-//						so.setPpId(soList.get(i).getPpId());
-//						so.setServiceName(soList.get(i).getServiceName());
-//						so.setProviderName(soList.get(i).getProviderName());
-//						System.out.println("yongh=="+so.getServiceId());
-//						so.setMemberId(soList.get(i).getMemberId());
-//						so.setServiceNum(soList.get(i).getServiceNum());
-//						so.setTotalPrice(soList.get(i).getTotalPrice());
-//						so.setCreateTime(soList.get(i).getCreateTime());
-//						setList.add(so);
-//					}
-//					}
-//			}
-			
-		
+		for(int j=0;j<soList.size();j++) {
+			String [] str=soList.get(j).getServiceId().split(",");//str={0003*1,0002*2}
+			System.out.println(str[0]);
+			System.out.println(str.length);
+			String [] str1=new String[10];
+			String [] str2=new String[10];
+			List<ProviderProduct> pp;
+			StringBuffer buf=new StringBuffer();
+			//“0002”
+			for(int i=0;i<str.length;i++) {
+				String [] str3=str[i].split("\\*");	//str3={0003,1}
+				pp=ppService.getid(str3[0]);		//查询产品id
+				str1[i]=pp.get(0).getServiceContent();		//产品名称存入str1
+				str2[i]=str3[1];											//数量存入str2
+				System.out.println("结果"+str1[i]+"*"+str2[i]);
+				buf.append(str1[i]+"*"+str2[i]+" ");
+				soList.get(j).setServiceId(buf.toString());
+				System.out.println(buf.toString());
+			}
+		}
 		
 		if(request.getParameter("content").equals("1")) {
-			for(int i=0;i<soList.size();i++) {		//
-			if(soList.get(i).getContent()==null) {
-				String[] str = soList.get(i).getServiceId().split(",");	//00003*2 00004*3
-				for(int j=0;j<str.length;j++) {
-					String[] str2 = str[j].split("\\*"); // str2={00003,2} 00004,3
-					List<ProviderProduct> pp = ppService.getid(str2[0]); // 查询00003产品信息
-					System.out.println("str2[0]"+str2[0]);
-					for(int n=0;n<ppList.size();n++) {
-					if(str2[0].equals(ppList.get(n).getId())) {
-						System.out.println("循环");
+			for(int i=0;i<soList.size();i++) {
+				if(soList.get(i).getContent()==null) {
+					ServiceOrder so=new ServiceOrder();
+					so.setServiceNo(soList.get(i).getServiceNo());
+					so.setServiceId(soList.get(i).getServiceId());
+					so.setPpId(soList.get(i).getPpId());
+					so.setServiceName(soList.get(i).getServiceName());
+					so.setProviderName(soList.get(i).getProviderName());
+					System.out.println("yongh=="+so.getServiceId());
+					so.setMemberId(soList.get(i).getMemberId());
+					so.setServiceNum(soList.get(i).getServiceNum());
+					so.setTotalPrice(soList.get(i).getTotalPrice());
+					so.setCreateTime(soList.get(i).getCreateTime());
+					setList.add(so);
+				}
+				}
+			}else {
+				for(int i=0;i<soList.size();i++) {
+					if(soList.get(i).getContent()!=null) {
 						ServiceOrder so=new ServiceOrder();
 						so.setServiceNo(soList.get(i).getServiceNo());
-						so.setServiceId(pp.get(0).getServiceContent());
-						so.setPpId(ppList.get(n).getId());
-						so.setServiceName(pp.get(0).getServiceName());
-						so.setProviderName(pp.get(0).getProviderName());
+						so.setServiceId(soList.get(i).getServiceId());
+						so.setPpId(soList.get(i).getPpId());
+						so.setServiceName(soList.get(i).getServiceName());
+						so.setProviderName(soList.get(i).getProviderName());
 						System.out.println("yongh=="+so.getServiceId());
 						so.setMemberId(soList.get(i).getMemberId());
-						so.setServiceNum(Integer.valueOf(str2[1]));
-						so.setTotalPrice(pp.get(0).getPrice()*Integer.valueOf(str2[1]));
+						so.setServiceNum(soList.get(i).getServiceNum());
+						so.setTotalPrice(soList.get(i).getTotalPrice());
 						so.setCreateTime(soList.get(i).getCreateTime());
 						setList.add(so);
 					}
 					}
-				}
 			}
-			}
-		}else {
 			
-			for(int i=0;i<soList.size();i++) {		//
-				if(soList.get(i).getContent()!=null) {
-					String[] str = soList.get(i).getServiceId().split(",");	//00003*2 00004*3
-					for(int j=0;j<str.length;j++) {
-						String[] str2 = str[j].split("\\*"); // str2={00003,2} 00004,3
-						List<ProviderProduct> pp = ppService.getid(str2[0]); // 查询00003产品信息
-						System.out.println("str2[0]"+str2[0]);
-						for(int n=0;n<ppList.size();n++) {
-						if(str2[0].equals(ppList.get(n).getId())) {
-							System.out.println("循环");
-							ServiceOrder so=new ServiceOrder();
-							so.setServiceNo(soList.get(i).getServiceNo());
-							so.setPpId(str2[0]);
-							System.out.println("456"+so.getPpId());
-							so.setServiceId(pp.get(0).getServiceContent());
-							so.setServiceName(pp.get(0).getServiceName());
-							so.setProviderName(pp.get(0).getProviderName());
-							so.setPpId(ppList.get(n).getId());
-							System.out.println("yongh=="+so.getServiceId());
-							so.setMemberId(soList.get(i).getMemberId());
-							so.setServiceNum(Integer.valueOf(str2[1]));
-							so.setTotalPrice(pp.get(0).getPrice()*Integer.valueOf(str2[1]));
-							so.setCreateTime(soList.get(i).getCreateTime());
-							setList.add(so);
-						}
-						}
-					}
-				}
-				}
-			
-		}
+		
+		
+//		if(request.getParameter("content").equals("1")) {
+//			for(int i=0;i<soList.size();i++) {		//
+//			if(soList.get(i).getContent()==null) {
+//				String[] str = soList.get(i).getServiceId().split(",");	//00003*2 00004*3
+//				for(int j=0;j<str.length;j++) {
+//					String[] str2 = str[j].split("\\*"); // str2={00003,2} 00004,3
+//					List<ProviderProduct> pp = ppService.getid(str2[0]); // 查询00003产品信息
+//					System.out.println("str2[0]"+str2[0]);
+//					for(int n=0;n<ppList.size();n++) {
+//					if(str2[0].equals(ppList.get(n).getId())) {
+//						System.out.println("循环");
+//						ServiceOrder so=new ServiceOrder();
+//						so.setServiceNo(soList.get(i).getServiceNo());
+//						so.setServiceId(pp.get(0).getServiceContent());
+//						so.setPpId(ppList.get(n).getId());
+//						so.setServiceName(pp.get(0).getServiceName());
+//						so.setProviderName(pp.get(0).getProviderName());
+//						System.out.println("yongh=="+so.getServiceId());
+//						so.setMemberId(soList.get(i).getMemberId());
+//						so.setServiceNum(Integer.valueOf(str2[1]));
+//						so.setTotalPrice(pp.get(0).getPrice()*Integer.valueOf(str2[1]));
+//						so.setCreateTime(soList.get(i).getCreateTime());
+//						setList.add(so);
+//					}
+//					}
+//				}
+//			}
+//			}
+//		}else {
+//			
+//			for(int i=0;i<soList.size();i++) {		//
+//				if(soList.get(i).getContent()!=null) {
+//					String[] str = soList.get(i).getServiceId().split(",");	//00003*2 00004*3
+//					for(int j=0;j<str.length;j++) {
+//						String[] str2 = str[j].split("\\*"); // str2={00003,2} 00004,3
+//						List<ProviderProduct> pp = ppService.getid(str2[0]); // 查询00003产品信息
+//						System.out.println("str2[0]"+str2[0]);
+//						for(int n=0;n<ppList.size();n++) {
+//						if(str2[0].equals(ppList.get(n).getId())) {
+//							System.out.println("循环");
+//							ServiceOrder so=new ServiceOrder();
+//							so.setServiceNo(soList.get(i).getServiceNo());
+//							so.setPpId(str2[0]);
+//							System.out.println("456"+so.getPpId());
+//							so.setServiceId(pp.get(0).getServiceContent());
+//							so.setServiceName(pp.get(0).getServiceName());
+//							so.setProviderName(pp.get(0).getProviderName());
+//							so.setPpId(ppList.get(n).getId());
+//							System.out.println("yongh=="+so.getServiceId());
+//							so.setMemberId(soList.get(i).getMemberId());
+//							so.setServiceNum(Integer.valueOf(str2[1]));
+//							so.setTotalPrice(pp.get(0).getPrice()*Integer.valueOf(str2[1]));
+//							so.setCreateTime(soList.get(i).getCreateTime());
+//							setList.add(so);
+//						}
+//						}
+//					}
+//				}
+//				}	
+//		}
 		System.out.println("hhhhhhhhh"+setList.size());
 		map.put("list", setList);
 		return map;
 	}
 
+	/////评价
+	@ResponseBody
+	@RequestMapping(value = "/contentsave", method = RequestMethod.POST)
+	public Map<String, Object> contentsave(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		ServiceOrder so=new ServiceOrder();
+		so.setServiceNo(request.getParameter("serviceno"));
+		so.setContent(request.getParameter("content"));
+		soService.contentsave(so);
+		return map;
+	}
 	
+	///查看评价
+	@ResponseBody
+	@RequestMapping(value = "/contentsee", method = RequestMethod.POST)
+	public Map<String, Object> contentsee(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		ServiceOrder so=new ServiceOrder();
+		List<ServiceOrder> solist=soService.getmm(request.getParameter("serviceno"));
+		System.out.println(solist.get(0).getContent());
+		map.put("msg",solist.get(0).getContent());
+		return map;
+	}
 	
 }

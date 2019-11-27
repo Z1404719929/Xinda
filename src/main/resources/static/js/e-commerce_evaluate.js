@@ -1,8 +1,9 @@
-
+var serviceno1;
 $(function(){
 	list(1);
 	cartnum();
 	userinfo();
+	$(".masking2").hide();
 })
 function userinfo(){
 	var userid=sessionStorage.getItem("id")
@@ -59,10 +60,9 @@ function list(content){//content=1未评价
                 <ul class="article-info">
 					<li>${List[i].serviceNo}</li>
                     <li>${List[i].serviceId}</li>
-                    <li>${List[i].providerName}</li>
                 </ul>
                 <p>购买时间：${List[i].createTime}</p>
-                <p class="evaluate_btn">去评价</p>
+                <p class="evaluate_btn" onclick="btn1('${List[i].serviceNo}')">去评价</p>
                 </div>
 				`
 			}
@@ -78,10 +78,10 @@ function list(content){//content=1未评价
 	                <ul class="article-info">
 						<li>${List[i].serviceNo}</li>
 	                    <li>${List[i].serviceId}</li>
-	                    <li>${List[i].providerName}</li>
+
 	                </ul>
 	                <p>购买时间：${List[i].createTime}</p>
-	                <p class="evaluate_btn">已评价</p>
+	                <p class="evaluate_btn" onclick="see('${List[i].serviceNo}')">已评价</p>
 	                </div>
 					`
 				}
@@ -94,13 +94,6 @@ function list(content){//content=1未评价
 	})
 	
 }
-
-
-
-
-
-
-
 
 
 
@@ -122,6 +115,53 @@ function login(){
 function defaultImg(img){
 	img.src="/images/user-lg.png";
 }
+function btn1(no){
+	$(".masking").show();
+	serviceno1=no;
+	console.log(serviceno1);
+}
+
+function save5(){
+	console.log("查询内容",$("#content5").val());
+	var contentsave=$("#content5").val();
+	$.ajax({
+		type: "post",
+		url: "/ou/contentsave",
+		data:{
+			serviceno:serviceno1,
+			content:contentsave,
+		},
+		dataType: "json",
+		success: function(data){
+			 location.href="redirect?page=e-commerce_evaluate"
+			},
+			error: function(data){
+				console.log("失败后返回的数据",data);
+			}
+		})
+}
+
+function see(no){
+	serviceno1=no;
+	console.log(serviceno1);
+	$.ajax({
+		type: "post",
+		url: "/ou/contentsee",
+		data:{
+			serviceno:serviceno1,
+		},
+		dataType: "json",
+		success: function(data){
+			$(".masking").show();
+			console.log(data.msg);
+			$("#content5").val(data.msg);
+			},
+			error: function(data){
+				console.log("失败后返回的数据",data);
+			}
+		})
+}
+
 $(".change1").on("click", function(){
 	list(1);
 })

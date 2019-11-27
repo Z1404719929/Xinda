@@ -44,6 +44,7 @@ function list5(){
 	    	        	$(".list").html("");
 	    	          	var txt="";
 	    	          	for(var i=0;i<providerProductInfo.length;i++){
+	    	          		if(providerProductInfo[i].status==1){
 	    	          		txt+= `    	          		
 	    	          		    <div class="article" value="${providerProductInfo[i].id}">	    	          		    
 	    	          		    <img class="ss" src="/pp/headImg2?id=${providerProductInfo[i].id}" onerror="defaultImg(this)" style="
@@ -65,6 +66,7 @@ function list5(){
                   
                 </li>     
             </ul></div>  `;
+	    	          	}
 	    	          	}
 	    	        	$(".list").append(txt);
 	                },

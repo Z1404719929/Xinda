@@ -200,7 +200,7 @@ $(".checkall").click(function () {
 $(document).on("click", ".checkbox1", function (e) {
     var flag = $(".checkbox1:checked").length == $(".checkbox1").length;
     $(".checkall").prop("checked",flag);
-    console.log(e.toElement.value,flag);//获取点击元素的value值
+//    console.log(e.toElement.value,flag);//获取点击元素的value值
     var s5=str.split(',');
     flag=false;
     var index=-1;

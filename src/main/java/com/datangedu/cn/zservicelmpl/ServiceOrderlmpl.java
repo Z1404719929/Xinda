@@ -219,4 +219,10 @@ public class ServiceOrderlmpl implements ServiceOrderService {
 		return ServiceOrderMapper.selectByExample(serviceOrderExample);
 	}
 	
+//////////////////////////////////////////////评价
+	@Override
+	public int contentsave(ServiceOrder so) {
+		return ServiceOrderMapper.updateByPrimaryKeySelective(so);
+	}
+	
 }

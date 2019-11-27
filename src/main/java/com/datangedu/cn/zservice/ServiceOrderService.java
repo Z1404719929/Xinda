@@ -42,4 +42,6 @@ public interface ServiceOrderService {
 
 	List<ServiceOrder> search(HttpServletRequest request);
 
+	int contentsave(ServiceOrder so);
+
 }
