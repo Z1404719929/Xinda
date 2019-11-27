@@ -16,18 +16,7 @@ $(".exit").on("click",function(){
 	 location.href="redirect?page=service_login"
 })
 
-function login(){
-	var userid=sessionStorage.getItem("id");
-	var username=sessionStorage.getItem("name");
-	var status=sessionStorage.getItem("status");
-	console.log(username);
-	if(status!=1){
-		alert("请先登录");
-		 location.href="redirect?page=service_login"
-	}
-}
 $(function(){
-	login();
 	$.ajax({
 		type: "post",
 		url: "/provider2/province",
