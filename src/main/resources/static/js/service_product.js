@@ -24,7 +24,7 @@ $(".save").on("click", function(event){
 				//请求类型
 				type:"post",
 				//请求路径
-				url:"/provider/providerregister",
+				url:"provider/providerregister",
 				//请求参数
 				data:{
 					id:id,
@@ -56,7 +56,7 @@ $(".cancel").on("click", function(event){
 		//请求类型
 		type:"post",
 		//请求路径
-		url:"/provider/providerdelete",
+		url:"provider/providerdelete",
 		//返回数据类型
 		data:{
 			id:uuid,
@@ -81,7 +81,7 @@ $(".cancel").on("click", function(event){
  				//请求类型
  				type:"post",
  				//请求路径
- 				url:"/provider/getproviderinfo",
+ 				url:"provider/getproviderinfo",
  				//返回数据类型
  				data:{
  					userid:userid,
@@ -104,8 +104,6 @@ $(".cancel").on("click", function(event){
  						<td>${providerInfo[i].price}</td>
  	                        <td><span class="up-line-mark up-line-mark-red">上线</span></td>
  	                        <td>
- 	                            <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span>
- 	                            <span class="handle-btn" onclick="dl('${providerInfo[i].id}')"><i class="fa fa-close fa-fw"></i>删除</span>
  	                            <span class="handle-btn" onclick="down('${providerInfo[i].id}')"><i class="fa fa-arrow-down fa-fw"></i>下线</span>
  	                        </td>
  	                    </tr>`
@@ -118,6 +116,8 @@ $(".cancel").on("click", function(event){
  	 						<td>${providerInfo[i].price}</td>
  	 	                        <td><span class="down-line-mark down-line-mark-orange">下线</span></td>
  	 	                        <td>
+ 	                            <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span>
+ 	                            <span class="handle-btn" onclick="dl('${providerInfo[i].id}')"><i class="fa fa-close fa-fw"></i>删除</span>
  	 	                            <span class="handle-btn" onclick="on('${providerInfo[i].id}')"><i class="fa fa-arrow-up fa-fw"></i>上线</span>
  	 	                        </td>
  	 	                    </tr>`
@@ -149,7 +149,7 @@ $(".cancel").on("click", function(event){
 				//请求类型
 				type:"post",
 				//请求路径
-				url:"/provider/providerdelete",
+				url:"provider/providerdelete",
 				//返回数据类型
 				data:{
 					id:id,
@@ -172,7 +172,7 @@ $(".cancel").on("click", function(event){
 				//请求类型
 				type:"post",
 				//请求路径
-				url:"/provider/provideroline",
+				url:"provider/provideroline",
 				//返回数据类型
 				data:{
 					id:id,
@@ -195,7 +195,7 @@ $(".cancel").on("click", function(event){
 				//请求类型
 				type:"post",
 				//请求路径
-				url:"/provider/providerdownline",
+				url:"provider/providerdownline",
 				//返回数据类型
 				data:{
 					id:id,
@@ -225,7 +225,7 @@ $(".apa").on("click", function(){
 		//请求类型
 		type:"get",
 		//请求路径
-		url:"/provider/apa",
+		url:"provider/apa",
 		//返回数据类型
 		dataType:"json",
 		//请求成功后调用函数
@@ -254,7 +254,7 @@ $("#form3").ajaxForm(function(data) {
     	var name=$(".select").val();
     	$.ajax({
     		type: "post",
-    		url: "/provider/lectLikeByOrderId",
+    		url: "provider/lectLikeByOrderId",
     		data:{
     			name:name,
     		},
@@ -295,7 +295,7 @@ function img(){
 	var userid=sessionStorage.getItem("id")
 	$(".img").html("");
 	var txt="";
-	txt +=`<img  src="/provider/headImg?id=${userid}" onerror="defaultImg(this)" style="
+	txt +=`<img  src="provider/headImg?id=${userid}" onerror="defaultImg(this)" style="
     width: 50px;
     height: 50px;
     border-radius: 50px;
@@ -309,7 +309,7 @@ function img(){
     	sessionStorage.setItem("id","")
     	sessionStorage.setItem("name","")
     	sessionStorage.setItem("status",2)
-    	 location.href="redirect?page=service_login"
+    	 location.href="redirect?page=index"
     })
 
     function login(){

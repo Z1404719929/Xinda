@@ -23,16 +23,17 @@ var carsname=new Array();
 var n=0;
 var num3=0;
 
+
 $( function(){
 		var userid=sessionStorage.getItem("id")
 			console.log("成功后返回的数据",userid);
 		var username=sessionStorage.getItem("name")
 	login();
 
-   cartnum();
+
 	$.ajax({
 			type:"get",
-			url:"/product/getproductinfo",
+			url:"product/getproductinfo",
 			   data: {
 				userid:userid,
 			
@@ -66,9 +67,9 @@ $( function(){
         <div class="cart">
         <ul class="merchandise">
             <li>
-               <img class="ss" src="/pp/headImg2?id=${product[i].product[j].id}" onerror="defaultImg(this)" style="
-    width: 50px;
-    height: 50px;
+               <img class="ss" src="pp/headImg2?id=${product[i].product[j].id}" onerror="defaultImg(this)" style="
+    width: 90px;
+    height: 60px;
     display: inline-block;
     border: 1px solid #e1e1e1;
 	"/>
@@ -117,7 +118,7 @@ $( function(){
 	  	$(".price").append(txt);
 	  	
 	     sessionStorage.setItem("totalprice1",totalprice1);
-	  	
+	     cartnum();
 						},
 				error:function(data){
 					console.log("失败返回后的数据",data);	
@@ -135,15 +136,17 @@ function cartnum(){
 
 //删除商品
  function dl(id){
+	 var userid=sessionStorage.getItem("id");
+	 console.log("158",userid);
     	$.ajax({
 				//请求类型
 				type:"post",
 				//请求路径
-				url:"/product/providerProductdelete",
+				url:"product/providerProductdelete",
 				//返回数据类型
 				data:{
 					id:id,
-
+					userid:userid,
 				},
 				dataType:"json",
 				//请求成功后调用函数
@@ -171,7 +174,7 @@ function reducenum(id,num){
 	//var name=$(".name").val();
 	var code=$(".code").val();
 	 $.ajax({
-		                url: "/product/reducenum",
+		                url: "product/reducenum",
 		                type: "post",
 		                data: {id:id, 
 		    	                //  name:name,
@@ -209,7 +212,7 @@ function addnum(id,num){
 	//var name=$(".name").val();
 	var code=$(".code").val();
 	 $.ajax({
-		                url: "/product/addnum",
+		                url: "product/addnum",
 		                type: "post",
 		                data: {id:id, 
 		    	                //  name:name,
@@ -241,7 +244,7 @@ function changenum(id){
 	console.log("成功后返回的数据",$(e.target).val());
 	var code=$(".code").val();
 	 $.ajax({
-		                url: "/product/updatenum",
+		                url: "product/updatenum",
 		                type: "post",
 		                data: {id:id, 
 		    	                //  name:name,
@@ -280,7 +283,10 @@ function login(){
 }
 
 $(".user-quit").on("click", function () {
+	sessionStorage.setItem("id","")
+	sessionStorage.setItem("name","")
 	sessionStorage.setItem("status",2);
+	 location.href="redirect?page=index"
 })
 
 

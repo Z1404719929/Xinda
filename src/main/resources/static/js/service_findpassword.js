@@ -20,7 +20,7 @@ $(".login-btn").on("click", function(){
 	console.log("手机号==",loginId);
 	$.ajax({
 		type: "post",
-		url: "/provider2/findpassword",
+		url: "provider2/findpassword",
 		data:{
 			loginId:loginId,
 			password1:password1,
@@ -31,7 +31,8 @@ $(".login-btn").on("click", function(){
 		success: function(data){
 			console.log("成功后返回的数据",data);
 			alert(data.msg);
-			 location.href="redirect?page=service_login"; 
+			if(data.code==1){
+			 location.href="redirect?page=service_login"; }
 			/*if(data.stu==1){
 			location.href="redirect?page=service_findpassword"
 			}*/

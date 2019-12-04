@@ -3,7 +3,7 @@ $(".login-btn").on("click", function(){
 	var password=$(".password").val();
 	var code=$(".code").val();	
         $.ajax({
-            url: "/login/jdjd",
+            url: "login/jdjd",
             type: "post",
             data: {cellphone:cellphone, 
 	                  password:password,
@@ -12,15 +12,16 @@ $(".login-btn").on("click", function(){
 	        		
 success:function(data){
 	          	console.log("成功后返回的数据",data);
-	        	alert(data.msg);
                 if (data.code==1) {
 	        /*     localStorage.setItem("id","username");
 	             localStorage.setItem("id");*/
-                        location.href="/redirect?page=e-commerce_product"
+                        location.href="redirect?page=e-commerce_product"
        sessionStorage.setItem("id",data.userid);
    sessionStorage.setItem("name",data.username);
    sessionStorage.setItem("status",1);
-                }
+                }else{
+	alert(data.msg);
+}
             },
         		error:function(data){
 	console.log("失败返回后的数据",data);	

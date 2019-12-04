@@ -78,9 +78,13 @@ public class ControllerMember {
 			map.put("msg","输入验证码" );
 			return map;
 		}
+		if(!(request.getParameter("cellphone").length()==11)) {
+			map.put("msg","手机号必须为11位");
+			return map;
+		}
 		HttpSession session = request.getSession();
 		System.out.println("验证码"+session.getAttribute("code"));
-		if(!session.getAttribute("code").equals(request.getParameter("code"))) {
+		if(!session.getAttribute("code").equals(request.getParameter("code").toUpperCase())) {
 			map.put("msg","验证码错误" );
 			return map;
 		}
@@ -110,6 +114,15 @@ public class ControllerMember {
 		}
 		if(request.getParameter("code").isEmpty()) {
 			map.put("msg","输入验证码" );
+			return map;
+		}
+		if(!(request.getParameter("cellphone").length()==11)) {
+			map.put("msg","手机号必须为11位");
+			return map;
+		}
+		HttpSession session = request.getSession();
+		if(!session.getAttribute("code").equals(request.getParameter("code").toUpperCase())) {
+			map.put("msg","验证码错误" );
 			return map;
 		}
 		if(request.getParameter("password1").isEmpty()) {

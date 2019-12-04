@@ -72,4 +72,13 @@ public class ControllerProvider5 {
 				int a= pService.starstop(request);	//得到查询的所有数量
 				return map;
 			}
+			
+			@ResponseBody
+			@RequestMapping(value="/see",method = RequestMethod.POST)
+			public Map <String,Object> see(HttpServletRequest request) {
+				Map<String,Object> map = new HashMap<String,Object>();
+				List<Provider> p= pService.getid(request);	//得到查询的所有数量
+				map.put("p", p);
+				return map;
+			}
 }

@@ -8,7 +8,7 @@ $(".login-btn").on("click", function(){
 	console.log("手机号==",cellphone);
 	$.ajax({
 		type: "post",
-		url: "/ec/findpassword",
+		url: "ec/findpassword",
 		data:{
 			cellphone:cellphone,
 			password1:password1,
@@ -20,7 +20,7 @@ $(".login-btn").on("click", function(){
 			console.log("成功后返回的数据",data);
 			alert(data.msg);
 			if(data.stu==1){
-			location.href="redirect?page=e-commerce_findpassword"
+			location.href="redirect?page=e-commerce_login"
 			}
 		},
 		error: function(data){

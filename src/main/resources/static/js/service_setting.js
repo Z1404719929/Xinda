@@ -26,8 +26,14 @@ $(".order2").on("click", function(){
 $(".order3").on("click", function(){
     $(".main-top li").eq(3).text("未通过用户");
 })
+
 $(".change-info").on("click", function(event){
     $(".masking").show();
+    $(".service_name1").val(txt1);
+    $(".service_cellphone1").val(txt2);
+    $(".service_weixin1").val(txt3);
+    $(".service_qq1").val(txt4);
+    $(".service_email1").val(txt5);
 })
 $(".save").on("click", function(event){
     $(".masking").hide();
@@ -50,7 +56,7 @@ $(".save").on("click", function(event){
  				//请求类型
  				type:"post",
  				//请求路径
- 				url:"/provider/informationUpdate",
+ 				url:"provider/informationUpdate",
  				//请求参数
  				data:{
  					name:name,
@@ -79,6 +85,8 @@ $(".cancel").on("click", function(event){
 })
 
 
+var txt1;var txt2;var txt3;var txt4;var txt5;
+
 $(function(){
 	var loginId=sessionStorage.getItem("id")
     console.log(loginId);
@@ -93,7 +101,7 @@ $(function(){
 			//请求类型
 			type:"get",
 			//请求路径
-			url:"/provider/getprovider",
+			url:"provider/getprovider",
 			//请求参数
 			data:{
 				name:name,
@@ -117,6 +125,7 @@ $(function(){
 					txt+=provider[0].name;
 						    	console.log(txt);
 		 					$(".service_name").append(txt);
+		 					txt1=txt;
 		 			$(".service_regionId").html("");
 							var txt="";
 							txt+=provider[0].regionId;
@@ -127,21 +136,25 @@ $(function(){
 							txt+=provider[0].cellphone;
 								    	console.log(txt);
 				 			$(".service_cellphone").append(txt);
+				 			txt2=txt;
 				 	$(".service_weixin").html("");
 							var txt="";
 							txt+=provider[0].weixin;
 								    	console.log(txt);
 				 			$(".service_weixin").append(txt);
+				 			txt3=txt;
 				 	$(".service_qq").html("");
 									var txt="";
 									txt+=provider[0].qq;
 										    	console.log(txt);
 						 	$(".service_qq").append(txt);
+						 	txt4=txt;
 					$(".service_email").html("");
 							var txt="";
 							txt+=provider[0].email;
 								    	console.log(txt);
 				 	       $(".service_email").append(txt);
+				 	      txt5=txt;
 		 				},
 			error:function(data){
 				console.log("失败后返回的数据",data);
@@ -152,7 +165,7 @@ $(function(){
 $(function(){
 	$.ajax({
 		type: "post",
-		url: "/provider2/province",
+		url: "provider2/province",
 		dataType: "json",
 		success: function(data){
 			var province = data.province;
@@ -186,7 +199,7 @@ function changesheng(){
 	console.log("省",id);
 	$.ajax({
 		type: "post",
-		url: "/provider2/county",
+		url: "provider2/county",
 		data:{
 			id:id,
 		},
@@ -218,7 +231,7 @@ function changeshi(){
 	console.log("市id",id);
 	$.ajax({
 		type: "post",
-		url: "/provider2/district",
+		url: "provider2/district",
 		data:{
 			id:id,
 		},
@@ -259,7 +272,7 @@ $(function(){
 //图像展示
 	function defaultImg(img){
 	var id=sessionStorage.getItem("id")
-		img.src="/images/user-lg.png";
+		img.src="images/user-lg.png";
 	}
 
 $("#form1").ajaxForm(function(data) {
@@ -273,7 +286,7 @@ $(".exit").on("click",function(){
 	sessionStorage.setItem("id","")
 	sessionStorage.setItem("name","")
 	sessionStorage.setItem("status",2)
-	 location.href="redirect?page=service_login"
+	 location.href="redirect?page=index"
 })
 
 function login(){
@@ -295,7 +308,7 @@ function img(){
 	var userid=sessionStorage.getItem("id")
 	$(".img").html("");
 	var txt="";
-	txt +=`<img  src="/provider/headImg?id=${userid}" onerror="defaultImg(this)" style="
+	txt +=`<img  src="provider/headImg?id=${userid}" onerror="defaultImg(this)" style="
     width: 50px;
     height: 50px;
     border-radius: 50px;

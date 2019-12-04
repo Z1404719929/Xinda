@@ -11,7 +11,7 @@ function img(){
 	var userid=sessionStorage.getItem("id")
 	$(".img").html("");
 	var txt="";
-	txt +=`<img  src="/pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
+	txt +=`<img  src="pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
     width: 50px;
     height: 50px;
     border-radius: 50px;
@@ -30,7 +30,7 @@ function page(i,index){
 	console.log(name);
 	$.ajax({
 		type: "post",
-		url: "/pp/recommend",
+		url: "pp/recommend",
 		data:{
 			index:index,
 			name:name,
@@ -101,7 +101,7 @@ function page(i,index){
 }
 //头像
 function defaultImg(img){
-		img.src="/images/user-lg.png";
+		img.src="images/user-lg.png";
 }
 
 //上一页
@@ -129,7 +129,7 @@ $(".pagelast").on("click",function(){
 function check1(id,a){
 	$.ajax({
 		type: "post",
-		url: "/pp/check1",
+		url: "pp/check1",
 		data:{
 			id:id,
 			a:a,
@@ -147,7 +147,7 @@ function check1(id,a){
 function check2(id,b){
 	$.ajax({
 		type: "post",
-		url: "/pp/check2",
+		url: "pp/check2",
 		data:{
 			id:id,
 			b:b,
@@ -168,7 +168,7 @@ $(".exit").on("click",function(){
 	sessionStorage.setItem("id","")
 	sessionStorage.setItem("name","")
 	sessionStorage.setItem("status",2)
-	 location.href="redirect?page=operator_login"
+	 location.href="redirect?page=index"
 })
 
 

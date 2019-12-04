@@ -18,4 +18,6 @@ public interface ProviderService {
 
 	int starstop(HttpServletRequest request);
 
+	List<Provider> getid(HttpServletRequest request);
+
 }

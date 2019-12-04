@@ -13,7 +13,7 @@ function imgChange() {
 $(function(){
 	$.ajax({
 		type: "post",
-		url: "/ec/sheng",
+		url: "ec/sheng",
 		dataType: "json",
 		success: function(data){
 			var sheng = data.sheng;
@@ -47,7 +47,7 @@ function changesheng(){
 	console.log("省",id);
 	$.ajax({
 		type: "post",
-		url: "/ec/shi",
+		url: "ec/shi",
 		data:{
 			id:id,
 		},
@@ -79,7 +79,7 @@ function changeshi(){
 	console.log("市id",id);
 	$.ajax({
 		type: "post",
-		url: "/ec/qu",
+		url: "ec/qu",
 		data:{
 			id:id,
 		},
@@ -114,7 +114,7 @@ $(".login-btn").on("click",function(){
 	
 	$.ajax({
 		type: "post",
-		url: "/ec/register",
+		url: "ec/register",
 		data:{
 			cellphone:cellphone,
 			password:password,

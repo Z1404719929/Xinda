@@ -18,7 +18,7 @@ $(".login-btn").on("click", function(){
 	console.log("账号===",loginId);
 	$.ajax({
 		type: "post",
-		url: "/provider/providerlogin",
+		url: "provider/providerlogin",
 		data:{
 			loginId:loginId,
 			password:password,

@@ -10,7 +10,7 @@ $(function(){
 	
 	$(".img").html("");
 	var txt="";
-	txt +=`<img class="ss" src="/pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
+	txt +=`<img class="ss" src="pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
     width: 50px;
     height: 50px;
     border-radius: 50px;
@@ -21,7 +21,7 @@ $(function(){
 	
 	$.ajax({
 		type: "get",
-		url: "/pp/getlist",
+		url: "pp/getlist",
 		dataType: "json",
 		success: function(data){
 			
@@ -50,8 +50,6 @@ $(function(){
                         <td></td>
                         <td><span class="up-line-mark up-line-mark-red ">上线</span></td>
                         <td>
-                            <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span>
-                            <span class="handle-btn" onclick="del('${ppList[i].id}')"><i class="fa fa-close fa-fw"></i>删除</span>
                             <span class="handle-btn" onclick="zt('${ppList[i].id}')"><i class="fa fa-arrow-down fa-fw"></i>下线</span>
                         </td>
 				</tr>`
@@ -64,6 +62,8 @@ $(function(){
 	                        <td></td>
 	                         <td><span class="down-line-mark down-line-mark-orange">下线</span></td>
 	                        <td>
+	                        <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span>
+                            <span class="handle-btn" onclick="del('${ppList[i].id}')"><i class="fa fa-close fa-fw"></i>删除</span>
 	                            <span class="handle-btn" onclick="zt('${ppList[i].id}')"><i class="fa fa-arrow-up fa-fw"></i>上线</span>
 	                        </td>
 					</tr>`
@@ -82,7 +82,7 @@ function img(){
 	var userid=sessionStorage.getItem("id")
 	$(".img").html("");
 	var txt="";
-	txt +=`<img  src="/pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
+	txt +=`<img  src="pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
     width: 50px;
     height: 50px;
     display: inline-block;
@@ -96,7 +96,7 @@ $(".exit").on("click",function(){
 	sessionStorage.setItem("id","")
 	sessionStorage.setItem("name","")
 	sessionStorage.setItem("status",2)
-	 location.href="redirect?page=operator_login"
+	 location.href="redirect?page=index"
 })
 
 //模糊查询
@@ -105,7 +105,7 @@ $(".select-btn").on("click",function(){
 	var name=$(".select").val();
 	$.ajax({
 		type: "post",
-		url: "/pp/select",
+		url: "pp/select",
 		data:{
 			name:name,
 		},
@@ -124,8 +124,6 @@ $(".select-btn").on("click",function(){
                         <td></td>
                         <td><span class="up-line-mark up-line-mark-red ">上线</span></td>
                         <td>
-                            <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span>
-                            <span class="handle-btn" onclick="del('${ppList[i].id}')"><i class="fa fa-close fa-fw"></i>删除</span>
                             <span class="handle-btn" onclick="zt('${ppList[i].id}')"><i class="fa fa-arrow-down fa-fw"></i>下线</span>
                         </td>
 				</tr>`
@@ -138,6 +136,8 @@ $(".select-btn").on("click",function(){
 	                        <td></td>
 	                         <td><span class="down-line-mark down-line-mark-orange">下线</span></td>
 	                        <td>
+	                        <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>编辑</span>
+                            <span class="handle-btn" onclick="del('${ppList[i].id}')"><i class="fa fa-close fa-fw"></i>删除</span>
 	                            <span class="handle-btn" onclick="zt('${ppList[i].id}')"><i class="fa fa-arrow-up fa-fw"></i>上线</span>
 	                        </td>
 					</tr>`
@@ -160,7 +160,7 @@ function zt(id){
 	console.log("下线id",id);
 	$.ajax({
 		type: "post",
-		url: "/pp/us",			//修改状态
+		url: "pp/us",			//修改状态
 		data:{
 			id:id,
 		},
@@ -179,7 +179,7 @@ function del(id){
 	console.log("下线id",id);
 	$.ajax({
 		type: "post",
-		url: "/pp/del",			//修改状态
+		url: "pp/del",			//修改状态
 		data:{
 			id:id,
 		},
@@ -259,7 +259,7 @@ $(".up-line").on("click",function(){
 	console.log(str);
 	$.ajax({
 		type: "post",
-		url: "/pp/allUpLine",			//修改状态
+		url: "pp/allUpLine",			//修改状态
 		data:{
 			str:str,
 		},
@@ -278,7 +278,7 @@ $(".down-line").on("click",function(){
 	console.log(str);
 	$.ajax({
 		type: "post",
-		url: "/pp/allDownLine",			//修改状态
+		url: "pp/allDownLine",			//修改状态
 		data:{
 			str:str,
 		},
@@ -295,7 +295,7 @@ $(".down-line").on("click",function(){
 
 //头像
 function defaultImg(img){
-		img.src="/images/user-lg.png";
+		img.src="images/user-lg.png";
 }
 
 

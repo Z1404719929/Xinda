@@ -112,7 +112,7 @@ table td:nth-child(3) {
 
 table td:nth-child(4) {
     width: 500px;
-    text-align: left;
+    text-align: center;
 }
 
 table td:nth-child(5) {

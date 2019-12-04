@@ -3,7 +3,6 @@ package com.datangedu.cn.controller.member;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +39,10 @@ public class ControllerMember4 {
 		map.put("msg","手机号为空");
 		return map;
 		}
+		if(!(request.getParameter("cellphone").length()==11)) {
+			map.put("msg","手机号必须为11位");
+			return map;
+		}
 		System.out.println(12354);
 		if(password.isEmpty()){
 			map.put("msg","密码为空");
@@ -51,7 +54,7 @@ public class ControllerMember4 {
 
 		HttpSession session = request.getSession();
 		  System.out.println("验证码"+session.getAttribute("code"));
-		  if(!session.getAttribute("code").equals(request.getParameter("code"))) {
+		  if(!session.getAttribute("code").equals(request.getParameter("code").toUpperCase())) {
 		   map.put("msg","验证码错误" );
 		   return map;
 		  }

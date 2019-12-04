@@ -19,7 +19,7 @@ $(".exit").on("click",function(){
 $(function(){
 	$.ajax({
 		type: "post",
-		url: "/provider2/province",
+		url: "provider2/province",
 		dataType: "json",
 		success: function(data){
 			var province = data.province;
@@ -53,7 +53,7 @@ function changesheng(){
 	console.log("省",id);
 	$.ajax({
 		type: "post",
-		url: "/provider2/county",
+		url: "provider2/county",
 		data:{
 			id:id,
 		},
@@ -85,7 +85,7 @@ function changeshi(){
 	console.log("市id",id);
 	$.ajax({
 		type: "post",
-		url: "/provider2/district",
+		url: "provider2/district",
 		data:{
 			id:id,
 		},
@@ -120,7 +120,7 @@ $(".login-btn").on("click",function(){
 	
 	$.ajax({
 		type: "post",
-		url: "/provider2/register",
+		url: "provider2/register",
 		data:{
 			loginId:loginId,
 			password:password,
@@ -131,7 +131,9 @@ $(".login-btn").on("click",function(){
 		success: function(data){
 			console.log("成功后返回的数据",data);
 			alert(data.msg);
+			if(data.code==1){
 			 location.href="redirect?page=service_login"; 
+			 }
 		},
 		error: function(data){
 			console.log("失败后返回的数据",data);

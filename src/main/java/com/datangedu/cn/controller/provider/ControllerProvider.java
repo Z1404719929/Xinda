@@ -56,7 +56,10 @@ public class ControllerProvider {
 			map.put("msg","输入验证码" );
 			return map;
 		}
-		
+		if(!(request.getParameter("loginId").length()==11)) {
+			map.put("msg","手机号必须为11位");
+			return map;
+		}
 		
 		List<Provider> providerUserInfo = providerUserService.setProviderLogin(request);
 		if(providerUserInfo.isEmpty()) {
@@ -69,7 +72,7 @@ public class ControllerProvider {
 			return map;
 		}
 		HttpSession session=request.getSession();
-		if(!request.getParameter("code").equals(session.getAttribute("code"))) {
+		if(!request.getParameter("code").toUpperCase().equals(session.getAttribute("code"))) {
 			map.put("msg", "验证码错误");
 			return map;
 
@@ -170,4 +173,6 @@ public class ControllerProvider {
 		// 返回响应实体
 		return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
 	}
+	
+
 }

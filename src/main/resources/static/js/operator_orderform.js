@@ -4,7 +4,7 @@ $(function(){
 	img();
 	$.ajax({
 		type: "get",
-		url: "/oo1/getlist1",
+		url: "oo1/getlist1",
 		dataType: "json",
 		success: function(data){
 			console.log("成功后返回的数据",data);
@@ -46,7 +46,7 @@ function img(){
 	var userid=sessionStorage.getItem("id")
 	$(".img").html("");
 	var txt="";
-	txt +=`<img  src="/pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
+	txt +=`<img  src="pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
     width: 50px;
     height: 50px;
     border-radius: 50px;
@@ -57,7 +57,7 @@ function img(){
 }
 //图像展示
 function defaultImg(img){
-	img.src="/images/user-lg.png";
+	img.src="images/user-lg.png";
 }
 //模糊查询
 $(".select-btn").on("click",function(){
@@ -65,7 +65,7 @@ $(".select-btn").on("click",function(){
 	var name=$(".select").val();
 	$.ajax({
 		type: "post",
-		url: "/oo1/select1",
+		url: "oo1/select1",
 		data:{
 			name:name,
 		},
@@ -101,7 +101,7 @@ $(".exit").on("click",function(){
 	sessionStorage.setItem("id","")
 	sessionStorage.setItem("name","")
 	sessionStorage.setItem("status",2)
-	 location.href="redirect?page=operator_login"
+	 location.href="redirect?page=index"
 })
 
 

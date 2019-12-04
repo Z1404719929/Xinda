@@ -28,7 +28,7 @@ $( function(){
 	userinfo();
 	$.ajax({
 		type: "post",
-		url: "/product/mmm",			
+		url: "product/mmm",			
 		data:{	
 			userid:userid,			
 		},
@@ -95,7 +95,7 @@ $(".search111-btn").on("click",function(){
 	console.log("查询时间",data1,data2)
 	$.ajax({
 		type: "post",
-		url: "/product/mmm2",
+		url: "product/mmm2",
 		data:{
 			name:name,
 			userid:userid,
@@ -118,7 +118,7 @@ $(".search111-btn").on("click",function(){
           		                    <li>
        
           		                        <ul>
-          		                            <li>${str3}</li>          		                         
+          		                            <li>${list[i].serviceId}</li>          		                         
           		                        </ul>
           		                    </li>
           		                    <li class="font-aqua">¥${list[i].totalPrice}</li>
@@ -133,7 +133,7 @@ $(".search111-btn").on("click",function(){
            		                    <li>
 
            		                        <ul>
-           		                            <li>${str3}</li>          		     
+           		                            <li>${list[i].serviceId}</li>          		     
            		                        </ul>		           
            		                    </li>
            		                    <li class="font-aqua">¥${list[i].totalPrice}</li>
@@ -168,7 +168,7 @@ function pay(serviceNo){
 				//请求类型
 				type:"post",
 				//请求路径
-				url:"/product/Productdelete",
+				url:"product/Productdelete",
 				//返回数据类型
 				data:{
 					serviceNo:serviceNo,
@@ -221,7 +221,7 @@ function userinfo(){
 	$(".userinfo").html("");
 	var txt="";
 	txt +=`
-	<img class="btn btn-primary" src="/ou/headImg?id=${userid}" onerror="defaultImg(this)" style="
+	<img class="btn btn-primary" src="ou/headImg?id=${userid}" onerror="defaultImg(this)" style="
     width: 95px;
     height: 95px;
     display: inline-block;
@@ -232,8 +232,11 @@ function userinfo(){
 	$(".userinfo").append(txt);
 }
 $(".user-quit").on("click", function () {
+	sessionStorage.setItem("id","")
+	sessionStorage.setItem("name","")
 	sessionStorage.setItem("status",2);
+	 location.href="redirect?page=index"
 })
 function defaultImg(img){
-		img.src="/images/user-lg.png";
+		img.src="images/user-lg.png";
 }

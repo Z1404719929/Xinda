@@ -6,7 +6,7 @@ $(function(){
 	img();
 	$.ajax({
 		type: "get",
-		url: "/ou/getlist",
+		url: "ou/getlist",
 		dataType: "json",
 		success: function(data){
 			var userid=sessionStorage.getItem("id")
@@ -59,7 +59,7 @@ function img(){
 	var userid=sessionStorage.getItem("id")
 	$(".img").html("");
 	var txt="";
-	txt +=`<img  src="/pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
+	txt +=`<img  src="pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
     width: 50px;
     height: 50px;
     border-radius: 50px;
@@ -70,7 +70,7 @@ function img(){
 }
 //头像
 function defaultImg(img){
-		img.src="/images/user-lg.png";
+		img.src="images/user-lg.png";
 }
 //分页模糊查询
 function page(i){
@@ -79,7 +79,7 @@ function page(i){
 	var name=$(".select").val();
 	$.ajax({
 		type: "post",
-		url: "/ou/paging",
+		url: "ou/paging",
 		data:{
 			name:name,
 			pageSize:i,
@@ -145,7 +145,7 @@ $(".exit").on("click",function(){
 	sessionStorage.setItem("id","")
 	sessionStorage.setItem("name","")
 	sessionStorage.setItem("status",2)
-	 location.href="redirect?page=operator_login"
+	 location.href="redirect?page=index"
 })
 
 

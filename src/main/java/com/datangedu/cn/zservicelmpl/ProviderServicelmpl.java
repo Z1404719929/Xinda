@@ -73,4 +73,12 @@ public class ProviderServicelmpl implements ProviderService {
 				return providerMapper.updateByPrimaryKeySelective(p);
 			}
 			
+			@Override
+			public List<Provider> getid(HttpServletRequest request) {
+				ProviderExample providerExample = new ProviderExample();
+				ProviderExample.Criteria criteria = providerExample.createCriteria();
+				criteria.andIdEqualTo(request.getParameter("id"));
+				return providerMapper.selectByExample(providerExample);
+			}
+			
 }

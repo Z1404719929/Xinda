@@ -25,7 +25,7 @@ $( function(){
 function list5(){
 	var userid=sessionStorage.getItem("id")
 	    $.ajax({
-	                url: "/product/gmgm",
+	                url: "product/gmgm",
 	                type: "post",
 	              dataType:"json",
 	              data:{
@@ -47,9 +47,9 @@ function list5(){
 	    	          		if(providerProductInfo[i].status==1){
 	    	          		txt+= `    	          		
 	    	          		    <div class="article" value="${providerProductInfo[i].id}">	    	          		    
-	    	          		    <img class="ss" src="/pp/headImg2?id=${providerProductInfo[i].id}" onerror="defaultImg(this)" style="
-    width: 50px;
-    height: 50px;
+	    	          		    <img class="ss" src="pp/headImg2?id=${providerProductInfo[i].id}" onerror="defaultImg(this)" style="
+    width:150px;
+    height: 90px;
     display: inline-block;
     border: 1px solid #e1e1e1;
 	"/>
@@ -80,7 +80,7 @@ function list6(){
 	console.log("查询内容",$(".select").val());
 	var name=$(".select").val();
 	    $.ajax({
-	                url: "/product/select",
+	                url: "product/select",
 	                type: "get",
 		data:{
 			name:name,
@@ -99,7 +99,7 @@ function list6(){
 	    	          	for(var i=0;i<providerProductInfo.length;i++){
 	    	          		txt+= `    	          		
 	    	          		    <div class="article" value="${providerProductInfo[i].id}">	    	          		    
-	    	          		   <img class="ss" src="/pp/headImg2?id=${providerProductInfo[i].id}" onerror="defaultImg(this)" style="
+	    	          		   <img class="ss" src="pp/headImg2?id=${providerProductInfo[i].id}" onerror="defaultImg(this)" style="
     width: 50px;
     height: 50px;
     display: inline-block;
@@ -151,7 +151,7 @@ $(".id ").on("click", function(id){
 	console.log("zt",id,userid);
 	$.ajax({
 		type: "post",
-		url: "/product/jkk",			
+		url: "product/jkk",			
 		data:{
 			id:id,
 			userid:userid,
@@ -192,7 +192,10 @@ function login(){
 	$("#sysuser").append(txt);
 }
 $(".user-quit").on("click", function () {
+	sessionStorage.setItem("id","")
+	sessionStorage.setItem("name","")
 	sessionStorage.setItem("status",2);
+	 location.href="redirect?page=index"
 })
 
 function buy(id,service_content,price){
@@ -205,7 +208,7 @@ function buy(id,service_content,price){
 
 //图像展示
 function defaultImg(img){
-	img.src="/images/user-lg.png";
+	img.src="images/user-lg.png";
 }
 
 

@@ -168,6 +168,7 @@ public class ControllerMember2 {
 		int a= mService.updatexx(request);
 		if(a==1) {
 			map.put("msg","保存成功");
+			map.put("cc",1);//判断是否成功
 			return map;
 		}
 		map.put("msg","保存失败");
@@ -365,6 +366,16 @@ public class ControllerMember2 {
 		List<ServiceOrder> solist=soService.getmm(request.getParameter("serviceno"));
 		System.out.println(solist.get(0).getContent());
 		map.put("msg",solist.get(0).getContent());
+		return map;
+	}
+	
+	///////////查询用户信息显示
+	@ResponseBody
+	@RequestMapping(value = "/see", method = RequestMethod.POST)
+	public Map<String, Object> see(HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<Member> m=mService.getMember(request.getParameter("userid"));
+		map.put("m", m);
 		return map;
 	}
 	

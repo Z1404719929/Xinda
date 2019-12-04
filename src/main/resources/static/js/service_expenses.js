@@ -34,7 +34,7 @@ $(".exit").on("click",function(){
 	sessionStorage.setItem("id","")
 	sessionStorage.setItem("name","")
 	sessionStorage.setItem("status",2)
-	 location.href="redirect?page=service_login"
+	 location.href="redirect?page=index"
 })
 
 function login(){
@@ -51,7 +51,7 @@ function img(){
 	var userid=sessionStorage.getItem("id")
 	$(".img").html("");
 	var txt="";
-	txt +=`<img  src="/provider/headImg?id=${userid}" onerror="defaultImg(this)" style="
+	txt +=`<img  src="provider/headImg?id=${userid}" onerror="defaultImg(this)" style="
     width: 50px;
     height: 50px;
     border-radius: 50px;

@@ -9,7 +9,7 @@ $( function(){
 	var serviceNo=sessionStorage.getItem("serviceNo")
 	$.ajax({
 		type: "post",
-		url: "/product/sss",			
+		url: "product/sss",			
 		data:{
 	serviceNo:serviceNo,
 		},
@@ -104,7 +104,7 @@ if(paytype==0){
 }else{
 	$.ajax({
 		type: "post",
-		url: "/product/hhh",			
+		url: "product/hhh",			
 		data:{
 	nn:nn,
 	paytype:paytype, 

@@ -8,7 +8,7 @@ $(".login-btn").on("click", function(){
 	console.log("手机号==",cellphone);
 	$.ajax({
 		type: "post",
-		url: "/su/findpassword",
+		url: "su/findpassword",
 		data:{
 			cellphone:cellphone,
 			password1:password1,

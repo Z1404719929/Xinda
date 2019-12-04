@@ -71,6 +71,7 @@ public class MemberServicelmpl implements MemberService {
 		MemberExample memberExample = new MemberExample();
 		MemberExample.Criteria criteria = memberExample.createCriteria();
 		criteria.andIdEqualTo(id);
+		System.out.println(id);
 		return memberMapper.selectByExample(memberExample);
 	}
 	

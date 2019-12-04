@@ -97,8 +97,8 @@ public class CartServiceImpl  implements  CartService{
 		CartExample cartExample=new CartExample();
 		CartExample.Criteria criteria=cartExample.createCriteria();
 		criteria.andServiceIdEqualTo(id);
+		criteria.andUserIdEqualTo(request.getParameter("userid"));
 		return cartMapper.deleteByExample(cartExample);
-
 	}
 
 

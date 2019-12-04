@@ -8,6 +8,8 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -86,7 +88,15 @@ public class ControllerProvider2 {
 				map.put("msg","输入验证码" );
 				return map;
 			}
-			
+			if(!(request.getParameter("loginId").length()==11)) {
+				map.put("msg","手机号必须为11位");
+				return map;
+			}
+			HttpSession session=request.getSession();
+			if(!request.getParameter("code").toUpperCase().equals(session.getAttribute("code"))) {
+				map.put("msg", "验证码错误");
+				return map;
+			}
 			List<Provider> provider=providerUserService.getLoginId(request.getParameter("loginId"));
 			System.out.println(provider);
 			if(!provider.isEmpty()) {
@@ -97,6 +107,7 @@ public class ControllerProvider2 {
 			System.out.println("222");
 			int a = providerUserService.register(request);		
 			System.out.println("插入成功"+a);
+			map.put("code", 1);
 			map.put("msg", "注册成功,点击确定自动返回登录页面");
 			return map;
 		}
@@ -110,6 +121,10 @@ public class ControllerProvider2 {
 			
 			if(request.getParameter("loginId").isEmpty()) {
 				map.put("msg","输入手机号" );
+				return map;
+			}
+			if(!(request.getParameter("loginId").length()==11)) {
+				map.put("msg","手机号必须为11位");
 				return map;
 			}
 			if(request.getParameter("code").isEmpty()) {
@@ -134,6 +149,7 @@ public class ControllerProvider2 {
 			System.out.println("修改密码5"+a);
 			map.put("stu", a);
 			if(a==1) {
+				map.put("code", 1);
 			map.put("msg", "修改成功,点击确定自动返回登录页面");
 			}else {
 				map.put("msg", "账号不存在");

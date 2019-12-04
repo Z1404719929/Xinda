@@ -16,7 +16,7 @@ $(".login-btn").on("click", function(){
 	console.log("手机号==",cellphone,password,code);
 	$.ajax({
 		type: "post",
-		url: "/su/sysuserlogin",
+		url: "su/sysuserlogin",
 		data:{
 			cellphone:cellphone,
 			password:password,

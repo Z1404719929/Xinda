@@ -11,7 +11,7 @@ function img(){
 	var userid=sessionStorage.getItem("id")
 	$(".img").html("");
 	var txt="";
-	txt +=`<img  src="/pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
+	txt +=`<img  src="pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
     width: 50px;
     height: 50px;
     border-radius: 50px;
@@ -29,7 +29,7 @@ function page2(i,index){
 	var name=$(".select").val();
 	$.ajax({
 		type: "post",
-		url: "/p/paging",
+		url: "p/paging",
 		data:{
 			index:index,
 			name:name,
@@ -66,7 +66,7 @@ function page2(i,index){
             <td>${List[i].name}</td>
             <td>${List[i].regionId}</td>
             <td>${List[i].cellphone}</td>
-            <td>${List[i].providerInfo}</td>
+            <td>${List[i].providerIntroduce}</td>
             <td>
                 <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>详情</span>
                 <span class="handle-btn" onclick="star_stop('${List[i].id}',1)"><i class="fa fa-circle-o fa-fw"></i>停用</span>
@@ -119,7 +119,7 @@ function page1(i,index){
 //	var name=$(".select").val();
 	$.ajax({
 		type: "post",
-		url: "/p/paging",
+		url: "p/paging",
 		data:{
 			index:index,
 			name:name,
@@ -155,7 +155,7 @@ function page1(i,index){
             <td>${List[i].name}</td>
             <td>${List[i].regionId}</td>
             <td>${List[i].cellphone}</td>
-            <td>${List[i].providerInfo}</td>
+            <td>${List[i].providerIntroduce}</td>
             <td>
                 <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>详情</span>
                 <span class="handle-btn" onclick="star_stop('${List[i].id}',1)"><i class="fa fa-circle-o fa-fw"></i>停用</span>
@@ -179,7 +179,7 @@ function page1(i,index){
 	            <td>${List[i].name}</td>
 	            <td>${List[i].regionId}</td>
 	            <td>${List[i].cellphone}</td>
-	            <td>${List[i].providerInfo}</td>
+	            <td>${List[i].providerIntroduce}</td>
 	            <td>
 	                <span class="handle-btn"><i class="fa fa-edit fa-fw"></i>详情</span>
 	                <span class="handle-btn" onclick="star_stop('${List[i].id}',2)"><i class="fa fa-circle-o fa-fw"></i>启用</span>
@@ -227,7 +227,7 @@ $(".pagelast").on("click",function(){
 function star_stop(id,status){
 	$.ajax({
 		type: "post",
-		url: "/p/startstop",
+		url: "p/startstop",
 		data:{
 			id:id,
 			status:status,
@@ -251,7 +251,7 @@ $(".exit").on("click",function(){
 	sessionStorage.setItem("id","")
 	sessionStorage.setItem("name","")
 	sessionStorage.setItem("status",2)
-	 location.href="redirect?page=operator_login"
+	 location.href="redirect?page=index"
 })
 
 

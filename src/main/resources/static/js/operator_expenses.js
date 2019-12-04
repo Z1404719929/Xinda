@@ -12,7 +12,7 @@ function img(){
 	var userid=sessionStorage.getItem("id")
 	$(".img").html("");
 	var txt="";
-	txt +=`<img  src="/pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
+	txt +=`<img  src="pp/headImg?id=${userid}" onerror="defaultImg(this)" style="
     width: 50px;
     height: 50px;
     border-radius: 50px;
@@ -23,7 +23,7 @@ function img(){
 }
 //头像
 function defaultImg(img){
-		img.src="/images/user-lg.png";
+		img.src="images/user-lg.png";
 }
 
 function time(i,time){
@@ -31,7 +31,7 @@ function time(i,time){
 	nowpage=i;
 	$.ajax({
 		type: "get",
-		url: "/oo1/getlist3",
+		url: "oo1/getlist3",
 		data:{
 			pageSize:i,
 			pageNum:2,
@@ -97,7 +97,7 @@ function page(i){
 	nowpage=i;
 	$.ajax({
 		type: "get",
-		url: "/oo1/getlist2",
+		url: "oo1/getlist2",
 		data:{
 			pageSize:i,
 			pageNum:2,
@@ -198,7 +198,7 @@ $(".exit").on("click",function(){
 	sessionStorage.setItem("id","")
 	sessionStorage.setItem("name","")
 	sessionStorage.setItem("status",2)
-	 location.href="redirect?page=operator_login"
+	 location.href="redirect?page=index"
 })
 
 

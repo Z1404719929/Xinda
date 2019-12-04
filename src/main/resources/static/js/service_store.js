@@ -19,7 +19,7 @@ function submit(){
  				//请求类型
  				type:"post",
  				//请求路径
- 				url:"/provider/storeregister",
+ 				url:"provider/storeregister",
  				//请求参数
  				data:{
  					id:id,
@@ -57,7 +57,7 @@ $(function(){
 	$("#ss2").html("");
 	var txt="";
 	txt +=`
-	<img class="img" name="id" src="/provider2/file_Img?id=${id}" onerror="defaultImg(this)"/>`
+	<img class="img" name="id" src="provider2/file_Img?id=${id}" onerror="defaultImg(this)"/>`
 		$("#ss2").append(txt);
 })
 
@@ -65,7 +65,7 @@ $(function(){
 //图像展示
 	function defaultImg(img){
 	var id=sessionStorage.getItem("id")
-		img.src="/images/user-lg.png";
+		img.src="images/user-lg.png";
 	}
 
 $("#form2").ajaxForm(function(data) {
@@ -78,13 +78,43 @@ $("#form2").ajaxForm(function(data) {
 $(function(){
 	img();
 	login();
+	see();
 })
+
+function see(){
+ 			//处理用户数据
+		var id=sessionStorage.getItem("id")
+ 			 $.ajax({
+ 				//请求类型
+ 				type:"post",
+ 				//请求路径
+ 				url:"p/see",
+ 				//请求参数
+ 				data:{
+ 					id:id,
+ 				},
+ 				//返回数据类型
+ 				dataType:"json",
+ 				//请求成功后调用函数
+ 				success:function(data){
+ 					var p = data.p;
+ 					console.log("成功后返回的数据",p);
+ 					$(".service_info").val(p[0].providerInfo);
+ 					$(".service_time").val(p[0].workTime);
+ 					$(".service_qq").val(p[0].qq);
+ 					$(".service_cellphone").val(p[0].cellphone);
+ 				},
+ 				error:function(data){
+ 					
+ 				}
+ 			}) 
+ 		}
 //退出登录
 $(".exit").on("click",function(){
 	sessionStorage.setItem("id","")
 	sessionStorage.setItem("name","")
 	sessionStorage.setItem("status",2)
-	 location.href="redirect?page=service_login"
+	 location.href="redirect?page=index"
 })
 
 function login(){
@@ -102,7 +132,7 @@ function img(){
 	var userid=sessionStorage.getItem("id")
 	$(".img").html("");
 	var txt="";
-	txt +=`<img  src="/provider/headImg?id=${userid}" onerror="defaultImg(this)" style="
+	txt +=`<img  src="provider/headImg?id=${userid}" onerror="defaultImg(this)" style="
     width: 50px;
     height: 50px;
     border-radius: 50px;

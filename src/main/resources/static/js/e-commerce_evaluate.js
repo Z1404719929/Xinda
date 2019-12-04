@@ -11,7 +11,7 @@ function userinfo(){
 	$(".userinfo").html("");
 	var txt="";
 	txt +=`
-	<img class="btn btn-primary" src="/ou/headImg?id=${userid}" onerror="defaultImg(this)" style="
+	<img class="btn btn-primary" src="ou/headImg?id=${userid}" onerror="defaultImg(this)" style="
     width: 95px;
     height: 95px;
     display: inline-block;
@@ -35,7 +35,7 @@ function list(content){//content=1未评价
 	
 	$.ajax({
 		type: "post",
-		url: "/ou/content",
+		url: "ou/content",
 		data:{
 			userid:userid,
 			content:content,
@@ -51,9 +51,9 @@ function list(content){//content=1未评价
 			for(var i = 0;i<List.length;i++){
 				console.log(List[i].ppId);
 				txt +=`<div class="article ">
-				<img class="ss" src="/pp/headImg2?id=${List[i].ppId}" onerror="defaultImg(this)" style="
-    width: 50px;
-    height: 50px;
+				<img class="ss" src="pp/headImg2?id=${List[i].ppId}" onerror="defaultImg(this)" style="
+    width: 70px;
+    height: 70px;
     display: inline-block;
     border: 1px solid #e1e1e1;
 	"/>
@@ -69,9 +69,9 @@ function list(content){//content=1未评价
 			}else{
 				for(var i = 0;i<List.length;i++){
 					txt +=`<div class="article ">
-				<img class="ss" src="/pp/headImg2?id=${List[i].ppId}" onerror="defaultImg(this)" style="
-    width: 50px;
-    height: 50px;
+				<img class="ss" src="pp/headImg2?id=${List[i].ppId}" onerror="defaultImg(this)" style="
+    width: 70px;
+    height: 70px;
     display: inline-block;
     border: 1px solid #e1e1e1;
 	"/>
@@ -113,7 +113,7 @@ function login(){
 	$("#sysuser").append(txt);
 }
 function defaultImg(img){
-	img.src="/images/user-lg.png";
+	img.src="images/123.jpg";
 }
 function btn1(no){
 	$(".masking").show();
@@ -126,7 +126,7 @@ function save5(){
 	var contentsave=$("#content5").val();
 	$.ajax({
 		type: "post",
-		url: "/ou/contentsave",
+		url: "ou/contentsave",
 		data:{
 			serviceno:serviceno1,
 			content:contentsave,
@@ -146,7 +146,7 @@ function see(no){
 	console.log(serviceno1);
 	$.ajax({
 		type: "post",
-		url: "/ou/contentsee",
+		url: "ou/contentsee",
 		data:{
 			serviceno:serviceno1,
 		},
@@ -171,7 +171,10 @@ $(".change2").on("click", function(){
 })
 
 $(".user-quit").on("click", function () {
+	sessionStorage.setItem("id","")
+	sessionStorage.setItem("name","")
 	sessionStorage.setItem("status",2);
+	 location.href="redirect?page=index"
 })
 
 $(".search-product").on("click", function(){

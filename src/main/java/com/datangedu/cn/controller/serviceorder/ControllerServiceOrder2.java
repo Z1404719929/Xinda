@@ -43,7 +43,9 @@ public class ControllerServiceOrder2 {
 		System.out.println(soList.size());
 		for(int i=0;i<soList.size();i++) {
 			System.out.println("用户id"+soList.get(i).getMemberId());
+			System.out.println("11111=="+soList.get(i).getMemberId());
 			member=mservice.getMember(soList.get(i).getMemberId());
+			System.out.println("2222");
 			name[i]=member.get(0).getName();
 			soList.get(i).setMemberId(member.get(0).getName());
 			System.out.println("用户名"+soList.get(i).getMemberId());
@@ -92,7 +94,6 @@ public class ControllerServiceOrder2 {
 		System.out.println("map"+map);
 		return map;
 }
-
 	
 	//模糊查询
 	@ResponseBody
@@ -164,7 +165,6 @@ public class ControllerServiceOrder2 {
 		System.out.println("map"+map);
 		return map;
 }
-	
 	
 ///////////////////////////////////////////////////////////////////////////////////	
 	//费用中心界面
@@ -315,7 +315,6 @@ public class ControllerServiceOrder2 {
 		System.out.println("map"+map);
 		return map;
 }
-	
 	
 	
 	

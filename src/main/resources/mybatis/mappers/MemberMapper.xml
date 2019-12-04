@@ -83,7 +83,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from member
+    from `member`
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -94,16 +94,16 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from member
+    from `member`
     where ID = #{id,jdbcType=VARCHAR}
   </select>
   
  <select id="selectByLike" parameterType="com.datangedu.cn.model.sysUser.Member" resultMap="BaseResultMap">
-    select * from member where name like '%${likeName}%'
+    select * from `member` where name like '%${likeName}%'
   </select>
   
     <select id="selectBypaging" parameterType="com.datangedu.cn.model.sysUser.Member" resultMap="BaseResultMap">
-    select * from member where name like '%${likeName}%' 
+    select * from `member` where name like '%${likeName}%' 
      <if test="pageSize >= 0">
       limit ${pageSize},${pageNum}
     </if>
@@ -111,17 +111,17 @@
   
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from member
+    delete from `member`
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.datangedu.cn.model.sysUser.MemberExample">
-    delete from member
+    delete from `member`
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.datangedu.cn.model.sysUser.Member">
-    insert into member (ID, NAME, GENDER, 
+    insert into `member` (ID, NAME, GENDER, 
       CELLPHONE, PASSWORD, HEAD_IMG, 
       REGISTER_TIME, EMAIL, STATUS, 
       REGION_ID, BUY_NUM, TOTAL_PRICE
@@ -133,7 +133,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.datangedu.cn.model.sysUser.Member">
-    insert into member
+    insert into `member`
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         ID,
@@ -212,13 +212,13 @@
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.datangedu.cn.model.sysUser.MemberExample" resultType="java.lang.Long">
-    select count(*) from member
+    select count(*) from `member`
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update member
+    update `member`
     <set>
       <if test="record.id != null">
         ID = #{record.id,jdbcType=VARCHAR},
@@ -262,7 +262,7 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update member
+    update `member`
     set ID = #{record.id,jdbcType=VARCHAR},
       NAME = #{record.name,jdbcType=VARCHAR},
       GENDER = #{record.gender,jdbcType=INTEGER},
@@ -281,12 +281,12 @@
   </update>
   
   <update id="saveUserImg" parameterType="com.datangedu.cn.model.sysUser.Member">
-    update member set head_img = #{headImg} where id = #{id}
+    update `member` set head_img = #{headImg} where id = #{id}
 </update>
   
   
   <update id="updateByPrimaryKeySelective" parameterType="com.datangedu.cn.model.sysUser.Member">
-    update member
+    update `member`
     <set>
       <if test="name != null">
         NAME = #{name,jdbcType=VARCHAR},
@@ -325,7 +325,7 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.datangedu.cn.model.sysUser.Member">
-    update member
+    update `member`
     set NAME = #{name,jdbcType=VARCHAR},
       GENDER = #{gender,jdbcType=INTEGER},
       CELLPHONE = #{cellphone,jdbcType=VARCHAR},

@@ -51,7 +51,7 @@ var mm=CurentTime();
 console.log("44444444444",mm);
 	$.ajax({
 		type: "post",
-		url: "/product/ggg",			
+		url: "product/ggg",			
 		data:{
 	
 			userid:userid,
@@ -152,7 +152,7 @@ if(paytype==0){
 }else{
 	$.ajax({
 		type: "post",
-		url: "/product/hhh",	
+		url: "product/hhh",	
 		data:{
 	nn:nn,
 	paytype:paytype, 
