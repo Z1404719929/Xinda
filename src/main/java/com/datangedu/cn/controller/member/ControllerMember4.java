@@ -113,7 +113,7 @@ public class ControllerMember4 {
 				map.put("code", 1);
 			map.put("msg", "修改成功");
 			}else {
-				map.put("msg", "旧密码错误");
+				map.put("msg", "修改失败");
 			}
 			return map;
 		}

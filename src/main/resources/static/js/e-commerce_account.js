@@ -23,10 +23,10 @@ function see(){
 			console.log(m[0].gender);
 			if(m[0].gender=='1'){
 			$('input.radio.radio1').attr('checked', 'checked');
-//			sex=1;
+			sex=1;
 			}else{
 				$('input.radio.radio2').attr('checked', 'checked');
-//				sex=2;
+				sex=2;
 			}
 			$(".name").val(m[0].name);
 			$(".email").val(m[0].email);

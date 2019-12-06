@@ -97,11 +97,12 @@ function list6(){
 	    	        	$(".list").html("");
 	    	          	var txt="";
 	    	          	for(var i=0;i<providerProductInfo.length;i++){
+	    	          		if(providerProductInfo[i].status==1){
 	    	          		txt+= `    	          		
 	    	          		    <div class="article" value="${providerProductInfo[i].id}">	    	          		    
-	    	          		   <img class="ss" src="pp/headImg2?id=${providerProductInfo[i].id}" onerror="defaultImg(this)" style="
-    width: 50px;
-    height: 50px;
+	    	          		 <img class="ss" src="pp/headImg2?id=${providerProductInfo[i].id}" onerror="defaultImg(this)" style="
+    width:150px;
+    height: 90px;
     display: inline-block;
     border: 1px solid #e1e1e1;
 	"/>
@@ -118,6 +119,7 @@ function list6(){
                   
                 </li>     
             </ul></div>  `;
+	    	          		}
 	    	          	}
 	    	        	$(".list").append(txt);
 	                },

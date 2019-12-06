@@ -11,7 +11,7 @@ $(".add-product-action").on("click", function(event){
 $(".save").on("click", function(event){
     $(".masking").hide();
     console.log("保存");
-			//处理用户数据
+			// 处理用户数据
             var id=$(".product_id").val();
 			var serviceName=$(".service_name").val();
 			var serviceContent=$(".service_content").val();
@@ -21,11 +21,11 @@ $(".save").on("click", function(event){
 			var uuid=sessionStorage.getItem("uuid")
 			var sn=sessionStorage.getItem("name")
 			 $.ajax({
-				//请求类型
+				// 请求类型
 				type:"post",
-				//请求路径
+				// 请求路径
 				url:"provider/providerregister",
-				//请求参数
+				// 请求参数
 				data:{
 					id:id,
 					serviceName:serviceName,
@@ -35,9 +35,9 @@ $(".save").on("click", function(event){
 					userid:userid,
 					sn:sn,
 				},
-				//返回数据类型
+				// 返回数据类型
 				dataType:"json",
-				//请求成功后调用函数
+				// 请求成功后调用函数
 				success:function(data){
 					console.log("成功后返回的数据",data);
 					alert(data.msg);
@@ -53,21 +53,21 @@ $(".cancel").on("click", function(event){
     console.log("取消");
     var uuid=sessionStorage.getItem("uuid")
     $.ajax({
-		//请求类型
+		// 请求类型
 		type:"post",
-		//请求路径
+		// 请求路径
 		url:"provider/providerdelete",
-		//返回数据类型
+		// 返回数据类型
 		data:{
 			id:uuid,
 		},
 		dataType:"json",
-		//请求成功后调用函数
+		// 请求成功后调用函数
 		success:function(data){
 			console.log("成功后返回的数据",data);
 			location.href="redirect?page=service_product"
 		},
-		//请求失败后调用函数
+		// 请求失败后调用函数
 		error:function(data){
 			console.log("请求失败",data);
 		}
@@ -78,20 +78,20 @@ $(".cancel").on("click", function(event){
  		$(function(){
  			var userid=sessionStorage.getItem("id");
  			$.ajax({
- 				//请求类型
+ 				// 请求类型
  				type:"post",
- 				//请求路径
+ 				// 请求路径
  				url:"provider/getproviderinfo",
- 				//返回数据类型
+ 				// 返回数据类型
  				data:{
  					userid:userid,
  				},
  				dataType:"json",
- 				//请求成功后调用函数
+ 				// 请求成功后调用函数
  				success:function(data){
  					console.log("成功后返回的数据",data);
  					var providerInfo=data.providerInfo;
- 					//每次清空table
+ 					// 每次清空table
  					$("#table").html("");
  					var txt="";
  					for(var i=0;i<providerInfo.length;i++){
@@ -126,7 +126,7 @@ $(".cancel").on("click", function(event){
  					console.log(txt);
  					$("#table").append(txt);
  				},
- 				//请求失败后调用函数
+ 				// 请求失败后调用函数
  				error:function(data){
  					console.log("失败后返回的数据",data);
  				}
@@ -146,21 +146,21 @@ $(".cancel").on("click", function(event){
     
  function dl(id){
     	$.ajax({
-				//请求类型
+				// 请求类型
 				type:"post",
-				//请求路径
+				// 请求路径
 				url:"provider/providerdelete",
-				//返回数据类型
+				// 返回数据类型
 				data:{
 					id:id,
 				},
 				dataType:"json",
-				//请求成功后调用函数
+				// 请求成功后调用函数
 				success:function(data){
 					console.log("成功后返回的数据",data);
 					location.href="redirect?page=service_product"
 				},
-				//请求失败后调用函数
+				// 请求失败后调用函数
 				error:function(data){
 					console.log("请求失败",data);
 				}
@@ -169,21 +169,21 @@ $(".cancel").on("click", function(event){
    
     function on(id){
     	$.ajax({
-				//请求类型
+				// 请求类型
 				type:"post",
-				//请求路径
+				// 请求路径
 				url:"provider/provideroline",
-				//返回数据类型
+				// 返回数据类型
 				data:{
 					id:id,
 				},
 				dataType:"json",
-				//请求成功后调用函数
+				// 请求成功后调用函数
 				success:function(data){
 					console.log("成功后返回的数据",data);
 					location.href="redirect?page=service_product"
 				},
-				//请求失败后调用函数
+				// 请求失败后调用函数
 				error:function(data){
 					console.log("请求失败",data);
 				}
@@ -192,21 +192,21 @@ $(".cancel").on("click", function(event){
     
     function down(id){
     	$.ajax({
-				//请求类型
+				// 请求类型
 				type:"post",
-				//请求路径
+				// 请求路径
 				url:"provider/providerdownline",
-				//返回数据类型
+				// 返回数据类型
 				data:{
 					id:id,
 				},
 				dataType:"json",
-				//请求成功后调用函数
+				// 请求成功后调用函数
 				success:function(data){
 					console.log("成功后返回的数据",data);
 					location.href="redirect?page=service_product"
 				},
-				//请求失败后调用函数
+				// 请求失败后调用函数
 				error:function(data){
 					console.log("请求失败",data);
 				}
@@ -222,13 +222,13 @@ $(".cancel").on("click", function(event){
 
 $(".apa").on("click", function(){
 	$.ajax({
-		//请求类型
+		// 请求类型
 		type:"get",
-		//请求路径
+		// 请求路径
 		url:"provider/apa",
-		//返回数据类型
+		// 返回数据类型
 		dataType:"json",
-		//请求成功后调用函数
+		// 请求成功后调用函数
 		success:function(data){
 			console.log("成功后返回的数据",data);
 			sessionStorage.setItem("uuid",data.providerInfo)
@@ -237,7 +237,7 @@ $(".apa").on("click", function(){
 			txt +=`<input name="id" class="userid" type="hidden" value="${data.providerInfo}"/>`
 			$(".aaa").append(txt);
 		},
-		//请求失败后调用函数
+		// 请求失败后调用函数
 		error:function(data){
 			console.log("请求失败",data);
 		}
@@ -304,7 +304,7 @@ function img(){
 	"/>`
 	$(".img").append(txt);
 }
-  //退出登录
+  // 退出登录
     $(".exit").on("click",function(){
     	sessionStorage.setItem("id","")
     	sessionStorage.setItem("name","")

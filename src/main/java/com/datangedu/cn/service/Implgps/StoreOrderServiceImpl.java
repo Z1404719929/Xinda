@@ -48,9 +48,11 @@ public class StoreOrderServiceImpl implements StoreOrderService {
 		Provider provider=new Provider();
 		provider.setId(request.getParameter("id"));
 		provider.setName(request.getParameter("name"));
+//		provider.setRegionId(request.getParameter("region"));
+		System.out.println("设置区id===="+request.getParameter("region"));
 		provider.setCellphone(request.getParameter("cellphone"));
 		provider.setQq(request.getParameter("qq"));
-		provider.setRegionId(request.getParameter("regionId"));
+		provider.setRegionId(request.getParameter("region"));
 		provider.setWeixin(request.getParameter("weixin"));
 		provider.setEmail(request.getParameter("email"));
 		return providerMapper.updateByPrimaryKeySelective(provider);

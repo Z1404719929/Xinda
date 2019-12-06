@@ -122,7 +122,7 @@
     </div>
     <div class="masking">
         <div class="scroller">
-            <h3>添加服务产品</h3>
+            <h3>修改产品信息<h3>
             <ul>
                 <li>
                     <span>头像</span> 
@@ -138,8 +138,7 @@
     margin-right: 10px;">选择图片</label>
                     <input id="file" name="file" type="file" style="float: left;display:none"/>
 	                <input name="id" class="userid" type="hidden"/>
-	                <button class="btn btn-primary" type="submit">上传</button>
-	                </form>
+	                
                 </li>
                 <li>
                     <span>服务商名称</span>
@@ -148,13 +147,13 @@
                 <li>
                     <span class="ver-top">选择地区</span>
                     <select name="" id="province" onchange="changesheng()" >
-                    	<option value="">省</option>
+                    	<option  value="">省</option>
                     </select>
                     <select name="" id="county" onchange="changeshi()" >
-                        <option value="">市</option>
+                        <option class="region1" value="">市</option>
                     </select>
                     <select name="" id="district" >
-                        <option value="">区</option>
+                        <option class="region2" value="">区</option>
                     </select>
                 </li>
                 <li>
@@ -176,6 +175,7 @@
             </ul>
             <button class="save">提交</button>
             <button class="cancel">取消</button>
+            </form>
         </div>
         <script src="./js/service_setting.js"></script>
 </body>

@@ -34,6 +34,11 @@ $(".change-info").on("click", function(event){
     $(".service_weixin1").val(txt3);
     $(".service_qq1").val(txt4);
     $(".service_email1").val(txt5);
+//    var str=txt6.split(" ");
+//    console.log("hude",str[1]);
+//    $("#province").val(str[0]);
+//    $("#county").val(str[1]);
+//    $(".region2").val(str[2]);
 })
 $(".save").on("click", function(event){
     $(".masking").hide();
@@ -42,6 +47,8 @@ $(".save").on("click", function(event){
            console.log(id);
 		    var name=$(".service_name1").val();
  			var cellphone=$(".service_cellphone1").val();
+ 			var region=$("#district").val();
+ 			console.log("区====1"+region);
  			var weixin=$(".service_weixin1").val();
  			var qq=$(".service_qq1").val();
  			var email=$(".service_email1").val();
@@ -61,6 +68,7 @@ $(".save").on("click", function(event){
  				data:{
  					name:name,
  					id:id,
+ 					region:region,
  					cellphone:cellphone,
  					weixin:weixin,
  					qq:qq,
@@ -85,7 +93,7 @@ $(".cancel").on("click", function(event){
 })
 
 
-var txt1;var txt2;var txt3;var txt4;var txt5;
+var txt1;var txt2;var txt3;var txt4;var txt5;var txt6;
 
 $(function(){
 	var loginId=sessionStorage.getItem("id")
@@ -129,8 +137,9 @@ $(function(){
 		 			$(".service_regionId").html("");
 							var txt="";
 							txt+=provider[0].regionId;
-								    	console.log(txt);
+								    	console.log("省市区",txt);
 				 			$(".service_regionId").append(txt);
+				 			txt6=txt;
 				 	$(".service_cellphone").html("");
 							var txt="";
 							txt+=provider[0].cellphone;

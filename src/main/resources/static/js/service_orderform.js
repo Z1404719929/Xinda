@@ -172,7 +172,7 @@ $.ajax({
 		}
 		}else{
 			for(var i = (nowpage-1)*2;i<(nowpage-1)*2+2;i++){
-				console.log(soList[i].serviceId);
+//				console.log(soList[i].serviceId);
 				txt += `<tr>
             <td>${soList[i].serviceNo}</td>
             <td>${soList[i].serviceId}</td>
